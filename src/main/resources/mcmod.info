@@ -1,13 +1,15 @@
 [
   {
-    "modid": "utilitymod",
+    "modid": "${modid}",
     "name": "Utility Mod",
     "description": "",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "",
     "updateUrl": "",
-    "authorList": ["Timmi6790"],
+    "authorList": [
+      "Timmi6790"
+    ],
     "logoFile": "",
     "screenshots": [],
     "dependencies": []
