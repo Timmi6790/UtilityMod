@@ -7,6 +7,7 @@ import java.util.Optional;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import de.timmi6790.utility.modules.packets.logger.PacketLoggerModule;
 import de.timmi6790.utility.modules.server_tick_rate.ServerTickRateModule;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -25,7 +26,8 @@ public class UtilityMod
 	{
 		this.addModules(
 				false,
-				new ServerTickRateModule()
+				new ServerTickRateModule(),
+				new PacketLoggerModule()
 		);
 	}
 
