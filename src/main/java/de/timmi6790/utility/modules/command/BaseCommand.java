@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -130,6 +132,17 @@ public abstract class BaseCommand extends CommandBase
 		this.returnTell(null);
 	}
 
+	protected void returnTellInvalidArgument(final Object value, final String checkType)
+	{
+		MessageBuilder.of(String.valueOf(value), EnumChatFormatting.YELLOW)
+				.addMessage(" is not a valid ", EnumChatFormatting.GRAY)
+				.addMessage(checkType)
+				.addMessage(" value.", EnumChatFormatting.GRAY)
+				.sendToPlayer();
+
+		this.returnTell(null);
+	}
+
 	protected List<String> getTabCompleteOptions(final Collection<String> options, final String start)
 	{
 		return this.getTabCompleteOptions(options.toArray(new String[0]), start);
@@ -187,5 +200,19 @@ public abstract class BaseCommand extends CommandBase
 	public void register()
 	{
 		ClientCommandHandler.instance.registerCommand(this);
+	}
+
+	public void unregister()
+	{
+		final Map<String, ICommand> commandMap = ClientCommandHandler.instance.getCommands();
+		commandMap.remove(getCommandName());
+
+		for (final String commandAlias : getCommandAliases())
+		{
+			if (this.equals(commandMap.get(commandAlias)))
+			{
+				commandMap.remove(commandAlias);
+			}
+		}
 	}
 }

@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class PlayerUtil
+public class PlayerUtils
 {
 	public Optional<EntityPlayer> getPlayer()
 	{
@@ -18,7 +18,7 @@ public class PlayerUtil
 
 	public boolean consumePlayer(Consumer<EntityPlayer> playerConsumer)
 	{
-		final Optional<EntityPlayer> playerOptional = PlayerUtil.getPlayer();
+		final Optional<EntityPlayer> playerOptional = PlayerUtils.getPlayer();
 		if (!playerOptional.isPresent())
 		{
 			return false;

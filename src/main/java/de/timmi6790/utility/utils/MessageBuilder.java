@@ -165,7 +165,7 @@ public class MessageBuilder
 
 	public void sendToPlayer()
 	{
-		PlayerUtil.consumePlayer(player -> player.addChatMessage(this.messageObject));
+		PlayerUtils.consumePlayer(player -> player.addChatMessage(this.messageObject));
 	}
 
 	public void sendToPlayerDelayed(final long delay, MinecraftTimeUnit timeUnit)
