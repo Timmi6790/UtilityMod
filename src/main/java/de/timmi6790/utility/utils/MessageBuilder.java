@@ -141,6 +141,23 @@ public class MessageBuilder
 		return this;
 	}
 
+	public MessageBuilder addBoxToMessage()
+	{
+		return this.addBoxToMessage(EnumChatFormatting.GREEN);
+	}
+
+	public MessageBuilder addBoxToMessage(final EnumChatFormatting colour)
+	{
+		return MessageBuilder.of("")
+				.addMessage(MessageBuilder.of("\n=============================================\n\n", colour)
+						.setStrikethrough()
+						.setBold())
+				.addMessage(this.messageObject)
+				.addMessage(MessageBuilder.of("\n\n=============================================\n", colour)
+						.setStrikethrough()
+						.setBold());
+	}
+
 	public IChatComponent build()
 	{
 		return this.messageObject;
