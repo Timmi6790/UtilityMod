@@ -18,6 +18,8 @@ public class ServerTickRateModule implements Module
 
 	private long tickSection = -1;
 
+	private final ServerTickRateListener serverTickRateListener;
+
 	private final RollingAverage tps10Seconds;
 	private final RollingAverage tps1Minute;
 	private final RollingAverage tps5Minutes;
@@ -25,6 +27,8 @@ public class ServerTickRateModule implements Module
 
 	public ServerTickRateModule()
 	{
+		serverTickRateListener = new ServerTickRateListener(this);
+
 		this.tps10Seconds = new RollingAverage(10, MinecraftTimeUnit.SECONDS);
 		this.tps1Minute = new RollingAverage(1, MinecraftTimeUnit.MINUTES);
 		this.tps5Minutes = new RollingAverage(5, MinecraftTimeUnit.MINUTES);
@@ -65,7 +69,13 @@ public class ServerTickRateModule implements Module
 	public void registerEvents()
 	{
 		EventUtils.registerEvents(
-				new ServerTickRateListener(this)
+				serverTickRateListener
 		);
+	}
+
+	@Override
+	public void disable()
+	{
+		EventUtils.unRegisterEvents(serverTickRateListener);
 	}
 }
