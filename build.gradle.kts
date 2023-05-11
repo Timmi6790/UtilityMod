@@ -31,6 +31,7 @@ loom {
     forge {
         pack200Provider.set(dev.architectury.pack200.java.Pack200Adapter())
         mixinConfig("mixins.$modid.json")
+        accessTransformer("src/main/resources/${modid}_at.cfg")
     }
 
     mixin {
