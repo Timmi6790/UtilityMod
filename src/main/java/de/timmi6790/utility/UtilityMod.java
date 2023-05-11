@@ -7,6 +7,7 @@ import java.util.Optional;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import de.timmi6790.utility.modules.creative_tab.CreativeTabModule;
 import de.timmi6790.utility.modules.packets.logger.PacketLoggerModule;
 import de.timmi6790.utility.modules.packets.printer.PacketPrinterModule;
 import de.timmi6790.utility.modules.server_tick_rate.ServerTickRateModule;
@@ -29,7 +30,8 @@ public class UtilityMod
 				false,
 				new ServerTickRateModule(),
 				new PacketLoggerModule(),
-				new PacketPrinterModule()
+				new PacketPrinterModule(),
+				new CreativeTabModule()
 		);
 	}
 
