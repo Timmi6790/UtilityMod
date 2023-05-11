@@ -51,8 +51,11 @@ public class CommandGroup extends BaseCommand
 			return tabCompletion;
 		}
 
-		this.getSubCommand(firstArg)
-				.ifPresent(command -> command.addTabCompletionOptions(sender, Arrays.copyOfRange(args, 1, args.length), pos));
+		Optional<BaseCommand> command = this.getSubCommand(firstArg);
+		if (command.isPresent())
+		{
+			return command.get().addTabCompletionOptions(sender, Arrays.copyOfRange(args, 1, args.length), pos);
+		}
 
 		return new ArrayList<>();
 	}
