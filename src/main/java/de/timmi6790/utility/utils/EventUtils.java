@@ -32,7 +32,7 @@ public class EventUtils
 		}
 	}
 
-	public void unRegisterEvents(final Object... events)
+	public void unregisterEvents(final Object... events)
 	{
 		for (final Object event : events)
 		{

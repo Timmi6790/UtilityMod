@@ -6,6 +6,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import de.timmi6790.utility.ListenerComponent;
 import de.timmi6790.utility.modules.core.events.PacketReceiveEvent;
 import de.timmi6790.utility.modules.core.events.PacketSendEvent;
 import de.timmi6790.utility.modules.packets.printer.mappers.PacketMapper;
@@ -16,7 +17,7 @@ import lombok.extern.log4j.Log4j2;
 
 @RequiredArgsConstructor
 @Log4j2
-public class PacketPrinterListener
+public class PacketPrinterListener implements ListenerComponent
 {
 	private final PacketPrinterModule module;
 

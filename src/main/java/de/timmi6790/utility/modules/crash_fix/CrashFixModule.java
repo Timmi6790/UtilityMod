@@ -2,30 +2,17 @@ package de.timmi6790.utility.modules.crash_fix;
 
 import net.minecraft.util.EnumChatFormatting;
 
-import de.timmi6790.utility.Module;
+import de.timmi6790.utility.BaseModule;
 import de.timmi6790.utility.modules.crash_fix.fixes.CrashPotionFix;
-import de.timmi6790.utility.utils.EventUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
 
-public class CrashFixModule implements Module
+public class CrashFixModule extends BaseModule
 {
-	private final CrashPotionFix potionFix;
-
 	public CrashFixModule()
 	{
-		this.potionFix = new CrashPotionFix(this);
-	}
-
-	@Override
-	public void registerEvents()
-	{
-		EventUtils.registerEvents(this.potionFix);
-	}
-
-	@Override
-	public void disable()
-	{
-		EventUtils.unRegisterEvents(this.potionFix);
+		registerListenerComponents(
+				new CrashPotionFix(this)
+		);
 	}
 
 	public void sendPreventionMessage(MessageBuilder message)

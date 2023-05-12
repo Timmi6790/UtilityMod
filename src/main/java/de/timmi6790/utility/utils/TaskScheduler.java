@@ -7,6 +7,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import de.timmi6790.utility.ListenerComponent;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class TaskScheduler
+public class TaskScheduler implements ListenerComponent
 {
 	@Getter
 	private static final TaskScheduler instance = new TaskScheduler();
@@ -24,7 +25,7 @@ public class TaskScheduler
 
 	private TaskScheduler()
 	{
-		EventUtils.registerEvents(this);
+		registerEvents();
 	}
 
 	public void schedule(final long delay, MinecraftTimeUnit timeUnit, Runnable runnable)

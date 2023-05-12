@@ -4,11 +4,12 @@ import net.minecraft.network.play.server.S03PacketTimeUpdate;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
+import de.timmi6790.utility.ListenerComponent;
 import de.timmi6790.utility.modules.core.events.PacketReceiveEvent;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ServerTickRateListener
+public class ServerTickRateListener implements ListenerComponent
 {
 	private final ServerTickRateModule serverTickRate;
 

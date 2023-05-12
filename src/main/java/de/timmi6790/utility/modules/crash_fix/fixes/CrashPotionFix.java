@@ -5,13 +5,14 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import de.timmi6790.utility.ListenerComponent;
 import de.timmi6790.utility.modules.core.events.PacketReceiveEvent;
 import de.timmi6790.utility.modules.crash_fix.CrashFixModule;
 import de.timmi6790.utility.utils.MessageBuilder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CrashPotionFix
+public class CrashPotionFix implements ListenerComponent
 {
 	private final CrashFixModule module;
 
