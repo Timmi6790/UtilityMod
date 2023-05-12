@@ -11,7 +11,7 @@ import java.util.Set;
 
 import net.minecraft.network.Packet;
 
-import de.timmi6790.utility.Module;
+import de.timmi6790.utility.BaseModule;
 import de.timmi6790.utility.modules.packets.printer.commands.PacketPrinterCommand;
 import de.timmi6790.utility.modules.packets.printer.mappers.PacketMapper;
 import de.timmi6790.utility.modules.packets.printer.mappers.client.forge.FMLProxyPacketMapper;
@@ -126,13 +126,12 @@ import de.timmi6790.utility.modules.packets.printer.mappers.server.play.S48Packe
 import de.timmi6790.utility.modules.packets.printer.mappers.server.play.S49PacketUpdateEntityNBTMapper;
 import de.timmi6790.utility.modules.packets.printer.mappers.server.status.S00PacketServerInfoMapper;
 import de.timmi6790.utility.modules.packets.printer.mappers.server.status.S01PacketPongMapper;
-import de.timmi6790.utility.utils.EventUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class PacketPrinterModule implements Module
+public class PacketPrinterModule extends BaseModule
 {
 	private final Map<Class<? extends Packet<?>>, PacketMapper<?>> packetMappers = new HashMap<>();
 
@@ -141,9 +140,6 @@ public class PacketPrinterModule implements Module
 	private PrintMode printMode = PrintMode.CHAT;
 	@Getter
 	private final Set<Class<Packet<?>>> activeListeners = Collections.synchronizedSet(new HashSet<>());
-
-	private final PacketPrinterListener listener;
-	private final PacketPrinterCommand printerCommand;
 
 	public PacketPrinterModule()
 	{
@@ -277,27 +273,13 @@ public class PacketPrinterModule implements Module
 				new S01PacketPongMapper()
 		);
 
-		printerCommand = new PacketPrinterCommand(this);
-		listener = new PacketPrinterListener(this);
-	}
+		registerCommands(
+				new PacketPrinterCommand(this)
+		);
 
-	@Override
-	public void enable()
-	{
-		printerCommand.register();
-	}
-
-	@Override
-	public void registerEvents()
-	{
-		EventUtils.registerEvents(listener);
-	}
-
-	@Override
-	public void disable()
-	{
-		printerCommand.unregister();
-		EventUtils.unRegisterEvents(listener);
+		registerListenerComponents(
+				new PacketPrinterListener(this)
+		);
 	}
 
 	@SafeVarargs

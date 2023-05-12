@@ -2,11 +2,12 @@ package de.timmi6790.utility.modules.packets.logger;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import de.timmi6790.utility.ListenerComponent;
 import de.timmi6790.utility.modules.core.events.PacketReceiveEvent;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class PacketLoggerListener
+public class PacketLoggerListener implements ListenerComponent
 {
 	private final PacketLoggerModule module;
 

@@ -11,17 +11,17 @@ import java.util.concurrent.TimeUnit;
 import net.minecraft.network.Packet;
 import net.minecraft.util.EnumChatFormatting;
 
-import de.timmi6790.utility.Module;
-import de.timmi6790.utility.modules.command.BaseCommand;
+import de.timmi6790.utility.BaseModule;
 import de.timmi6790.utility.modules.packets.logger.commands.PacketLoggerCommand;
-import de.timmi6790.utility.utils.EventUtils;
 import de.timmi6790.utility.utils.FormatUtils;
 import de.timmi6790.utility.utils.MathUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class PacketLoggerModule implements Module
+public class PacketLoggerModule extends BaseModule
 {
 	private final Map<Class<? extends Packet>, PacketLogInfo> packetLogInfos = new ConcurrentHashMap<>();
 
@@ -30,20 +30,24 @@ public class PacketLoggerModule implements Module
 	private int packetShowCount = 5;
 	private long loggerStartTime = System.currentTimeMillis();
 
-	private final PacketLoggerListener listener;
-	private final BaseCommand command;
 	private ScheduledFuture<?> broadcastTask;
 
 	public PacketLoggerModule()
 	{
-		listener = new PacketLoggerListener(this);
-		command = new PacketLoggerCommand(this);
+		registerListenerComponent(
+				new PacketLoggerListener(this)
+		);
+
+		registerCommands(
+				new PacketLoggerCommand(this)
+		);
 	}
 
 	@Override
 	public void enable()
 	{
-		command.register();
+		super.enable();
+
 		broadcastTask = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
 				() ->
 				{
@@ -71,17 +75,11 @@ public class PacketLoggerModule implements Module
 		);
 	}
 
-	@Override
-	public void registerEvents()
-	{
-		EventUtils.registerEvents(listener);
-	}
 
 	@Override
 	public void disable()
 	{
-		EventUtils.unRegisterEvents(listener);
-		command.unregister();
+		super.disable();
 
 		if (broadcastTask != null)
 		{
