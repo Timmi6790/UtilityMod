@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.timmi6790.utility.modules.command.BaseCommand;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class BaseModule implements Module
 {
 	private final List<ListenerComponent> listenerComponents = new ArrayList<>();
@@ -39,32 +41,69 @@ public class BaseModule implements Module
 	@Override
 	public void enable()
 	{
+		log.debug("Enabling module {}.", this.getClass().getSimpleName());
 		for (final BaseCommand command : this.commands)
 		{
-			command.register();
+			try
+			{
+				log.debug("Registering command {} in module {}.", command.getCommandName(), this.getClass().getSimpleName());
+				command.register();
+			}
+			catch (Exception e)
+			{
+				log.error("Failed to register command: " + command.getCommandName(), e);
+			}
 		}
 	}
 
 	@Override
 	public void registerEvents()
 	{
+		log.debug("Registering events in module {}.", this.getClass().getSimpleName());
 		for (final ListenerComponent listenerComponent : this.listenerComponents)
 		{
-			listenerComponent.registerEvents();
+			try
+			{
+				log.debug("Registering listener component {} in module {}.", listenerComponent.getClass().getSimpleName(), this.getClass().getSimpleName());
+				listenerComponent.registerEvents();
+			}
+			catch (Exception e)
+			{
+				log.error("Failed to register listener component: " + listenerComponent.getClass().getSimpleName(), e);
+			}
 		}
 	}
 
 	@Override
 	public void disable()
 	{
+		log.debug("Disabling module {}.", this.getClass().getSimpleName());
 		for (final ListenerComponent listenerComponent : this.listenerComponents)
 		{
-			listenerComponent.unregisterEvents();
+			try
+			{
+				log.debug("Unregistering listener component {} in module {}.", listenerComponent.getClass().getSimpleName(), this.getClass().getSimpleName());
+				listenerComponent.unregisterEvents();
+			}
+			catch (Exception e)
+			{
+				log.error("Failed to unregister listener component: " + listenerComponent.getClass().getSimpleName(), e);
+			}
 		}
+		listenerComponents.clear();
 
 		for (final BaseCommand command : this.commands)
 		{
-			command.unregister();
+			try
+			{
+				log.debug("Unregistering command {} in module {}.", command.getCommandName(), this.getClass().getSimpleName());
+				command.unregister();
+			}
+			catch (Exception e)
+			{
+				log.error("Failed to unregister command: " + command.getCommandName(), e);
+			}
 		}
+		commands.clear();
 	}
 }
