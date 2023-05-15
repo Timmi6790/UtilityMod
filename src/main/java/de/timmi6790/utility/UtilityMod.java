@@ -13,6 +13,7 @@ import de.timmi6790.utility.modules.creative_tab.CreativeTabModule;
 import de.timmi6790.utility.modules.packets.logger.PacketLoggerModule;
 import de.timmi6790.utility.modules.packets.printer.PacketPrinterModule;
 import de.timmi6790.utility.modules.server_tick_rate.ServerTickRateModule;
+import de.timmi6790.utility.modules.texture_pack_info.TexturePackInfoModule;
 import de.timmi6790.utility.modules.update_checker.UpdateCheckerModule;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -50,7 +51,8 @@ public class UtilityMod
 				new PacketPrinterModule(),
 				new CreativeTabModule(),
 				new CrashFixModule(),
-				new UpdateCheckerModule()
+				new UpdateCheckerModule(),
+				new TexturePackInfoModule()
 		);
 	}
 

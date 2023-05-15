@@ -45,6 +45,17 @@ public class Config extends Vigilant
 	)
 	private boolean checkForUpdatesOnServerJoin = true;
 
+	/*
+	 * Texture Pack Info
+	 */
+	@Property(
+			type = PropertyType.CHECKBOX,
+			name = "Show Texture Pack Information",
+			description = "Show texture pack information on receive.",
+			category = "Texture Pack Info"
+	)
+	private boolean showTexturePackInformation = true;
+
 	public Config()
 	{
 		super(Paths.get(".", "config", Constants.MOD_ID + ".toml").toFile(), Constants.MOD_NAME + " Config");
