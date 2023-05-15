@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import de.timmi6790.utility.modules.config.Config;
+import de.timmi6790.utility.modules.config.reference.ConfigReference;
 import de.timmi6790.utility.utils.MessageBuilder;
 import lombok.extern.log4j.Log4j2;
 
@@ -21,6 +23,8 @@ public abstract class MixinDataWatcher
 {
 	private static final long ERROR_MESSAGE_COOLDOWN = TimeUnit.SECONDS.toMillis(20);
 	private static long lastErrorMessage = 0;
+
+	private static final ConfigReference<Boolean> ENABLED = new ConfigReference<>(Config::isDataWatcherCrashFix);
 
 	private static void sendErrorMessage(final String exceptedType, final Object watchedObject)
 	{
@@ -64,6 +68,11 @@ public abstract class MixinDataWatcher
 	@Inject(method = "getWatchableObjectInt", at = @At("RETURN"), cancellable = true)
 	public void getWatchableObjectInt(int id, CallbackInfoReturnable<Integer> cir)
 	{
+		if (!ENABLED.getOrDefault(false))
+		{
+			return;
+		}
+
 		final Object watchedObject = this.getWatchedObject(id).getObject();
 		if (this.isCorrectType(watchedObject, Integer.class))
 		{
@@ -88,6 +97,11 @@ public abstract class MixinDataWatcher
 	@Inject(method = "getWatchableObjectFloat", at = @At("RETURN"), cancellable = true)
 	public void getWatchableObjectFloat(int id, CallbackInfoReturnable<Float> cir)
 	{
+		if (!ENABLED.getOrDefault(false))
+		{
+			return;
+		}
+
 		final Object watchedObject = this.getWatchedObject(id).getObject();
 		if (this.isCorrectType(watchedObject, Float.class))
 		{
@@ -112,6 +126,11 @@ public abstract class MixinDataWatcher
 	@Inject(method = "getWatchableObjectByte", at = @At("RETURN"), cancellable = true)
 	public void getWatchableObjectByte(int id, CallbackInfoReturnable<Byte> cir)
 	{
+		if (!ENABLED.getOrDefault(false))
+		{
+			return;
+		}
+
 		final Object watchedObject = this.getWatchedObject(id).getObject();
 		if (this.isCorrectType(watchedObject, Byte.class))
 		{
@@ -136,6 +155,11 @@ public abstract class MixinDataWatcher
 	@Inject(method = "getWatchableObjectShort", at = @At("RETURN"), cancellable = true)
 	public void getWatchableObjectShort(int id, CallbackInfoReturnable<Short> cir)
 	{
+		if (!ENABLED.getOrDefault(false))
+		{
+			return;
+		}
+
 		final Object watchedObject = this.getWatchedObject(id).getObject();
 		if (this.isCorrectType(watchedObject, Short.class))
 		{
@@ -160,6 +184,11 @@ public abstract class MixinDataWatcher
 	@Inject(method = "getWatchableObjectString", at = @At("RETURN"), cancellable = true)
 	public void getWatchableObjectString(int id, CallbackInfoReturnable<String> cir)
 	{
+		if (!ENABLED.getOrDefault(false))
+		{
+			return;
+		}
+
 		final Object watchedObject = this.getWatchedObject(id).getObject();
 		if (this.isCorrectType(watchedObject, String.class))
 		{
