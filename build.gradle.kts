@@ -48,6 +48,7 @@ repositories {
     mavenCentral()
     maven("https://repo.spongepowered.org/maven/")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    maven("https://repo.essential.gg/repository/maven-public")
 }
 
 val shadowImpl: Configuration by configurations.creating {
@@ -74,6 +75,9 @@ dependencies {
 
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
 
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
+    implementation("gg.essential:elementa-$mcVersion-forge:590")
+    implementation("gg.essential:vigilance-$mcVersion-forge:284")
 }
 
 // Tasks:
@@ -137,6 +141,10 @@ tasks.shadowJar {
 
     // If you want to include other dependencies and shadow them, you can relocate them in here
     fun relocate(name: String) = relocate(name, "$baseGroup.deps.$name")
+
+    relocate("gg.essential.elementa")
+    relocate("gg.essential.universalcraft")
+    relocate("gg.essential.vigilance")
 }
 
 tasks.assemble.get().dependsOn(tasks.remapJar)
