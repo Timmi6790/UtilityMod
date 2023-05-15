@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 
 import lombok.experimental.UtilityClass;
@@ -26,5 +27,10 @@ public class PlayerUtils
 
 		playerConsumer.accept(playerOptional.get());
 		return true;
+	}
+
+	public void openGUI(GuiScreen gui)
+	{
+		Minecraft.getMinecraft().displayGuiScreen(gui);
 	}
 }
