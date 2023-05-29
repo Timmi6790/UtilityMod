@@ -1,227 +1,185 @@
 package de.timmi6790.utility.builders.item_stack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import de.timmi6790.utility.builders.item_stack.modifiers.AttributeOperation;
+import de.timmi6790.utility.builders.item_stack.modifiers.AttributeType;
+import lombok.Getter;
+import lombok.NonNull;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagDouble;
-import net.minecraft.nbt.NBTTagInt;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagLong;
-import net.minecraft.nbt.NBTTagString;
+import net.minecraft.nbt.*;
 
-import de.timmi6790.utility.builders.item_stack.modifiers.AttributeOperation;
-import de.timmi6790.utility.builders.item_stack.modifiers.AttributeType;
-import lombok.Getter;
-import lombok.NonNull;
+import java.util.*;
 
 @Getter
-public abstract class AbstractItemStackBuilder<SELF extends AbstractItemStackBuilder<SELF>>
-{
-	private Item item;
-	private int itemCount = 1;
+public abstract class AbstractItemStackBuilder<SELF extends AbstractItemStackBuilder<SELF>> {
+    // Attributes
+    private final List<AttributeModifier> attributes = new ArrayList<>();
+    // Enchantments
+    private final Map<Integer, Integer> enchantments = new HashMap<>();
+    // Display
+    private final List<String> itemLore = new ArrayList<>();
+    private Item item;
+    private int itemCount = 1;
+    private String itemName;
 
-	// Attributes
-	private final List<AttributeModifier> attributes = new ArrayList<>();
+    // Itemstack
+    private Integer itemDamage;
+    private Boolean unbreakable;
+    private boolean hideFlags = false;
 
-	// Enchantments
-	private final Map<Integer, Integer> enchantments = new HashMap<>();
+    protected AbstractItemStackBuilder() {
+        this(Items.stick);
+    }
 
-	// Display
-	private final List<String> itemLore = new ArrayList<>();
-	private String itemName;
+    protected AbstractItemStackBuilder(final Item item) {
+        this.item = item;
+    }
 
-	// Itemstack
-	private Integer itemDamage;
-	private Boolean unbreakable;
-	private boolean hideFlags = false;
+    protected abstract SELF getThis();
 
-	protected AbstractItemStackBuilder()
-	{
-		this(Items.stick);
-	}
+    public ItemStack build() {
+        return this.build(false);
+    }
 
-	protected AbstractItemStackBuilder(final Item item)
-	{
-		this.item = item;
-	}
+    public ItemStack build(final boolean requireNbt) {
+        final ItemStack itemStack = new ItemStack(this.item, this.itemCount);
+        final NBTTagCompound nbtTag = new NBTTagCompound();
 
-	protected abstract SELF getThis();
+        // Display
+        final NBTTagCompound display = new NBTTagCompound();
+        if (this.itemName != null) {
+            display.setString("Name", this.itemName);
 
-	public ItemStack build()
-	{
-		return this.build(false);
-	}
+        }
 
-	public ItemStack build(final boolean requireNbt)
-	{
-		final ItemStack itemStack = new ItemStack(this.item, this.itemCount);
-		final NBTTagCompound nbtTag = new NBTTagCompound();
+        if (!this.itemLore.isEmpty()) {
+            final NBTTagList loreNbt = new NBTTagList();
 
-		// Display
-		final NBTTagCompound display = new NBTTagCompound();
-		if (this.itemName != null)
-		{
-			display.setString("Name", this.itemName);
+            for (final String lore : this.itemLore) {
+                loreNbt.appendTag(new NBTTagString(lore));
+            }
 
-		}
+            display.setTag("Lore", loreNbt);
+        }
 
-		if (!this.itemLore.isEmpty())
-		{
-			final NBTTagList loreNbt = new NBTTagList();
+        if (!display.getKeySet().isEmpty()) {
+            nbtTag.setTag("display", display);
+        }
 
-			for (final String lore : this.itemLore)
-			{
-				loreNbt.appendTag(new NBTTagString(lore));
-			}
+        // Enchantments
+        if (!this.enchantments.isEmpty()) {
+            final NBTTagList enchList = new NBTTagList();
+            for (final Map.Entry<Integer, Integer> entry : this.enchantments.entrySet()) {
+                final NBTTagCompound ench = new NBTTagCompound();
+                ench.setInteger("lvl", entry.getValue());
+                ench.setInteger("id", entry.getKey());
+                enchList.appendTag(ench);
+            }
+            nbtTag.setTag("ench", enchList);
+        }
 
-			display.setTag("Lore", loreNbt);
-		}
+        // Attributes
+        if (!this.attributes.isEmpty()) {
+            final NBTTagList attributes = new NBTTagList();
+            for (final AttributeModifier modifier : this.attributes) {
+                final NBTTagCompound attribute = new NBTTagCompound();
+                attribute.setTag("AttributeName", new NBTTagString(modifier.getName()));
+                attribute.setTag("Name", new NBTTagString(modifier.getName()));
+                attribute.setTag("Amount", new NBTTagDouble(modifier.getAmount()));
+                attribute.setTag("Operation", new NBTTagInt(modifier.getOperation()));
+                attribute.setTag("UUIDLeast", new NBTTagLong(modifier.getID().getLeastSignificantBits()));
+                attribute.setTag("UUIDMost", new NBTTagLong(modifier.getID().getMostSignificantBits()));
 
-		if (!display.getKeySet().isEmpty())
-		{
-			nbtTag.setTag("display", display);
-		}
+                attributes.appendTag(attribute);
+            }
+            nbtTag.setTag("AttributeModifiers", attributes);
+        }
 
-		// Enchantments
-		if (!this.enchantments.isEmpty())
-		{
-			final NBTTagList enchList = new NBTTagList();
-			for (final Map.Entry<Integer, Integer> entry : this.enchantments.entrySet())
-			{
-				final NBTTagCompound ench = new NBTTagCompound();
-				ench.setInteger("lvl", entry.getValue());
-				ench.setInteger("id", entry.getKey());
-				enchList.appendTag(ench);
-			}
-			nbtTag.setTag("ench", enchList);
-		}
+        // Unbreakable
+        if (this.unbreakable != null) {
+            nbtTag.setBoolean("Unbreakable", this.unbreakable);
+        }
 
-		// Attributes
-		if (!this.attributes.isEmpty())
-		{
-			final NBTTagList attributes = new NBTTagList();
-			for (final AttributeModifier modifier : this.attributes)
-			{
-				final NBTTagCompound attribute = new NBTTagCompound();
-				attribute.setTag("AttributeName", new NBTTagString(modifier.getName()));
-				attribute.setTag("Name", new NBTTagString(modifier.getName()));
-				attribute.setTag("Amount", new NBTTagDouble(modifier.getAmount()));
-				attribute.setTag("Operation", new NBTTagInt(modifier.getOperation()));
-				attribute.setTag("UUIDLeast", new NBTTagLong(modifier.getID().getLeastSignificantBits()));
-				attribute.setTag("UUIDMost", new NBTTagLong(modifier.getID().getMostSignificantBits()));
+        if (this.itemDamage != null) {
+            itemStack.setItemDamage(this.itemDamage);
+        }
 
-				attributes.appendTag(attribute);
-			}
-			nbtTag.setTag("AttributeModifiers", attributes);
-		}
+        if (this.hideFlags) {
+            nbtTag.setInteger("HideFlags", 1);
+        }
 
-		// Unbreakable
-		if (this.unbreakable != null)
-		{
-			nbtTag.setBoolean("Unbreakable", this.unbreakable);
-		}
+        if (!nbtTag.getKeySet().isEmpty() || requireNbt) {
+            itemStack.setTagCompound(nbtTag);
+        }
 
-		if (this.itemDamage != null)
-		{
-			itemStack.setItemDamage(this.itemDamage);
-		}
+        return itemStack;
+    }
 
-		if (this.hideFlags)
-		{
-			nbtTag.setInteger("HideFlags", 1);
-		}
+    public SELF setItemLore(final String... itemLore) {
+        this.itemLore.clear();
+        this.itemLore.addAll(Arrays.asList(itemLore));
+        return this.getThis();
+    }
 
-		if (!nbtTag.getKeySet().isEmpty() || requireNbt)
-		{
-			itemStack.setTagCompound(nbtTag);
-		}
+    public SELF addItemLore(final String... itemLore) {
+        this.itemLore.addAll(Arrays.asList(itemLore));
+        return this.getThis();
+    }
 
-		return itemStack;
-	}
+    public SELF addAttribute(final AttributeType attributeType,
+                             final AttributeOperation attributeOperation,
+                             final double value) {
+        return this.addAttribute(new AttributeModifier(
+                attributeType.getId(),
+                value,
+                attributeOperation.getId()
+        ));
+    }
 
-	public SELF setItemLore(final String... itemLore)
-	{
-		this.itemLore.clear();
-		this.itemLore.addAll(Arrays.asList(itemLore));
-		return this.getThis();
-	}
+    public SELF addAttribute(final AttributeModifier attributeModifier) {
+        this.attributes.add(attributeModifier);
+        return this.getThis();
+    }
 
-	public SELF addItemLore(final String... itemLore)
-	{
-		this.itemLore.addAll(Arrays.asList(itemLore));
-		return this.getThis();
-	}
+    public SELF addEnchantment(final Enchantment enchantment, final Integer level) {
+        return this.addEnchantment(enchantment.effectId, level);
+    }
 
-	public SELF addAttribute(final AttributeType attributeType,
-							 final AttributeOperation attributeOperation,
-							 final double value)
-	{
-		return this.addAttribute(new AttributeModifier(
-				attributeType.getId(),
-				value,
-				attributeOperation.getId()
-		));
-	}
+    public SELF addEnchantment(final Integer id, final Integer level) {
+        this.enchantments.put(id, level);
+        return this.getThis();
+    }
 
-	public SELF addAttribute(final AttributeModifier attributeModifier)
-	{
-		this.attributes.add(attributeModifier);
-		return this.getThis();
-	}
+    public SELF setItemCount(final int itemCount) {
+        this.itemCount = itemCount;
+        return this.getThis();
+    }
 
-	public SELF addEnchantment(final Enchantment enchantment, final Integer level)
-	{
-		return this.addEnchantment(enchantment.effectId, level);
-	}
+    public SELF setItemName(final String itemName) {
+        this.itemName = itemName;
+        return this.getThis();
+    }
 
-	public SELF addEnchantment(final Integer id, final Integer level)
-	{
-		this.enchantments.put(id, level);
-		return this.getThis();
-	}
+    public SELF setItemDamage(final Integer itemDamage) {
+        this.itemDamage = itemDamage;
+        return this.getThis();
+    }
 
-	public SELF setItemCount(final int itemCount)
-	{
-		this.itemCount = itemCount;
-		return this.getThis();
-	}
+    public SELF setUnbreakable(final Boolean unbreakable) {
+        this.unbreakable = unbreakable;
+        return this.getThis();
+    }
 
-	public SELF setItemName(final String itemName)
-	{
-		this.itemName = itemName;
-		return this.getThis();
-	}
+    public SELF setItem(@NonNull final Item item) {
+        this.item = item;
+        return this.getThis();
+    }
 
-	public SELF setItemDamage(final Integer itemDamage)
-	{
-		this.itemDamage = itemDamage;
-		return this.getThis();
-	}
-
-	public SELF setUnbreakable(final Boolean unbreakable)
-	{
-		this.unbreakable = unbreakable;
-		return this.getThis();
-	}
-
-	public SELF setItem(@NonNull final Item item)
-	{
-		this.item = item;
-		return this.getThis();
-	}
-
-	public SELF setHideFlags(final boolean hideFlags)
-	{
-		this.hideFlags = hideFlags;
-		return this.getThis();
-	}
+    public SELF setHideFlags(final boolean hideFlags) {
+        this.hideFlags = hideFlags;
+        return this.getThis();
+    }
 }

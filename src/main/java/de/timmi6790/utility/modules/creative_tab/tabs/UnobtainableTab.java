@@ -1,36 +1,32 @@
 package de.timmi6790.utility.modules.creative_tab.tabs;
 
-import java.util.Collections;
-import java.util.List;
-
+import de.timmi6790.utility.builders.item_stack.ItemStackBuilder;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import de.timmi6790.utility.builders.item_stack.ItemStackBuilder;
+import java.util.Collections;
+import java.util.List;
 
-public class UnobtainableTab extends BaseTab
-{
-	public UnobtainableTab()
-	{
-		super("Unobtainable", Items.experience_bottle);
-	}
+public class UnobtainableTab extends BaseTab {
+    public UnobtainableTab() {
+        super("Unobtainable", Items.experience_bottle);
+    }
 
-	@Override
-	protected void getItems(List<ItemStack> items)
-	{
-		Collections.addAll(
-				items,
-				ItemStackBuilder.of(Blocks.barrier)
-						.build(),
+    @Override
+    protected void getItems(List<ItemStack> items) {
+        Collections.addAll(
+                items,
+                ItemStackBuilder.of(Blocks.barrier)
+                        .build(),
 
-				ItemStackBuilder.of(Blocks.command_block)
-						.build(),
+                ItemStackBuilder.of(Blocks.command_block)
+                        .build(),
 
-				ItemStackBuilder.of(Blocks.dragon_egg)
-						.build(),
+                ItemStackBuilder.of(Blocks.dragon_egg)
+                        .build(),
 
-				// TODO: FIX CLIENT CRASH
+                // TODO: FIX CLIENT CRASH
 				/*
 				ItemStackBuilder.of(Blocks.end_portal)
 						.build(),
@@ -45,8 +41,8 @@ public class UnobtainableTab extends BaseTab
 						.build(),
 				 */
 
-				ItemStackBuilder.of(Blocks.farmland)
-						.build()
-		);
-	}
+                ItemStackBuilder.of(Blocks.farmland)
+                        .build()
+        );
+    }
 }

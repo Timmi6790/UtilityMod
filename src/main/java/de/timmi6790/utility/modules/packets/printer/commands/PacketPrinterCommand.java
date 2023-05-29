@@ -8,18 +8,16 @@ import de.timmi6790.utility.modules.packets.printer.commands.subcommands.ListCom
 import de.timmi6790.utility.modules.packets.printer.commands.subcommands.PrintModeCommand;
 import de.timmi6790.utility.modules.packets.printer.commands.subcommands.RemoveCommand;
 
-public class PacketPrinterCommand extends CommandGroup
-{
-	public PacketPrinterCommand(final PacketPrinterModule module)
-	{
-		super("packetPrinter");
+public class PacketPrinterCommand extends CommandGroup {
+    public PacketPrinterCommand(final PacketPrinterModule module) {
+        super("packetPrinter");
 
-		this.setPrefix("PacketPrinter");
-		this.registerSubCommands(
-				new AddCommand(module),
-				new RemoveCommand(module),
-				new ListCommand(module),
-				new PrintModeCommand(module)
-		);
-	}
+        this.setPrefix("PacketPrinter");
+        this.registerSubCommands(
+                new AddCommand(module),
+                new RemoveCommand(module),
+                new ListCommand(module),
+                new PrintModeCommand(module)
+        );
+    }
 }

@@ -1,39 +1,34 @@
 package de.timmi6790.utility.modules.creative_tab.tabs;
 
-import java.util.List;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public abstract class BaseTab extends CreativeTabs
-{
-	private final Item displayItem;
+import java.util.List;
 
-	protected BaseTab(String label, Item displayItem)
-	{
-		super(label);
+public abstract class BaseTab extends CreativeTabs {
+    private final Item displayItem;
 
-		this.displayItem = displayItem;
-	}
+    protected BaseTab(String label, Item displayItem) {
+        super(label);
 
-	@Override
-	public String getTranslatedTabLabel()
-	{
-		return this.getTabLabel();
-	}
+        this.displayItem = displayItem;
+    }
 
-	@Override
-	public Item getTabIconItem()
-	{
-		return displayItem;
-	}
+    @Override
+    public String getTranslatedTabLabel() {
+        return this.getTabLabel();
+    }
 
-	@Override
-	public void displayAllReleventItems(final List<ItemStack> items)
-	{
-		this.getItems(items);
-	}
+    @Override
+    public Item getTabIconItem() {
+        return displayItem;
+    }
 
-	protected abstract void getItems(List<ItemStack> items);
+    @Override
+    public void displayAllReleventItems(final List<ItemStack> items) {
+        this.getItems(items);
+    }
+
+    protected abstract void getItems(List<ItemStack> items);
 }

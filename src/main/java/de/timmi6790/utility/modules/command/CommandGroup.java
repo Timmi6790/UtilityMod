@@ -1,166 +1,135 @@
 package de.timmi6790.utility.modules.command;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
-import net.minecraft.command.ICommandSender;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
-
-import org.apache.commons.lang3.StringUtils;
-
 import de.timmi6790.utility.utils.MessageBuilder;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
+import org.apache.commons.lang3.StringUtils;
 
-public class CommandGroup extends BaseCommand
-{
-	@Getter
-	private final List<BaseCommand> subCommands = new ArrayList<>();
-	/**
-	 * Stores the pre command group names, used for the help command
-	 */
-	@Setter(AccessLevel.PACKAGE)
-	private String preCommand;
+import java.util.*;
 
-	public CommandGroup(final String commandName)
-	{
-		super(commandName);
-	}
+public class CommandGroup extends BaseCommand {
+    @Getter
+    private final List<BaseCommand> subCommands = new ArrayList<>();
+    /**
+     * Stores the pre command group names, used for the help command
+     */
+    @Setter(AccessLevel.PACKAGE)
+    private String preCommand;
 
-	@Override
-	public List<String> addTabCompletionOptions(final ICommandSender sender, final String[] args, final BlockPos pos)
-	{
-		String firstArg = args[0];
-		if (args.length == 1)
-		{
-			final List<String> tabCompletion = new ArrayList<>();
-			final String argLower = firstArg.toLowerCase();
-			for (final BaseCommand command : this.subCommands)
-			{
-				if (command.getCommandName().toLowerCase().startsWith(argLower))
-				{
-					tabCompletion.add(command.getCommandName());
-				}
-				tabCompletion.addAll(this.getTabCompleteOptions(command.getCommandAliases(), firstArg));
-			}
-			return tabCompletion;
-		}
+    public CommandGroup(final String commandName) {
+        super(commandName);
+    }
 
-		Optional<BaseCommand> command = this.getSubCommand(firstArg);
-		if (command.isPresent())
-		{
-			return command.get().addTabCompletionOptions(sender, Arrays.copyOfRange(args, 1, args.length), pos);
-		}
+    @Override
+    public List<String> addTabCompletionOptions(final ICommandSender sender, final String[] args, final BlockPos pos) {
+        String firstArg = args[0];
+        if (args.length == 1) {
+            final List<String> tabCompletion = new ArrayList<>();
+            final String argLower = firstArg.toLowerCase();
+            for (final BaseCommand command : this.subCommands) {
+                if (command.getCommandName().toLowerCase().startsWith(argLower)) {
+                    tabCompletion.add(command.getCommandName());
+                }
+                tabCompletion.addAll(this.getTabCompleteOptions(command.getCommandAliases(), firstArg));
+            }
+            return tabCompletion;
+        }
 
-		return new ArrayList<>();
-	}
+        Optional<BaseCommand> command = this.getSubCommand(firstArg);
+        if (command.isPresent()) {
+            return command.get().addTabCompletionOptions(sender, Arrays.copyOfRange(args, 1, args.length), pos);
+        }
 
-	@Override
-	protected List<String> getSyntax()
-	{
-		// Only show the first argument instead of the entire syntax
-		final List<String> subCommandNames = new ArrayList<>();
-		for (final BaseCommand subCommand : this.subCommands)
-		{
-			subCommandNames.add(subCommand.getCommandName());
-		}
-		return Collections.singletonList(String.join("|", subCommandNames));
-	}
+        return new ArrayList<>();
+    }
 
-	@Override
-	public void onCommand(final ICommandSender sender, final String[] args)
-	{
-		if (args.length == 0)
-		{
-			final MessageBuilder helpMessage = MessageBuilder.of(
-					StringUtils.capitalize(this.getCommandName()) + "-Command\n",
-					EnumChatFormatting.GOLD
-			);
-			for (final BaseCommand command : this.subCommands)
-			{
-				helpMessage.addMessage(
-						EnumChatFormatting.YELLOW,
-						"\n/%s %s %s",
-						this.getPreCommand() + this.getCommandName(),
-						command.getCommandName(),
-						String.join(" ", command.getSyntax())
-				);
-			}
-			helpMessage.addBoxToMessage().sendToPlayer();
-			return;
-		}
+    @Override
+    protected List<String> getSyntax() {
+        // Only show the first argument instead of the entire syntax
+        final List<String> subCommandNames = new ArrayList<>();
+        for (final BaseCommand subCommand : this.subCommands) {
+            subCommandNames.add(subCommand.getCommandName());
+        }
+        return Collections.singletonList(String.join("|", subCommandNames));
+    }
 
-		final Optional<BaseCommand> command = this.getSubCommand(args[0]);
-		if (!command.isPresent())
-		{
-			this.returnTellNotValidCommand(args[0]);
-			return;
-		}
+    @Override
+    public void onCommand(final ICommandSender sender, final String[] args) {
+        if (args.length == 0) {
+            final MessageBuilder helpMessage = MessageBuilder.of(
+                    StringUtils.capitalize(this.getCommandName()) + "-Command\n",
+                    EnumChatFormatting.GOLD
+            );
+            for (final BaseCommand command : this.subCommands) {
+                helpMessage.addMessage(
+                        EnumChatFormatting.YELLOW,
+                        "\n/%s %s %s",
+                        this.getPreCommand() + this.getCommandName(),
+                        command.getCommandName(),
+                        String.join(" ", command.getSyntax())
+                );
+            }
+            helpMessage.addBoxToMessage().sendToPlayer();
+            return;
+        }
 
-		command.get().processCommand(sender, Arrays.copyOfRange(args, 1, args.length));
-	}
+        final Optional<BaseCommand> command = this.getSubCommand(args[0]);
+        if (!command.isPresent()) {
+            this.returnTellNotValidCommand(args[0]);
+            return;
+        }
 
-	protected Optional<BaseCommand> getSubCommand(final String name)
-	{
-		for (final BaseCommand command : this.subCommands)
-		{
-			if (command.getCommandName().equalsIgnoreCase(name))
-			{
-				return Optional.of(command);
-			}
+        command.get().processCommand(sender, Arrays.copyOfRange(args, 1, args.length));
+    }
 
-			for (final String alias : command.getCommandAliases())
-			{
-				if (alias.equalsIgnoreCase(name))
-				{
-					return Optional.of(command);
-				}
-			}
-		}
+    protected Optional<BaseCommand> getSubCommand(final String name) {
+        for (final BaseCommand command : this.subCommands) {
+            if (command.getCommandName().equalsIgnoreCase(name)) {
+                return Optional.of(command);
+            }
 
-		return Optional.empty();
-	}
+            for (final String alias : command.getCommandAliases()) {
+                if (alias.equalsIgnoreCase(name)) {
+                    return Optional.of(command);
+                }
+            }
+        }
 
-	protected String getPreCommand()
-	{
-		if (this.preCommand == null)
-		{
-			return "";
-		}
+        return Optional.empty();
+    }
 
-		return this.preCommand;
-	}
+    protected String getPreCommand() {
+        if (this.preCommand == null) {
+            return "";
+        }
 
-	protected CommandGroup registerSubCommands(final BaseCommand... commands)
-	{
-		for (final BaseCommand command : commands)
-		{
-			this.registerSubCommand(command);
-		}
+        return this.preCommand;
+    }
 
-		return this;
-	}
+    protected CommandGroup registerSubCommands(final BaseCommand... commands) {
+        for (final BaseCommand command : commands) {
+            this.registerSubCommand(command);
+        }
 
-	protected CommandGroup registerSubCommand(final BaseCommand command)
-	{
-		if (command instanceof CommandGroup)
-		{
-			final CommandGroup commandGroup = (CommandGroup) command;
-			commandGroup.setPreCommand(this.getPreCommand() + this.getCommandName() + " ");
-		}
+        return this;
+    }
 
-		// Set group prefix is the sub command doesn't have one
-		if (command.getPrefix() == null && this.getPrefix() != null)
-		{
-			command.setPrefix(this.getPrefix());
-		}
+    protected CommandGroup registerSubCommand(final BaseCommand command) {
+        if (command instanceof CommandGroup) {
+            final CommandGroup commandGroup = (CommandGroup) command;
+            commandGroup.setPreCommand(this.getPreCommand() + this.getCommandName() + " ");
+        }
 
-		this.subCommands.add(command);
-		return this;
-	}
+        // Set group prefix is the sub command doesn't have one
+        if (command.getPrefix() == null && this.getPrefix() != null) {
+            command.setPrefix(this.getPrefix());
+        }
+
+        this.subCommands.add(command);
+        return this;
+    }
 }
