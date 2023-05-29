@@ -1,11 +1,5 @@
 package de.timmi6790.utility.modules.packets.printer.commands.subcommands;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import net.minecraft.util.EnumChatFormatting;
-
 import de.timmi6790.utility.modules.command.BaseCommand;
 import de.timmi6790.utility.modules.command.CommandReturnException;
 import de.timmi6790.utility.modules.packets.printer.PacketPrinterModule;
@@ -14,59 +8,54 @@ import de.timmi6790.utility.modules.packets.printer.mappers.PacketSide;
 import de.timmi6790.utility.utils.EnumUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
 import lombok.Getter;
+import net.minecraft.util.EnumChatFormatting;
 
-public abstract class AbstractPacketPrinterCommand extends BaseCommand
-{
-	@Getter
-	private final PacketPrinterModule module;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-	protected AbstractPacketPrinterCommand(final PacketPrinterModule module, final String name, final List<String> aliases)
-	{
-		super(name, aliases);
+public abstract class AbstractPacketPrinterCommand extends BaseCommand {
+    @Getter
+    private final PacketPrinterModule module;
 
-		this.module = module;
-	}
+    protected AbstractPacketPrinterCommand(final PacketPrinterModule module, final String name, final List<String> aliases) {
+        super(name, aliases);
 
-	public PacketSide getPacketSideThrow(final String userInput)
-	{
-		final Optional<PacketSide> packetSideOpt = EnumUtils.getIgnoreCase(userInput, PacketSide.values());
-		if (packetSideOpt.isPresent())
-		{
-			return packetSideOpt.get();
-		}
+        this.module = module;
+    }
 
-		throw new CommandReturnException(
-				MessageBuilder.of(userInput, EnumChatFormatting.YELLOW)
-						.addMessage(" is not a valid input.", EnumChatFormatting.GRAY)
-		);
-	}
+    public PacketSide getPacketSideThrow(final String userInput) {
+        final Optional<PacketSide> packetSideOpt = EnumUtils.getIgnoreCase(userInput, PacketSide.values());
+        if (packetSideOpt.isPresent()) {
+            return packetSideOpt.get();
+        }
 
-	public PacketMapper<?> getPacketMapperThrow(final PacketSide packetSide, final String userInput)
-	{
-		for (final PacketMapper<?> mapper : this.getModule().getPacketMappers())
-		{
-			if (mapper.getPacketSide() == packetSide && mapper.getCleanPacketName().equalsIgnoreCase(userInput))
-			{
-				return mapper;
-			}
-		}
+        throw new CommandReturnException(
+                MessageBuilder.of(userInput, EnumChatFormatting.YELLOW)
+                        .addMessage(" is not a valid input.", EnumChatFormatting.GRAY)
+        );
+    }
 
-		throw new CommandReturnException(
-				MessageBuilder.of(userInput, EnumChatFormatting.YELLOW)
-						.addMessage(" is not a valid input.", EnumChatFormatting.GRAY)
-		);
-	}
+    public PacketMapper<?> getPacketMapperThrow(final PacketSide packetSide, final String userInput) {
+        for (final PacketMapper<?> mapper : this.getModule().getPacketMappers()) {
+            if (mapper.getPacketSide() == packetSide && mapper.getCleanPacketName().equalsIgnoreCase(userInput)) {
+                return mapper;
+            }
+        }
 
-	public List<String> getPacketMappersCleanNames(final PacketSide packetSide)
-	{
-		final List<String> packetMapperCleanNames = new ArrayList<>();
-		for (final PacketMapper<?> mapper : this.getModule().getPacketMappers())
-		{
-			if (mapper.getPacketSide() == packetSide)
-			{
-				packetMapperCleanNames.add(mapper.getCleanPacketName());
-			}
-		}
-		return packetMapperCleanNames;
-	}
+        throw new CommandReturnException(
+                MessageBuilder.of(userInput, EnumChatFormatting.YELLOW)
+                        .addMessage(" is not a valid input.", EnumChatFormatting.GRAY)
+        );
+    }
+
+    public List<String> getPacketMappersCleanNames(final PacketSide packetSide) {
+        final List<String> packetMapperCleanNames = new ArrayList<>();
+        for (final PacketMapper<?> mapper : this.getModule().getPacketMappers()) {
+            if (mapper.getPacketSide() == packetSide) {
+                packetMapperCleanNames.add(mapper.getCleanPacketName());
+            }
+        }
+        return packetMapperCleanNames;
+    }
 }

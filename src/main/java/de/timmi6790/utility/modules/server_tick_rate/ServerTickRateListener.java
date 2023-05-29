@@ -1,32 +1,27 @@
 package de.timmi6790.utility.modules.server_tick_rate;
 
+import de.timmi6790.utility.ListenerComponent;
+import de.timmi6790.utility.modules.core.events.PacketReceiveEvent;
+import lombok.RequiredArgsConstructor;
 import net.minecraft.network.play.server.S03PacketTimeUpdate;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
-import de.timmi6790.utility.ListenerComponent;
-import de.timmi6790.utility.modules.core.events.PacketReceiveEvent;
-import lombok.RequiredArgsConstructor;
-
 @RequiredArgsConstructor
-public class ServerTickRateListener implements ListenerComponent
-{
-	private final ServerTickRateModule serverTickRate;
+public class ServerTickRateListener implements ListenerComponent {
+    private final ServerTickRateModule serverTickRate;
 
-	@SubscribeEvent
-	public void updateTick(final PacketReceiveEvent.Post event)
-	{
-		if (event.getPacket() instanceof S03PacketTimeUpdate)
-		{
-			this.serverTickRate.addNewTick();
-		}
-	}
+    @SubscribeEvent
+    public void updateTick(final PacketReceiveEvent.Post event) {
+        if (event.getPacket() instanceof S03PacketTimeUpdate) {
+            this.serverTickRate.addNewTick();
+        }
+    }
 
-	@SubscribeEvent
-	public void onServerJoin(final FMLNetworkEvent.ClientConnectedToServerEvent event)
-	{
-		this.serverTickRate.reset();
-	}
+    @SubscribeEvent
+    public void onServerJoin(final FMLNetworkEvent.ClientConnectedToServerEvent event) {
+        this.serverTickRate.reset();
+    }
 
 	/*
 	@SubscribeEvent
