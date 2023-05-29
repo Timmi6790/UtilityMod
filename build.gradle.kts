@@ -57,17 +57,17 @@ val shadowImpl: Configuration by configurations.creating {
     configurations.implementation.get().extendsFrom(this)
 }
 
-val lombokVersion = "1.18.28"
+val lombokVersion = "1.18.26"
 
 dependencies {
     minecraft("com.mojang:minecraft:$mcVersion")
     mappings("de.oceanlabs.mcp:mcp_stable:22-$mcVersion")
     forge("net.minecraftforge:forge:$mcVersion-11.15.1.2318-$mcVersion")
 
-    shadowImpl("org.spongepowered:mixin:0.8.5") {
+    shadowImpl("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         isTransitive = false
     }
-    annotationProcessor("org.spongepowered:mixin:0.8.5")
+    annotationProcessor("org.spongepowered:mixin:0.8.4-SNAPSHOT")
 
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
@@ -75,7 +75,7 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
-    runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
+    runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     implementation("gg.essential:elementa-$mcVersion-forge:590")
