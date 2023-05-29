@@ -12,6 +12,7 @@ import de.timmi6790.utility.modules.crash_fix.CrashFixModule;
 import de.timmi6790.utility.modules.creative_tab.CreativeTabModule;
 import de.timmi6790.utility.modules.packets.logger.PacketLoggerModule;
 import de.timmi6790.utility.modules.packets.printer.PacketPrinterModule;
+import de.timmi6790.utility.modules.server_list_ping.ServerListPingModule;
 import de.timmi6790.utility.modules.server_tick_rate.ServerTickRateModule;
 import de.timmi6790.utility.modules.texture_pack_info.TexturePackInfoModule;
 import de.timmi6790.utility.modules.update_checker.UpdateCheckerModule;
@@ -52,7 +53,8 @@ public class UtilityMod
 				new CreativeTabModule(),
 				new CrashFixModule(),
 				new UpdateCheckerModule(),
-				new TexturePackInfoModule()
+				new TexturePackInfoModule(),
+				new ServerListPingModule()
 		);
 	}
 
