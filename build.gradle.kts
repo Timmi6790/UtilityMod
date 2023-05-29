@@ -40,7 +40,7 @@ loom {
 }
 
 sourceSets.main {
-    output.setResourcesDir(file("$buildDir/classes/java/main"))
+    output.resourcesDir = file("$buildDir/classes/java/main")
 }
 
 // Dependencies:
@@ -148,4 +148,18 @@ tasks.shadowJar {
 }
 
 tasks.assemble.get().dependsOn(tasks.remapJar)
+
+// Hook tasks
+fun registerHook(hookName: String) {
+    tasks.register<Copy>(hookName) {
+        from(layout.projectDirectory.file("hooks/$hookName"))
+        into(layout.projectDirectory.dir(".git/hooks"))
+        fileMode = Integer.getInteger("0755")
+    }
+
+    tasks.build.get().dependsOn(hookName)
+}
+
+registerHook("commit-msg")
+
 
