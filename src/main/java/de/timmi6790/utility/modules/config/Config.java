@@ -56,6 +56,19 @@ public class Config extends Vigilant
 	)
 	private boolean showTexturePackInformation = true;
 
+	/*
+	 * Server List Ping
+	 */
+	@Property(
+			type = PropertyType.SLIDER,
+			name = "Concurrent server list pings",
+			description = "The amount of concurrent server list pings.",
+			category = "Server List Ping",
+			min = 1,
+			max = 250
+	)
+	private int concurrentServerListPings = 100;
+
 	public Config()
 	{
 		super(Paths.get(".", "config", Constants.MOD_ID + ".toml").toFile(), Constants.MOD_NAME + " Config");
