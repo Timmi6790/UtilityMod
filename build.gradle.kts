@@ -99,8 +99,6 @@ tasks.withType(Jar::class) {
 }
 
 tasks.processResources {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-
     inputs.property("version", project.version)
     inputs.property("mcversion", mcVersion)
     inputs.property("modid", modid)
@@ -130,24 +128,8 @@ tasks.jar {
 
 tasks.shadowJar {
     destinationDirectory.set(layout.buildDirectory.dir("buildjars"))
-    archiveClassifier.set("")
+    archiveClassifier.set("all-dev")
     configurations = listOf(shadowImpl)
-
-    exclude(
-            "**/LICENSE.md",
-            "**/LICENSE.txt",
-            "**/LICENSE",
-            "**/NOTICE",
-            "**/NOTICE.txt",
-            "pack.mcmeta",
-            "dummyThing",
-            "**/module-info.class",
-            "META-INF/proguard/**",
-            "META-INF/maven/**",
-            "META-INF/versions/**",
-            "META-INF/com.android.tools/**",
-            "fabric.mod.json"
-    )
 
     doLast {
         configurations.forEach {
@@ -155,15 +137,29 @@ tasks.shadowJar {
         }
     }
 
+    exclude(
+            "**/LICENSE.*",
+            "**/LICENSE",
+            "**/NOTICE",
+            "**/NOTICE.*",
+            "pack.mcmeta",
+            "dummyThing",
+            "**/module-info.class",
+            "META-INF/proguard/**",
+            "META-INF/maven/**",
+            "META-INF/versions/**",
+            "META-INF/com.android.tools/**",
+    )
+
     // Required for the update checker code
     manifest.attributes["Implementation-Version"] = project.version
 
     // If you want to include other dependencies and shadow them, you can relocate them in here
     fun relocate(name: String) = relocate(name, "$baseGroup.deps.$name")
 
+    relocate("gg.essential.vigilance")
     relocate("gg.essential.elementa")
     relocate("gg.essential.universalcraft")
-    relocate("gg.essential.vigilance")
 }
 
 tasks.assemble.get().dependsOn(tasks.remapJar)
