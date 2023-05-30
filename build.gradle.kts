@@ -1,6 +1,7 @@
 plugins {
     idea
     java
+    id("org.jetbrains.kotlin.jvm") version "1.8.21"
     id("gg.essential.loom") version "0.10.0.+"
     id("dev.architectury.architectury-pack200") version "0.1.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -64,7 +65,7 @@ dependencies {
     mappings("de.oceanlabs.mcp:mcp_stable:22-$mcVersion")
     forge("net.minecraftforge:forge:$mcVersion-11.15.1.2318-$mcVersion")
 
-    shadowImpl("org.spongepowered:mixin:0.8.5") {
+    shadowImpl("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         isTransitive = false
     }
     annotationProcessor("org.spongepowered:mixin:0.8.5")
@@ -77,9 +78,8 @@ dependencies {
 
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
 
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
-    implementation("gg.essential:elementa-$mcVersion-forge:590")
-    implementation("gg.essential:vigilance-$mcVersion-forge:284")
+    shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
+    shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
 }
 
 // Tasks:
@@ -132,11 +132,26 @@ tasks.shadowJar {
     destinationDirectory.set(layout.buildDirectory.dir("buildjars"))
     archiveClassifier.set("all-dev")
     configurations = listOf(shadowImpl)
+
     doLast {
         configurations.forEach {
             println("Copying jars into mod: ${it.files}")
         }
     }
+
+    exclude(
+            "**/LICENSE.*",
+            "**/LICENSE",
+            "**/NOTICE",
+            "**/NOTICE.*",
+            "pack.mcmeta",
+            "dummyThing",
+            "**/module-info.class",
+            "META-INF/proguard/**",
+            "META-INF/maven/**",
+            "META-INF/versions/**",
+            "META-INF/com.android.tools/**",
+    )
 
     // Required for the update checker code
     manifest.attributes["Implementation-Version"] = project.version
@@ -144,9 +159,9 @@ tasks.shadowJar {
     // If you want to include other dependencies and shadow them, you can relocate them in here
     fun relocate(name: String) = relocate(name, "$baseGroup.deps.$name")
 
+    relocate("gg.essential.vigilance")
     relocate("gg.essential.elementa")
     relocate("gg.essential.universalcraft")
-    relocate("gg.essential.vigilance")
 }
 
 tasks.assemble.get().dependsOn(tasks.remapJar)
