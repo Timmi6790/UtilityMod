@@ -78,8 +78,8 @@ dependencies {
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
 
     compileOnly("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
-    implementation("gg.essential:elementa-$mcVersion-forge:590")
-    implementation("gg.essential:vigilance-$mcVersion-forge:284")
+    shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
+    shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
 }
 
 // Tasks:
@@ -132,6 +132,23 @@ tasks.shadowJar {
     destinationDirectory.set(layout.buildDirectory.dir("buildjars"))
     archiveClassifier.set("")
     configurations = listOf(shadowImpl)
+
+    exclude(
+            "**/LICENSE.md",
+            "**/LICENSE.txt",
+            "**/LICENSE",
+            "**/NOTICE",
+            "**/NOTICE.txt",
+            "pack.mcmeta",
+            "dummyThing",
+            "**/module-info.class",
+            "META-INF/proguard/**",
+            "META-INF/maven/**",
+            "META-INF/versions/**",
+            "META-INF/com.android.tools/**",
+            "fabric.mod.json"
+    )
+
     doLast {
         configurations.forEach {
             println("Copying jars into mod: ${it.files}")
