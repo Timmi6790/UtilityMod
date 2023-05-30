@@ -42,7 +42,7 @@ loom {
 }
 
 sourceSets.main {
-    output.resourcesDir = file("$buildDir/classes/java/main")
+    output.setResourcesDir(file("$buildDir/classes/java/main"))
 }
 
 // Dependencies:
@@ -77,7 +77,7 @@ dependencies {
 
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
 
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
+    compileOnly("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     implementation("gg.essential:elementa-$mcVersion-forge:590")
     implementation("gg.essential:vigilance-$mcVersion-forge:284")
 }
@@ -130,7 +130,7 @@ tasks.jar {
 
 tasks.shadowJar {
     destinationDirectory.set(layout.buildDirectory.dir("buildjars"))
-    archiveClassifier.set("all-dev")
+    archiveClassifier.set("")
     configurations = listOf(shadowImpl)
     doLast {
         configurations.forEach {
