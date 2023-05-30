@@ -43,7 +43,7 @@ loom {
 }
 
 sourceSets.main {
-    output.setResourcesDir(file("$buildDir/classes/java/main"))
+    output.resourcesDir = file("$buildDir/classes/java/main")
 }
 
 // Dependencies:
@@ -65,7 +65,7 @@ dependencies {
     mappings("de.oceanlabs.mcp:mcp_stable:22-$mcVersion")
     forge("net.minecraftforge:forge:$mcVersion-11.15.1.2318-$mcVersion")
 
-    shadowImpl("org.spongepowered:mixin:0.8.5") {
+    shadowImpl("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         isTransitive = false
     }
     annotationProcessor("org.spongepowered:mixin:0.8.5")
