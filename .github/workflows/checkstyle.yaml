@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: dbelyaev/action-checkstyle@v0.7.5
         with:
+          checkstyle_version: 10.10.0 # Temporary set version manually to allow use of ${config_loc} in checkstyle.xml
           github_token: ${{ secrets.github_token }}
           checkstyle_config: ./config/checkstyle/checkstyle.xml
           reporter: github-pr-review
