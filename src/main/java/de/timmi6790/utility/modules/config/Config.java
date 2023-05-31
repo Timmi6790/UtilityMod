@@ -1,12 +1,15 @@
 package de.timmi6790.utility.modules.config;
 
 import de.timmi6790.utility.Constants;
+import de.timmi6790.utility.modules.config.events.ConfigChangeEvent;
+import de.timmi6790.utility.utils.EventUtils;
 import gg.essential.vigilance.Vigilant;
 import gg.essential.vigilance.data.Property;
 import gg.essential.vigilance.data.PropertyType;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.lang.reflect.Field;
 import java.nio.file.Paths;
 
 @Getter
@@ -70,5 +73,18 @@ public class Config extends Vigilant {
         super(Paths.get(".", "config", Constants.MOD_ID + ".toml").toFile(), Constants.MOD_NAME + " Config");
 
         this.initialize();
+
+        // Register all fields to post a ConfigChangeEvent when the value changed
+        for (final Field field : this.getClass().getDeclaredFields()) {
+            if (field.getAnnotation(Property.class) == null) {
+                continue;
+            }
+
+            try {
+                this.registerListener(field, newValue -> EventUtils.postEventSave(new ConfigChangeEvent(this, field, newValue)));
+            } catch (final Exception e) {
+                log.error("Can't register config change listener for field: " + field.getName(), e);
+            }
+        }
     }
 }
