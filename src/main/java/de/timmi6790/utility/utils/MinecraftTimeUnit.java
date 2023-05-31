@@ -204,7 +204,7 @@ public enum MinecraftTimeUnit {
      * @return the converted duration in this unit, or {@code Long.MIN_VALUE} if conversion would negatively overflow,
      * or {@code Long.MAX_VALUE} if it would positively overflow.
      */
-    public abstract long convert(final long sourceDuration, final MinecraftTimeUnit sourceUnit);
+    public abstract long convert(long sourceDuration, MinecraftTimeUnit sourceUnit);
 
     /**
      * Equivalent to {@link #convert(long, MinecraftTimeUnit) NANOSECONDS.convert(duration, this)}.

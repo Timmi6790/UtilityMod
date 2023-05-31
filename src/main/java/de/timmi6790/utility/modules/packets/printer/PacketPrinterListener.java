@@ -30,11 +30,12 @@ public class PacketPrinterListener implements ListenerComponent {
     }
 
     private void handlePacket(final Packet packet) {
-        if (!module.hasPacketLogger((Class<Packet<?>>) packet.getClass())) {
+        if (!this.module.hasPacketLogger((Class<Packet<?>>) packet.getClass())) {
             return;
         }
 
-        final Optional<? extends PacketMapper<? extends Packet>> packetMapperOpt = module.getPacketMapper(packet.getClass());
+        final Optional<? extends PacketMapper<? extends Packet>> packetMapperOpt =
+                this.module.getPacketMapper(packet.getClass());
         if (!packetMapperOpt.isPresent()) {
             log.warn("No packet mapper found for " + packet.getClass());
             return;
@@ -44,7 +45,7 @@ public class PacketPrinterListener implements ListenerComponent {
         final MessageBuilder messageBuilder = packetMapper.parsePacketToMessage(packet);
         if (messageBuilder != null) {
             // Always fall back to logs if the user is not present
-            if (module.getPrintMode() == PrintMode.CHAT && PlayerUtils.getPlayer().isPresent()) {
+            if (this.module.getPrintMode() == PrintMode.CHAT && PlayerUtils.getPlayer().isPresent()) {
                 messageBuilder.sendToPlayer();
             } else {
                 final IChatComponent chatComponent = messageBuilder.build();

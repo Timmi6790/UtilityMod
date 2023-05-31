@@ -12,7 +12,8 @@ public class S17PacketEntityLookMoveMapper extends ServerPacketMapper<S14PacketE
     }
 
     @Override
-    public void parsePacketToMap(final S14PacketEntity.S17PacketEntityLookMove packet, final Map<String, String> valueMap) {
+    public void parsePacketToMap(final S14PacketEntity.S17PacketEntityLookMove packet,
+                                 final Map<String, String> valueMap) {
         this.addEntityToMap(packet.getEntity(this.getWorld()), valueMap);
         valueMap.put("Position", this.join(packet.func_149062_c(), packet.func_149061_d(), packet.func_149064_e()));
         valueMap.put("Look", this.join(packet.func_149066_f(), packet.func_149063_g()));

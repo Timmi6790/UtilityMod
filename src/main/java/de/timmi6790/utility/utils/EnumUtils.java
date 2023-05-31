@@ -21,7 +21,7 @@ public class EnumUtils {
      * @param enumValue the enum value
      * @return the pretty names
      */
-    public List<String> getPrettyNames(@NonNull final Enum[] enumValue) {
+    public static List<String> getPrettyNames(@NonNull final Enum[] enumValue) {
         return Arrays.stream(enumValue)
                 .map(EnumUtils::getPrettyName)
                 .collect(Collectors.toList());
@@ -34,7 +34,7 @@ public class EnumUtils {
      * @param enumValue the enum value
      * @return the pretty name
      */
-    public String getPrettyName(@NonNull final Enum enumValue) {
+    public static String getPrettyName(@NonNull final Enum enumValue) {
         // Remove _ and capitalize after the first part
         final String[] nameParts = enumValue.name().split("_");
         final StringBuilder prettyName = new StringBuilder();
@@ -54,7 +54,8 @@ public class EnumUtils {
      * @param enumValue the enum value
      * @return the found enum value
      */
-    public <T extends Enum> Optional<T> getIgnoreCase(@NonNull final String search, @NonNull final T[] enumValue) {
+    public static <T extends Enum> Optional<T> getIgnoreCase(@NonNull final String search,
+                                                             @NonNull final T[] enumValue) {
         return Arrays.stream(enumValue)
                 .filter(value -> getPrettyName(value).equalsIgnoreCase(search))
                 .findAny();

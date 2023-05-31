@@ -45,8 +45,7 @@ public class PacketLoggerModule extends BaseModule {
         super.enable();
 
         this.broadcastTask = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
-                () ->
-                {
+                () -> {
                     // Timed Broadcast
                     if (this.secondBroadcast) {
                         final List<PacketLogData> secondPacket = new ArrayList<>(this.packetLogInfos.size());

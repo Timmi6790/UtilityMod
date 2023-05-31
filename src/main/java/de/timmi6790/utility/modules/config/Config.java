@@ -84,7 +84,8 @@ public class Config extends Vigilant {
             }
 
             try {
-                this.registerListener(field, newValue -> EventUtils.postEventSave(new ConfigChangeEvent(this, field, newValue)));
+                this.registerListener(field,
+                        newValue -> EventUtils.postEventSave(new ConfigChangeEvent(this, field, newValue)));
             } catch (final Exception e) {
                 log.error("Can't register config change listener for field: " + field.getName(), e);
             }
@@ -101,6 +102,7 @@ public class Config extends Vigilant {
     }
 
     public Property getVisibleBarrierBlockProperty() {
-        return this.getProperty("visibleBarrierBlock").orElseThrow(() -> new RuntimeException("Can't find visibleBarrierBlock field"));
+        return this.getProperty("visibleBarrierBlock")
+                .orElseThrow(() -> new RuntimeException("Can't find visibleBarrierBlock field"));
     }
 }

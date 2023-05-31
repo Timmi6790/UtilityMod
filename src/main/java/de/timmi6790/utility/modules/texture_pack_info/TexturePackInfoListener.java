@@ -31,7 +31,8 @@ public class TexturePackInfoListener implements ListenerComponent {
                 .addMessage(
                         MessageBuilder.of(packetResourcePackSend.getURL(), EnumChatFormatting.YELLOW)
                                 .addClickEvent(ClickEvent.Action.OPEN_URL, packetResourcePackSend.getURL())
-                                .addHoverEvent(HoverEvent.Action.SHOW_TEXT, MessageBuilder.of("Open URL", EnumChatFormatting.GRAY)))
+                                .addHoverEvent(HoverEvent.Action.SHOW_TEXT,
+                                        MessageBuilder.of("Open URL", EnumChatFormatting.GRAY)))
                 .addMessage(" with hash ", EnumChatFormatting.GRAY)
                 .addMessage(packetResourcePackSend.getHash(), EnumChatFormatting.YELLOW)
                 .sendToPlayerDelayed(0, MinecraftTimeUnit.TICKS);

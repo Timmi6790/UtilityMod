@@ -23,30 +23,30 @@ public class ServerTickRateListener implements ListenerComponent {
         this.serverTickRate.reset();
     }
 
-	/*
-	@SubscribeEvent
-	public void tickDebugMessage(final TickEvent.ClientTickEvent event)
-	{
-		if (event.phase != TickEvent.Phase.START)
-		{
-			return;
-		}
+    /*
+    @SubscribeEvent
+    public void tickDebugMessage(final TickEvent.ClientTickEvent event)
+    {
+        if (event.phase != TickEvent.Phase.START)
+        {
+            return;
+        }
 
-		if (Minecraft.getMinecraft().thePlayer == null)
-		{
-			return;
-		}
+        if (Minecraft.getMinecraft().thePlayer == null)
+        {
+            return;
+        }
 
-		Minecraft.getMinecraft().thePlayer.addChatMessage(
-				new ChatComponentText(String.format(
-						"10s: %.2f, 1m: %.2f, 5m: %.2f, 10m: %.2f, 15m: %.2f",
-						this.serverTickRate.getTps10Seconds().getAverage(),
-						this.serverTickRate.getTps1Minute().getAverage(),
-						this.serverTickRate.getTps5Minutes().getAverage(),
-						this.serverTickRate.getTps5Minutes().getAverage(),
-						this.serverTickRate.getTps10Minutes().getAverage()
-				))
-		);
-	}
-	 */
+        Minecraft.getMinecraft().thePlayer.addChatMessage(
+                new ChatComponentText(String.format(
+                        "10s: %.2f, 1m: %.2f, 5m: %.2f, 10m: %.2f, 15m: %.2f",
+                        this.serverTickRate.getTps10Seconds().getAverage(),
+                        this.serverTickRate.getTps1Minute().getAverage(),
+                        this.serverTickRate.getTps5Minutes().getAverage(),
+                        this.serverTickRate.getTps5Minutes().getAverage(),
+                        this.serverTickRate.getTps10Minutes().getAverage()
+                ))
+        );
+    }
+     */
 }

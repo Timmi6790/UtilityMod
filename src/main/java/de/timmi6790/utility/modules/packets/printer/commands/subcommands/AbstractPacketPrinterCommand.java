@@ -18,7 +18,8 @@ public abstract class AbstractPacketPrinterCommand extends BaseCommand {
     @Getter
     private final PacketPrinterModule module;
 
-    protected AbstractPacketPrinterCommand(final PacketPrinterModule module, final String name, final List<String> aliases) {
+    protected AbstractPacketPrinterCommand(final PacketPrinterModule module, final String name,
+                                           final List<String> aliases) {
         super(name, aliases);
 
         this.module = module;

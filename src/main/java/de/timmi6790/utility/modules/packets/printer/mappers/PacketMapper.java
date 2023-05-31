@@ -36,7 +36,7 @@ public abstract class PacketMapper<T extends Packet<?>> {
      * @param packet   the packet
      * @param valueMap the value map
      */
-    protected abstract void parsePacketToMap(final T packet, final Map<String, String> valueMap);
+    protected abstract void parsePacketToMap(T packet, Map<String, String> valueMap);
 
     protected String removePacketCode(final String packetClassName) {
         return packetClassName.replaceFirst("^(?:.*){3}Packet", "");
@@ -85,7 +85,8 @@ public abstract class PacketMapper<T extends Packet<?>> {
     protected String toString(final List<DataWatcher.WatchableObject> watchableObjects) {
         final StringJoiner joiner = new StringJoiner("; ");
         for (final DataWatcher.WatchableObject object : watchableObjects) {
-            joiner.add("(ValueId: " + object.getDataValueId() + "; Type:" + object.getObjectType() + "; Object: " + object.getObject() + ")");
+            joiner.add("(ValueId: " + object.getDataValueId() + "; Type:" + object.getObjectType() + "; Object: " +
+                    object.getObject() + ")");
         }
         return "(" + joiner + ")";
     }

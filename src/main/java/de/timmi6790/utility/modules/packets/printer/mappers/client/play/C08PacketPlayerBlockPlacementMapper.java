@@ -16,6 +16,7 @@ public class C08PacketPlayerBlockPlacementMapper extends ClientPacketMapper<C08P
         valueMap.put("BlockPos", this.toString(packet.getPosition()));
         valueMap.put("PlaceDirection", String.valueOf(packet.getPlacedBlockDirection()));
         valueMap.put("ItemName", this.toString(packet.getStack()));
-        valueMap.put("Facing", this.join(packet.getPlacedBlockOffsetX(), packet.getPlacedBlockOffsetY(), packet.getPlacedBlockOffsetZ()));
+        valueMap.put("Facing", this.join(packet.getPlacedBlockOffsetX(), packet.getPlacedBlockOffsetY(),
+                packet.getPlacedBlockOffsetZ()));
     }
 }

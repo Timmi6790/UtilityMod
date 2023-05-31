@@ -35,7 +35,10 @@ public abstract class MixinDataWatcher {
         if (System.currentTimeMillis() - lastErrorMessage >= ERROR_MESSAGE_COOLDOWN) {
             lastErrorMessage = System.currentTimeMillis();
             MessageBuilder.of("AntiCrash> ", EnumChatFormatting.BLUE)
-                    .addMessage("Prevented a data watcher crash. Check your console for more information.", EnumChatFormatting.GRAY)
+                    .addMessage(
+                            "Prevented a data watcher crash. Check your console for more information.",
+                            EnumChatFormatting.GRAY
+                    )
                     .sendToPlayer();
         }
     }

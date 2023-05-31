@@ -55,8 +55,7 @@ public class UpdateCheckerModule extends BaseModule {
     }
 
     private CompletableFuture<VersionData> getLastVersion() {
-        return CompletableFuture.supplyAsync(() ->
-        {
+        return CompletableFuture.supplyAsync(() -> {
             try {
                 final URL url = new URL(String.format(REPO_INFO_URL, Constants.GITHUB_REPO));
                 final String json = IOUtils.toString(url, StandardCharsets.UTF_8);

@@ -13,7 +13,7 @@ public class C00PacketLoginStartMapper extends ClientPacketMapper<C00PacketLogin
     }
 
     @Override
-    public void parsePacketToMap(final C00PacketLoginStart packet, Map<String, String> valueMap) {
+    public void parsePacketToMap(final C00PacketLoginStart packet, final Map<String, String> valueMap) {
         final GameProfile profile = packet.getProfile();
 
         valueMap.put("UUID", String.valueOf(profile.getId()));

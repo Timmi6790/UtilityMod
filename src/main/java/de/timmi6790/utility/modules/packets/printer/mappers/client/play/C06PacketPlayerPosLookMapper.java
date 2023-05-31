@@ -12,7 +12,8 @@ public class C06PacketPlayerPosLookMapper extends ClientPacketMapper<C03PacketPl
     }
 
     @Override
-    public void parsePacketToMap(final C03PacketPlayer.C06PacketPlayerPosLook packet, final Map<String, String> valueMap) {
+    public void parsePacketToMap(final C03PacketPlayer.C06PacketPlayerPosLook packet,
+                                 final Map<String, String> valueMap) {
         valueMap.put("Position", this.join(packet.getPositionX(), packet.getPositionY(), packet.getPositionZ()));
         valueMap.put("Look", this.join(packet.getYaw(), packet.getPitch()));
         valueMap.put("OnGround", String.valueOf(packet.isOnGround()));

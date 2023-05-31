@@ -9,7 +9,13 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.network.Packet;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 
 public class ListCommand extends AbstractPacketPrinterCommand {
