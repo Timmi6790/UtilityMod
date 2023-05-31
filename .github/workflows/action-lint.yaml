@@ -1,4 +1,4 @@
-name: reviewdog
+name: Action Lint
 
 on:
   pull_request:
