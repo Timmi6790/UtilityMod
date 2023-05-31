@@ -5,7 +5,6 @@ import de.timmi6790.utility.modules.command.BaseCommand;
 import de.timmi6790.utility.modules.config.Config;
 import de.timmi6790.utility.modules.config.ConfigModule;
 import de.timmi6790.utility.utils.MessageBuilder;
-import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -38,6 +37,6 @@ public class BarrierCommand extends BaseCommand {
             this.tell(MessageBuilder.of("We are back to normal.", EnumChatFormatting.GRAY));
         }
 
-        Minecraft.getMinecraft().renderGlobal.loadRenderers();
+        this.module.reloadRender();
     }
 }

@@ -8,12 +8,15 @@ import gg.essential.vigilance.data.Property;
 import gg.essential.vigilance.data.PropertyType;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
 import java.lang.reflect.Field;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 @Getter
 @Setter
+@Log4j2
 public class Config extends Vigilant {
     /*
      * Crash Fix
@@ -86,5 +89,18 @@ public class Config extends Vigilant {
                 log.error("Can't register config change listener for field: " + field.getName(), e);
             }
         }
+    }
+
+    private Optional<Property> getProperty(final String fieldName) {
+        try {
+            return Optional.ofNullable(this.getClass().getDeclaredField(fieldName).getAnnotation(Property.class));
+        } catch (final NoSuchFieldException e) {
+            log.error("Can't find field: " + fieldName, e);
+            return Optional.empty();
+        }
+    }
+
+    public Property getVisibleBarrierBlockProperty() {
+        return this.getProperty("visibleBarrierBlock").orElseThrow(() -> new RuntimeException("Can't find visibleBarrierBlock field"));
     }
 }
