@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Timmi6790/UtilityMod/compare/1.0.1...1.1.0) (2023-05-31)
+
+
+### Features
+
+* **barrierView:** Add Barrier View module ([5c88e9e](https://github.com/Timmi6790/UtilityMod/commit/5c88e9e25de5376b6ad9715b1910379650076d52))
+
 ## [1.0.1](https://github.com/Timmi6790/UtilityMod/compare/1.0.0...1.0.1) (2023-05-30)
 
 
