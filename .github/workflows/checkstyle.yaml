@@ -1,0 +1,14 @@
+name: CheckStyle
+on: [ pull_request ]
+jobs:
+  checkstyle:
+    name: runner / checkstyle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dbelyaev/action-checkstyle@v0.7.5
+        with:
+          github_token: ${{ secrets.github_token }}
+          checkstyle_config: ./config/checkstyle/checkstyle.xml
+          reporter: github-pr-review
+          level: error
