@@ -31,11 +31,11 @@ public class PacketLoggerModule extends BaseModule {
     private ScheduledFuture<?> broadcastTask;
 
     public PacketLoggerModule() {
-        registerListenerComponent(
+        this.registerListenerComponent(
                 new PacketLoggerListener(this)
         );
 
-        registerCommands(
+        this.registerCommands(
                 new PacketLoggerCommand(this)
         );
     }
@@ -44,7 +44,7 @@ public class PacketLoggerModule extends BaseModule {
     public void enable() {
         super.enable();
 
-        broadcastTask = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
+        this.broadcastTask = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
                 () ->
                 {
                     // Timed Broadcast
@@ -73,8 +73,8 @@ public class PacketLoggerModule extends BaseModule {
     public void disable() {
         super.disable();
 
-        if (broadcastTask != null) {
-            broadcastTask.cancel(true);
+        if (this.broadcastTask != null) {
+            this.broadcastTask.cancel(true);
         }
     }
 

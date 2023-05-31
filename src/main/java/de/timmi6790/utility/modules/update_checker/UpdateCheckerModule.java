@@ -24,7 +24,7 @@ public class UpdateCheckerModule extends BaseModule {
     private static final String REPO_INFO_URL = "https://api.github.com/repos/%s/releases/latest";
 
     public UpdateCheckerModule() {
-        registerListenerComponents(
+        this.registerListenerComponents(
                 new UpdateCheckerListener(this)
         );
     }
@@ -33,9 +33,9 @@ public class UpdateCheckerModule extends BaseModule {
         log.debug("Checking for updates");
 
         try {
-            VersionData latestVersion = getLastVersion().get();
-            String currentVersion = UtilityMod.getVersion();
-            if (hasNewVersion(currentVersion, latestVersion.getVersion())) {
+            final VersionData latestVersion = this.getLastVersion().get();
+            final String currentVersion = UtilityMod.getVersion();
+            if (this.hasNewVersion(currentVersion, latestVersion.getVersion())) {
                 MessageBuilder.of(Constants.MOD_NAME, EnumChatFormatting.YELLOW)
                         .addMessage("\n\nA new version is available!", EnumChatFormatting.GRAY)
                         .addMessage("\nCurrent version: ", EnumChatFormatting.GRAY)
@@ -49,7 +49,7 @@ public class UpdateCheckerModule extends BaseModule {
                         .addBoxToMessage()
                         .sendToPlayerDelayed(45, MinecraftTimeUnit.TICKS);
             }
-        } catch (Exception ignore) {
+        } catch (final Exception ignore) {
             log.error("Failed to check for updates", ignore);
         }
     }
@@ -58,17 +58,17 @@ public class UpdateCheckerModule extends BaseModule {
         return CompletableFuture.supplyAsync(() ->
         {
             try {
-                URL url = new URL(String.format(REPO_INFO_URL, Constants.GITHUB_REPO));
-                String json = IOUtils.toString(url, StandardCharsets.UTF_8);
+                final URL url = new URL(String.format(REPO_INFO_URL, Constants.GITHUB_REPO));
+                final String json = IOUtils.toString(url, StandardCharsets.UTF_8);
 
-                Gson gson = new Gson();
-                Map<String, String> map = gson.fromJson(json, Map.class);
+                final Gson gson = new Gson();
+                final Map<String, String> map = gson.fromJson(json, Map.class);
 
                 return new VersionData(
                         map.get("tag_name"),
                         map.get("html_url")
                 );
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 throw new RuntimeException(e);
             }
         });
@@ -87,8 +87,8 @@ public class UpdateCheckerModule extends BaseModule {
         final StringTokenizer newVersionToken = new StringTokenizer(newVersion, ".");
 
         while (currentVersionToken.hasMoreTokens() || newVersionToken.hasMoreElements()) {
-            final String currentPart = getTokenOrDefault(currentVersionToken, "0");
-            final String newPart = getTokenOrDefault(newVersionToken, "0");
+            final String currentPart = this.getTokenOrDefault(currentVersionToken, "0");
+            final String newPart = this.getTokenOrDefault(newVersionToken, "0");
 
             final int compareValue = newPart.compareTo(currentPart);
             if (compareValue > 0) {

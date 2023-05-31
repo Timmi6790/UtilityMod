@@ -9,6 +9,6 @@ public class ConfigModule extends BaseModule {
     private final Config config = new Config();
 
     public ConfigModule() {
-        registerCommand(new ConfigCommand(this));
+        this.registerCommand(new ConfigCommand(this));
     }
 }

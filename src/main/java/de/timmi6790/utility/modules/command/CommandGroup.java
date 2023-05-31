@@ -26,7 +26,7 @@ public class CommandGroup extends BaseCommand {
 
     @Override
     public List<String> addTabCompletionOptions(final ICommandSender sender, final String[] args, final BlockPos pos) {
-        String firstArg = args[0];
+        final String firstArg = args[0];
         if (args.length == 1) {
             final List<String> tabCompletion = new ArrayList<>();
             final String argLower = firstArg.toLowerCase();
@@ -39,7 +39,7 @@ public class CommandGroup extends BaseCommand {
             return tabCompletion;
         }
 
-        Optional<BaseCommand> command = this.getSubCommand(firstArg);
+        final Optional<BaseCommand> command = this.getSubCommand(firstArg);
         if (command.isPresent()) {
             return command.get().addTabCompletionOptions(sender, Arrays.copyOfRange(args, 1, args.length), pos);
         }

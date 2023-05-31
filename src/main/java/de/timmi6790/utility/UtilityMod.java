@@ -1,5 +1,6 @@
 package de.timmi6790.utility;
 
+import de.timmi6790.utility.modules.barrier_view.BarrierViewModule;
 import de.timmi6790.utility.modules.config.ConfigModule;
 import de.timmi6790.utility.modules.crash_fix.CrashFixModule;
 import de.timmi6790.utility.modules.creative_tab.CreativeTabModule;
@@ -35,7 +36,8 @@ public class UtilityMod {
                 new CreativeTabModule(),
                 new CrashFixModule(),
                 new UpdateCheckerModule(),
-                new TexturePackInfoModule()
+                new TexturePackInfoModule(),
+                new BarrierViewModule()
         );
     }
 

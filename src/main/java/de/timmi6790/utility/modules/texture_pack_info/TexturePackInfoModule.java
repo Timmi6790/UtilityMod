@@ -4,7 +4,7 @@ import de.timmi6790.utility.BaseModule;
 
 public class TexturePackInfoModule extends BaseModule {
     public TexturePackInfoModule() {
-        registerListenerComponents(
+        this.registerListenerComponents(
                 new TexturePackInfoListener()
         );
     }

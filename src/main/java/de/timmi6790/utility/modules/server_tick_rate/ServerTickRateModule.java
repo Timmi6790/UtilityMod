@@ -25,7 +25,7 @@ public class ServerTickRateModule extends BaseModule {
         this.tps5Minutes = new RollingAverage(5, MinecraftTimeUnit.MINUTES);
         this.tps10Minutes = new RollingAverage(10, MinecraftTimeUnit.MINUTES);
 
-        registerListenerComponent(
+        this.registerListenerComponent(
                 new ServerTickRateListener(this)
         );
     }

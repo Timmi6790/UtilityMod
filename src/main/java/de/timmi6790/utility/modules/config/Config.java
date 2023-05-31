@@ -55,9 +55,20 @@ public class Config extends Vigilant {
     )
     private boolean showTexturePackInformation = true;
 
+    /*
+     * Barrier View
+     */
+    @Property(
+            type = PropertyType.CHECKBOX,
+            name = "Barrier Visibility",
+            description = "Make Barrier blocks visible.",
+            category = "Barrier View"
+    )
+    private boolean visibleBarrierBlock = true;
+
     public Config() {
         super(Paths.get(".", "config", Constants.MOD_ID + ".toml").toFile(), Constants.MOD_NAME + " Config");
 
-        initialize();
+        this.initialize();
     }
 }

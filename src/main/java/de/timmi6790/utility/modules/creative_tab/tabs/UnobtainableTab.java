@@ -14,7 +14,7 @@ public class UnobtainableTab extends BaseTab {
     }
 
     @Override
-    protected void getItems(List<ItemStack> items) {
+    protected void getItems(final List<ItemStack> items) {
         Collections.addAll(
                 items,
                 ItemStackBuilder.of(Blocks.barrier)

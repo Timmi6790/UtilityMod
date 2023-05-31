@@ -38,7 +38,7 @@ public class BaseModule implements Module {
             try {
                 log.debug("Registering command {} in module {}.", command.getCommandName(), this.getClass().getSimpleName());
                 command.register();
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 log.error("Failed to register command: " + command.getCommandName(), e);
             }
         }
@@ -51,7 +51,7 @@ public class BaseModule implements Module {
             try {
                 log.debug("Registering listener component {} in module {}.", listenerComponent.getClass().getSimpleName(), this.getClass().getSimpleName());
                 listenerComponent.registerEvents();
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 log.error("Failed to register listener component: " + listenerComponent.getClass().getSimpleName(), e);
             }
         }
@@ -64,20 +64,20 @@ public class BaseModule implements Module {
             try {
                 log.debug("Unregistering listener component {} in module {}.", listenerComponent.getClass().getSimpleName(), this.getClass().getSimpleName());
                 listenerComponent.unregisterEvents();
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 log.error("Failed to unregister listener component: " + listenerComponent.getClass().getSimpleName(), e);
             }
         }
-        listenerComponents.clear();
+        this.listenerComponents.clear();
 
         for (final BaseCommand command : this.commands) {
             try {
                 log.debug("Unregistering command {} in module {}.", command.getCommandName(), this.getClass().getSimpleName());
                 command.unregister();
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 log.error("Failed to unregister command: " + command.getCommandName(), e);
             }
         }
-        commands.clear();
+        this.commands.clear();
     }
 }

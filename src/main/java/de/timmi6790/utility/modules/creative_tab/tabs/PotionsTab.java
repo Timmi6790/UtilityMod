@@ -12,7 +12,7 @@ public class PotionsTab extends BaseTab {
     }
 
     @Override
-    protected void getItems(List<ItemStack> items) {
+    protected void getItems(final List<ItemStack> items) {
         for (int potionId = 1; 23 >= potionId; potionId++) {
             items.add(
                     ItemStackBuilder.ofPotion()

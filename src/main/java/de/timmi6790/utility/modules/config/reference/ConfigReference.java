@@ -20,7 +20,7 @@ public class ConfigReference<T> {
             );
         }
 
-        return config != null;
+        return this.config != null;
     }
 
     public Optional<T> get() {
@@ -31,7 +31,7 @@ public class ConfigReference<T> {
         return Optional.ofNullable(this.configValue.apply(this.config));
     }
 
-    public T getOrDefault(T defaultValue) {
+    public T getOrDefault(final T defaultValue) {
         return this.get().orElse(defaultValue);
     }
 }

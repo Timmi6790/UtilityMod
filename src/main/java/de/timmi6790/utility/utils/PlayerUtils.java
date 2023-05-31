@@ -14,7 +14,7 @@ public class PlayerUtils {
         return Optional.ofNullable(Minecraft.getMinecraft().thePlayer);
     }
 
-    public boolean consumePlayer(Consumer<EntityPlayer> playerConsumer) {
+    public boolean consumePlayer(final Consumer<EntityPlayer> playerConsumer) {
         final Optional<EntityPlayer> playerOptional = PlayerUtils.getPlayer();
         if (!playerOptional.isPresent()) {
             return false;
@@ -24,7 +24,7 @@ public class PlayerUtils {
         return true;
     }
 
-    public void openGUI(GuiScreen gui) {
+    public void openGUI(final GuiScreen gui) {
         Minecraft.getMinecraft().displayGuiScreen(gui);
     }
 }

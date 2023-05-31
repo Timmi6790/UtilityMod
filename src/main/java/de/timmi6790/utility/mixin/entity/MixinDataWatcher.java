@@ -58,7 +58,7 @@ public abstract class MixinDataWatcher {
      * Inject at the return of the method to allow other mods to inject before us.
      */
     @Inject(method = "getWatchableObjectInt", at = @At("RETURN"), cancellable = true)
-    public void getWatchableObjectInt(int id, CallbackInfoReturnable<Integer> cir) {
+    public void getWatchableObjectInt(final int id, final CallbackInfoReturnable<Integer> cir) {
         if (!ENABLED.getOrDefault(false)) {
             return;
         }
@@ -81,7 +81,7 @@ public abstract class MixinDataWatcher {
      * Inject at the return of the method to allow other mods to inject before us.
      */
     @Inject(method = "getWatchableObjectFloat", at = @At("RETURN"), cancellable = true)
-    public void getWatchableObjectFloat(int id, CallbackInfoReturnable<Float> cir) {
+    public void getWatchableObjectFloat(final int id, final CallbackInfoReturnable<Float> cir) {
         if (!ENABLED.getOrDefault(false)) {
             return;
         }
@@ -104,7 +104,7 @@ public abstract class MixinDataWatcher {
      * Inject at the return of the method to allow other mods to inject before us.
      */
     @Inject(method = "getWatchableObjectByte", at = @At("RETURN"), cancellable = true)
-    public void getWatchableObjectByte(int id, CallbackInfoReturnable<Byte> cir) {
+    public void getWatchableObjectByte(final int id, final CallbackInfoReturnable<Byte> cir) {
         if (!ENABLED.getOrDefault(false)) {
             return;
         }
@@ -127,7 +127,7 @@ public abstract class MixinDataWatcher {
      * Inject at the return of the method to allow other mods to inject before us.
      */
     @Inject(method = "getWatchableObjectShort", at = @At("RETURN"), cancellable = true)
-    public void getWatchableObjectShort(int id, CallbackInfoReturnable<Short> cir) {
+    public void getWatchableObjectShort(final int id, final CallbackInfoReturnable<Short> cir) {
         if (!ENABLED.getOrDefault(false)) {
             return;
         }
@@ -150,7 +150,7 @@ public abstract class MixinDataWatcher {
      * Inject at the return of the method to allow other mods to inject before us.
      */
     @Inject(method = "getWatchableObjectString", at = @At("RETURN"), cancellable = true)
-    public void getWatchableObjectString(int id, CallbackInfoReturnable<String> cir) {
+    public void getWatchableObjectString(final int id, final CallbackInfoReturnable<String> cir) {
         if (!ENABLED.getOrDefault(false)) {
             return;
         }

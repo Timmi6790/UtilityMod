@@ -16,16 +16,16 @@ public class UpdateCheckerListener implements ListenerComponent {
 
     @SubscribeEvent
     public void onServerJoin(final FMLNetworkEvent.ClientConnectedToServerEvent event) {
-        if (!checkOnJoin.getOrDefault(false)) {
+        if (!this.checkOnJoin.getOrDefault(false)) {
             return;
         }
 
         // Only check once on server join
-        if (checked) {
+        if (this.checked) {
             return;
         }
 
-        checked = true;
-        module.checkForUpdates();
+        this.checked = true;
+        this.module.checkForUpdates();
     }
 }
