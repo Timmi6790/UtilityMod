@@ -12,7 +12,8 @@ public class C04PacketPlayerPositionMapper extends ClientPacketMapper<C03PacketP
     }
 
     @Override
-    public void parsePacketToMap(final C03PacketPlayer.C04PacketPlayerPosition packet, final Map<String, String> valueMap) {
+    public void parsePacketToMap(final C03PacketPlayer.C04PacketPlayerPosition packet,
+                                 final Map<String, String> valueMap) {
         valueMap.put("Position", this.join(packet.getPositionX(), packet.getPositionY(), packet.getPositionZ()));
         valueMap.put("OnGround", String.valueOf(packet.isOnGround()));
     }

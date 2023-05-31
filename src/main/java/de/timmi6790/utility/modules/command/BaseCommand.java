@@ -14,7 +14,11 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.ClientCommandHandler;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public abstract class BaseCommand extends CommandBase {
     private final String name;
@@ -86,7 +90,7 @@ public abstract class BaseCommand extends CommandBase {
         }
     }
 
-    public abstract void onCommand(final ICommandSender sender, final String[] args);
+    public abstract void onCommand(ICommandSender sender, String[] args);
 
     protected void returnTell(final MessageBuilder messages) {
         throw new CommandReturnException(messages);
@@ -101,7 +105,8 @@ public abstract class BaseCommand extends CommandBase {
 
     protected void returnTellMissingArgs() {
         MessageBuilder.of(StringUtils.capitalize(this.getCommandName()) + "-Command\n", EnumChatFormatting.GOLD)
-                .addMessage("\n" + "/" + this.getCommandName() + " " + this.getCommandName() + " " + String.join(" ", this.getSyntax()), EnumChatFormatting.YELLOW)
+                .addMessage("\n" + "/" + this.getCommandName() + " " + this.getCommandName() + " " +
+                        String.join(" ", this.getSyntax()), EnumChatFormatting.YELLOW)
                 .addBoxToMessage()
                 .sendToPlayer();
         this.returnTell(null);

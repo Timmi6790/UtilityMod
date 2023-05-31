@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 @UtilityClass
 public class VerifyUtils {
-    private final Pattern BOOLEAN_PATTERN = Pattern.compile("true|false", Pattern.CASE_INSENSITIVE);
+    private static final Pattern BOOLEAN_PATTERN = Pattern.compile("true|false", Pattern.CASE_INSENSITIVE);
 
     public boolean isInt(final Object value) {
         try {

@@ -25,7 +25,8 @@ public class MixinNetworkManager {
     private void sendPacketPre(final Packet dispatchPacket1,
                                final GenericFutureListener<? extends Future<? super Void>>[] dispatchPacket2,
                                final CallbackInfo info) {
-        final PacketSendEvent.Pre event = EventUtils.postEventSave(new PacketSendEvent.Pre(dispatchPacket1, dispatchPacket2));
+        final PacketSendEvent.Pre event =
+                EventUtils.postEventSave(new PacketSendEvent.Pre(dispatchPacket1, dispatchPacket2));
         if (event.isCanceled()) {
             info.cancel();
         }

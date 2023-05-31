@@ -8,7 +8,8 @@ import lombok.Getter;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Makes assumption of the server TPS based of the {@link net.minecraft.network.play.server.S03PacketTimeUpdate} packet that is normally send every second by the server.
+ * Makes assumption of the server TPS based of the {@link net.minecraft.network.play.server.S03PacketTimeUpdate}
+ * packet that is normally send every second by the server.
  */
 @Getter
 public class ServerTickRateModule extends BaseModule {

@@ -14,10 +14,15 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 
 @Log4j2
-public class TaskScheduler implements ListenerComponent {
-    @Getter
-    private static final TaskScheduler instance = new TaskScheduler();
-    private final BlockingQueue<Task> taskList = new PriorityBlockingQueue<>(5, Comparator.comparingLong(Task::getNextRun));
+public final class TaskScheduler implements ListenerComponent {
+    private static final TaskScheduler INSTANCE = new TaskScheduler();
+
+    public static TaskScheduler getInstance() {
+        return TaskScheduler.INSTANCE;
+    }
+
+    private final BlockingQueue<Task> taskList =
+            new PriorityBlockingQueue<>(5, Comparator.comparingLong(Task::getNextRun));
     private long tick = 0;
 
     private TaskScheduler() {

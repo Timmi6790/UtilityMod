@@ -27,19 +27,19 @@ public class UnobtainableTab extends BaseTab {
                         .build(),
 
                 // TODO: FIX CLIENT CRASH
-				/*
-				ItemStackBuilder.of(Blocks.end_portal)
-						.build(),
+                /*
+                ItemStackBuilder.of(Blocks.end_portal)
+                        .build(),
 
-				ItemStackBuilder.of(Blocks.portal)
-						.build(),
+                ItemStackBuilder.of(Blocks.portal)
+                        .build(),
 
-				ItemStackBuilder.of(Blocks.air)
-						.build(),
+                ItemStackBuilder.of(Blocks.air)
+                        .build(),
 
-				ItemStackBuilder.of(Blocks.fire)
-						.build(),
-				 */
+                ItemStackBuilder.of(Blocks.fire)
+                        .build(),
+                 */
 
                 ItemStackBuilder.of(Blocks.farmland)
                         .build()
