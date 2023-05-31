@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class BaseTab extends CreativeTabs {
     private final Item displayItem;
 
-    protected BaseTab(String label, Item displayItem) {
+    protected BaseTab(final String label, final Item displayItem) {
         super(label);
 
         this.displayItem = displayItem;
@@ -22,7 +22,7 @@ public abstract class BaseTab extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return displayItem;
+        return this.displayItem;
     }
 
     @Override

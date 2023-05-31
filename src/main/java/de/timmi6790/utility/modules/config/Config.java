@@ -69,6 +69,6 @@ public class Config extends Vigilant {
     public Config() {
         super(Paths.get(".", "config", Constants.MOD_ID + ".toml").toFile(), Constants.MOD_NAME + " Config");
 
-        initialize();
+        this.initialize();
     }
 }

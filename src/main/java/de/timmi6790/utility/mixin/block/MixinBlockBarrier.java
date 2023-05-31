@@ -14,7 +14,7 @@ public class MixinBlockBarrier {
 
     @Inject(method = "getRenderType", at = @At("HEAD"), cancellable = true)
     public void getRenderType(final CallbackInfoReturnable<Integer> cir) {
-        if (enabled.getOrDefault(false)) {
+        if (this.enabled.getOrDefault(false)) {
             cir.setReturnValue(3);
         }
     }

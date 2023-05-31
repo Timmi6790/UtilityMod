@@ -21,25 +21,25 @@ public class TaskScheduler implements ListenerComponent {
     private long tick = 0;
 
     private TaskScheduler() {
-        registerEvents();
+        this.registerEvents();
     }
 
-    public void schedule(final long delay, MinecraftTimeUnit timeUnit, Runnable runnable) {
+    public void schedule(final long delay, final MinecraftTimeUnit timeUnit, final Runnable runnable) {
         this.schedule(timeUnit.toTicks(delay), runnable);
     }
 
     public void schedule(final long delayInTicks, final Runnable runnable) {
-        this.taskList.add(new Task(runnable, tick + delayInTicks));
+        this.taskList.add(new Task(runnable, this.tick + delayInTicks));
     }
 
     @SubscribeEvent
     public void onTick(final TickEvent.ClientTickEvent event) {
-        tick++;
+        this.tick++;
 
         // Run all tasks that are ready to be run
         Task task;
-        while ((task = this.taskList.peek()) != null && tick >= task.getNextRun()) {
-            log.debug("Running task {} during tick {}", task, tick);
+        while ((task = this.taskList.peek()) != null && this.tick >= task.getNextRun()) {
+            log.debug("Running task {} during tick {}", task, this.tick);
             task.getRunnable().run();
             this.taskList.poll();
         }

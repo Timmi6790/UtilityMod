@@ -10,17 +10,17 @@ import net.minecraft.command.ICommandSender;
 public class ConfigCommand extends BaseCommand {
     private final ConfigModule module;
 
-    public ConfigCommand(ConfigModule module) {
+    public ConfigCommand(final ConfigModule module) {
         super(Constants.MOD_ID + "Config");
 
         this.module = module;
     }
 
     @Override
-    public void onCommand(ICommandSender sender, String[] args) {
+    public void onCommand(final ICommandSender sender, final String[] args) {
         TaskScheduler.getInstance().schedule(
                 1,
-                () -> PlayerUtils.openGUI(module.getConfig().gui())
+                () -> PlayerUtils.openGUI(this.module.getConfig().gui())
         );
     }
 }

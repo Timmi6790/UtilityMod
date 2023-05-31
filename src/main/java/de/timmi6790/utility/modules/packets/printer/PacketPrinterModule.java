@@ -164,11 +164,11 @@ public class PacketPrinterModule extends BaseModule {
                 new S01PacketPongMapper()
         );
 
-        registerCommands(
+        this.registerCommands(
                 new PacketPrinterCommand(this)
         );
 
-        registerListenerComponents(
+        this.registerListenerComponents(
                 new PacketPrinterListener(this)
         );
     }

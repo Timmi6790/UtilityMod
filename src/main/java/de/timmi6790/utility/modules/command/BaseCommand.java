@@ -167,9 +167,9 @@ public abstract class BaseCommand extends CommandBase {
 
     public void unregister() {
         final Map<String, ICommand> commandMap = ClientCommandHandler.instance.getCommands();
-        commandMap.remove(getCommandName());
+        commandMap.remove(this.getCommandName());
 
-        for (final String commandAlias : getCommandAliases()) {
+        for (final String commandAlias : this.getCommandAliases()) {
             if (this.equals(commandMap.get(commandAlias))) {
                 commandMap.remove(commandAlias);
             }

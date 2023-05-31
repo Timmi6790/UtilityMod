@@ -13,7 +13,7 @@ import java.util.Set;
 public class MessageBuilder {
     private final IChatComponent messageObject;
 
-    public static MessageBuilder of(String message) {
+    public static MessageBuilder of(final String message) {
         return new MessageBuilder(new ChatComponentText(message));
     }
 
@@ -140,7 +140,7 @@ public class MessageBuilder {
         PlayerUtils.consumePlayer(player -> player.addChatMessage(this.messageObject));
     }
 
-    public void sendToPlayerDelayed(final long delay, MinecraftTimeUnit timeUnit) {
+    public void sendToPlayerDelayed(final long delay, final MinecraftTimeUnit timeUnit) {
         TaskScheduler.getInstance().schedule(delay, timeUnit, MessageBuilder.this::sendToPlayer);
     }
 }

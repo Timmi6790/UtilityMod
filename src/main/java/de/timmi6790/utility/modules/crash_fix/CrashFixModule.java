@@ -7,12 +7,12 @@ import net.minecraft.util.EnumChatFormatting;
 
 public class CrashFixModule extends BaseModule {
     public CrashFixModule() {
-        registerListenerComponents(
+        this.registerListenerComponents(
                 new CrashPotionFix(this)
         );
     }
 
-    public void sendPreventionMessage(MessageBuilder message) {
+    public void sendPreventionMessage(final MessageBuilder message) {
         MessageBuilder.of("AntiCrash> ", EnumChatFormatting.BLUE)
                 .addMessage(message)
                 .sendToPlayer();

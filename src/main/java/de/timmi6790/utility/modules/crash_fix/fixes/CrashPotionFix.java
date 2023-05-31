@@ -19,12 +19,12 @@ public class CrashPotionFix implements ListenerComponent {
 
     @SubscribeEvent
     public void onPotionPacket(final PacketReceiveEvent.Pre event) {
-        if (event.getPacket() instanceof S1DPacketEntityEffect && enabled.getOrDefault(false)) {
+        if (event.getPacket() instanceof S1DPacketEntityEffect && this.enabled.getOrDefault(false)) {
             // Check if the server is sending an invalid potion effect that could crash the client
             final S1DPacketEntityEffect entityEffect = (S1DPacketEntityEffect) event.getPacket();
             final int potionId = (entityEffect.getEffectId() & 0xff);
             if (potionId > Potion.potionTypes.length || Potion.potionTypes[potionId] == null) {
-                module.sendPreventionMessage(
+                this.module.sendPreventionMessage(
                         MessageBuilder.of("Canceled invalid potion packet. PotionID:", EnumChatFormatting.GRAY)
                                 .addMessage(String.valueOf(potionId), EnumChatFormatting.YELLOW)
                 );
