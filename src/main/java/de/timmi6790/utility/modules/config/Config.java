@@ -18,7 +18,7 @@ public class Config extends Vigilant {
     private static final String CRASH_CATEGORY = "Crash Fix";
 
     @Property(
-            type = PropertyType.CHECKBOX,
+            type = PropertyType.SWITCH,
             name = "Invalid Potion IDs",
             description = "Prevent invalid potion id crashes.",
             category = CRASH_CATEGORY
@@ -26,7 +26,7 @@ public class Config extends Vigilant {
     private boolean potionIdCrashFix = true;
 
     @Property(
-            type = PropertyType.CHECKBOX,
+            type = PropertyType.SWITCH,
             name = "Data Watcher",
             description = "Tries to prevent invalid data watcher crashes.",
             category = CRASH_CATEGORY
@@ -37,7 +37,7 @@ public class Config extends Vigilant {
      * Update Checker
      */
     @Property(
-            type = PropertyType.CHECKBOX,
+            type = PropertyType.SWITCH,
             name = "Check for Updates",
             description = "Check for updates on first server join.",
             category = "Update Checker"
@@ -48,7 +48,7 @@ public class Config extends Vigilant {
      * Texture Pack Info
      */
     @Property(
-            type = PropertyType.CHECKBOX,
+            type = PropertyType.SWITCH,
             name = "Show Texture Pack Information",
             description = "Show texture pack information on receive.",
             category = "Texture Pack Info"
@@ -59,7 +59,7 @@ public class Config extends Vigilant {
      * Barrier View
      */
     @Property(
-            type = PropertyType.CHECKBOX,
+            type = PropertyType.SWITCH,
             name = "Barrier Visibility",
             description = "Make Barrier blocks visible.",
             category = "Barrier View"
