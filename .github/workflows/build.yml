@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -35,3 +36,9 @@ jobs:
         uses: gradle/gradle-build-action@680037c65b998d750280aefaffd22cd3560fc9db
         with:
           arguments: build
+      - name: Publish Checkstyle report
+        uses: Juuxel/publish-checkstyle-report@v1
+        if: ${{ failure() || success() }}
+        with:
+          reports: |
+            build/reports/checkstyle/*.xml
