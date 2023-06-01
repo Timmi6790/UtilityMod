@@ -106,6 +106,7 @@ dependencies {
     shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0-M1")
     testImplementation("org.mockito:mockito-core:5.3.1")
     testImplementation("org.assertj:assertj-core:3.24.2")
 }
