@@ -1,11 +1,12 @@
 plugins {
     idea
     java
-    id("org.jetbrains.kotlin.jvm") version "1.8.21"
+    kotlin("jvm") version "1.8.21"
     id("gg.essential.loom") version "0.10.0.+"
     id("dev.architectury.architectury-pack200") version "0.1.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     checkstyle
+    jacoco
 }
 
 val baseGroup = "de.timmi6790"
@@ -20,6 +21,28 @@ val mixinGroup = "$group.mixin"
 // Toolchains:
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+}
+
+// Testing:
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+tasks.withType<JacocoReport> {
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(false)
+    }
+}
+
+val testCoverage by tasks.registering {
+    group = "verification"
+    description = "Runs the unit tests with coverage."
+
+    dependsOn(":test", ":jacocoTestReport")
+    val jacocoTestReport = tasks.findByName("jacocoTestReport")
+    jacocoTestReport?.mustRunAfter(tasks.findByName("test"))
 }
 
 // Minecraft configuration:
@@ -81,6 +104,10 @@ dependencies {
 
     shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
     shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
+    testImplementation("org.mockito:mockito-core:5.3.1")
+    testImplementation("org.assertj:assertj-core:3.24.2")
 }
 
 // Tasks:
