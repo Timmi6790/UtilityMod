@@ -36,14 +36,7 @@ tasks.withType<JacocoReport> {
     }
 }
 
-val testCoverage by tasks.registering {
-    group = "verification"
-    description = "Runs the unit tests with coverage."
-
-    dependsOn(":test", ":jacocoTestReport")
-    val jacocoTestReport = tasks.findByName("jacocoTestReport")
-    jacocoTestReport?.mustRunAfter(tasks.findByName("test"))
-}
+tasks.test.get().finalizedBy(tasks.jacocoTestReport)
 
 // Minecraft configuration:
 loom {
