@@ -12,8 +12,14 @@ class MathUtilsTest {
     }
 
     @Test
-    void calculatePercentageZeroInput() {
+    void calculatePercentageTotalZeroInput() {
         final double result = MathUtils.calculatePercentage(0, 100);
+        assertThat(result).isZero();
+    }
+
+    @Test
+    void calculatePercentageValueZeroInput() {
+        final double result = MathUtils.calculatePercentage(2, 0);
         assertThat(result).isZero();
     }
 }
