@@ -15,7 +15,7 @@ public class ConfigReference<T> {
 
     private boolean ensureConfig() {
         if (this.config == null) {
-            UtilityMod.getInstance().getModule(ConfigModule.class).ifPresent(
+            UtilityMod.getInstance().getModuleManager().getModule(ConfigModule.class).ifPresent(
                     configModule -> this.config = configModule.getConfig()
             );
         }
