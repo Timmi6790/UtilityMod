@@ -36,25 +36,14 @@ public class UpdateCheckerModule extends BaseModule {
             final VersionData latestVersion = this.getLastVersion().get();
             final String currentVersion = UtilityMod.getVersion();
             if (this.hasNewVersion(currentVersion, latestVersion.getVersion())) {
-                MessageBuilder.of(Constants.MOD_NAME, EnumChatFormatting.YELLOW)
-                        .addMessage("\n\nA new version is available!", EnumChatFormatting.GRAY)
-                        .addMessage("\nCurrent version: ", EnumChatFormatting.GRAY)
-                        .addMessage(currentVersion, EnumChatFormatting.YELLOW)
-                        .addMessage("\nNew version: ", EnumChatFormatting.GRAY)
-                        .addMessage(latestVersion.getVersion(), EnumChatFormatting.YELLOW)
-                        .addMessage(
-                                MessageBuilder.of("\nClick me to find the new version", EnumChatFormatting.YELLOW)
-                                        .addClickEvent(ClickEvent.Action.OPEN_URL, latestVersion.getDownloadUrl())
-                        )
-                        .addBoxToMessage()
-                        .sendToPlayerDelayed(45, MinecraftTimeUnit.TICKS);
+                this.sendNewVersionMessage(currentVersion, latestVersion);
             }
         } catch (final Exception ignore) {
             log.error("Failed to check for updates", ignore);
         }
     }
 
-    private CompletableFuture<VersionData> getLastVersion() {
+    CompletableFuture<VersionData> getLastVersion() {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 final URL url = new URL(String.format(REPO_INFO_URL, Constants.GITHUB_REPO));
@@ -71,6 +60,21 @@ public class UpdateCheckerModule extends BaseModule {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    void sendNewVersionMessage(final String currentVersion, final VersionData latestVersion) {
+        MessageBuilder.of(Constants.MOD_NAME, EnumChatFormatting.YELLOW)
+                .addMessage("\n\nA new version is available!", EnumChatFormatting.GRAY)
+                .addMessage("\nCurrent version: ", EnumChatFormatting.GRAY)
+                .addMessage(currentVersion, EnumChatFormatting.YELLOW)
+                .addMessage("\nNew version: ", EnumChatFormatting.GRAY)
+                .addMessage(latestVersion.getVersion(), EnumChatFormatting.YELLOW)
+                .addMessage(
+                        MessageBuilder.of("\nClick me to find the new version", EnumChatFormatting.YELLOW)
+                                .addClickEvent(ClickEvent.Action.OPEN_URL, latestVersion.getDownloadUrl())
+                )
+                .addBoxToMessage()
+                .sendToPlayerDelayed(45, MinecraftTimeUnit.TICKS);
     }
 
     private String getTokenOrDefault(final StringTokenizer tokenizer, final String defaultValue) {
@@ -102,7 +106,7 @@ public class UpdateCheckerModule extends BaseModule {
     }
 
     @Data
-    private static class VersionData {
+    static class VersionData {
         private final String version;
         private final String downloadUrl;
     }

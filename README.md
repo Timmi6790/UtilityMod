@@ -13,6 +13,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Timmi6790/UtilityMod/build.yml)
 ![Issues](https://img.shields.io/github/issues/Timmi6790/UtilityMod)
+[![codecov](https://codecov.io/github/Timmi6790/UtilityMod/branch/main/graph/badge.svg?token=tMxTt5yAcq)](https://codecov.io/github/Timmi6790/UtilityMod)
 ![License](https://img.shields.io/github/license/Timmi6790/UtilityMod)
 [![wakatime](https://wakatime.com/badge/github/Timmi6790/UtilityMod.svg)](https://wakatime.com/badge/github/Timmi6790/UtilityMod)
 </div>

@@ -1,11 +1,12 @@
 plugins {
     idea
     java
-    id("org.jetbrains.kotlin.jvm") version "1.8.21"
+    kotlin("jvm") version "1.8.21"
     id("gg.essential.loom") version "0.10.0.+"
     id("dev.architectury.architectury-pack200") version "0.1.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     checkstyle
+    jacoco
 }
 
 val baseGroup = "de.timmi6790"
@@ -21,6 +22,21 @@ val mixinGroup = "$group.mixin"
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(8))
 }
+
+// Testing:
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+tasks.withType<JacocoReport> {
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(false)
+    }
+}
+
+tasks.test.get().finalizedBy(tasks.jacocoTestReport)
 
 // Minecraft configuration:
 loom {
@@ -81,6 +97,12 @@ dependencies {
 
     shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
     shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0-M1")
+    testImplementation("org.mockito:mockito-core:4.11.0")
+    testImplementation("org.mockito:mockito-inline:4.11.0")
+    testImplementation("org.assertj:assertj-core:3.24.2")
 }
 
 // Tasks:
