@@ -14,10 +14,9 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 class PlayerUtilsTest {
-    @SuppressWarnings("checkstyle:RedundantModifier")
     @Test
     void consumePlayerFound() {
-        try (final MockedStatic<PlayerUtils> utilities = mockStatic(PlayerUtils.class)) {
+        try (MockedStatic<PlayerUtils> utilities = mockStatic(PlayerUtils.class)) {
             final EntityPlayer player = mock(EntityPlayer.class);
             utilities.when(PlayerUtils::getPlayer).thenReturn(Optional.of(player));
             utilities.when(() -> PlayerUtils.consumePlayer(any())).thenCallRealMethod();
@@ -30,10 +29,9 @@ class PlayerUtilsTest {
         }
     }
 
-    @SuppressWarnings("checkstyle:RedundantModifier")
     @Test
     void consumePlayerNotFound() {
-        try (final MockedStatic<PlayerUtils> utilities = mockStatic(PlayerUtils.class)) {
+        try (MockedStatic<PlayerUtils> utilities = mockStatic(PlayerUtils.class)) {
             utilities.when(PlayerUtils::getPlayer).thenReturn(Optional.empty());
             utilities.when(() -> PlayerUtils.consumePlayer(any())).thenCallRealMethod();
 
