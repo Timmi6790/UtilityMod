@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/Timmi6790/UtilityMod/compare/1.1.0...1.2.0) (2023-06-01)
+
+
+### Features
+
+* **config:** Add ConfigChangeEvent ([c192e02](https://github.com/Timmi6790/UtilityMod/commit/c192e0208455ec9d0c892bad883675d24ab81da3))
+
+
+### Bug Fixes
+
+* **barrierView:** Fix render reload after config change ([d57e129](https://github.com/Timmi6790/UtilityMod/commit/d57e129540a1be2736834f7b2020e46b181e761d))
+
 ## [1.1.0](https://github.com/Timmi6790/UtilityMod/compare/1.0.1...1.1.0) (2023-05-31)
 
 
