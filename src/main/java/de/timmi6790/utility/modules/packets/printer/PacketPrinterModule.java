@@ -115,11 +115,6 @@ import de.timmi6790.utility.modules.packets.printer.mappers.server.play.S48Packe
 import de.timmi6790.utility.modules.packets.printer.mappers.server.play.S49PacketUpdateEntityNBTMapper;
 import de.timmi6790.utility.modules.packets.printer.mappers.server.status.S00PacketServerInfoMapper;
 import de.timmi6790.utility.modules.packets.printer.mappers.server.status.S01PacketPongMapper;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
-import net.minecraft.network.Packet;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -128,12 +123,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
+import net.minecraft.network.Packet;
 
 @Log4j2
 public class PacketPrinterModule extends BaseModule {
     private final Map<Class<? extends Packet<?>>, PacketMapper<?>> packetMappers = new HashMap<>();
+
     @Getter
     private final Set<Class<Packet<?>>> activeListeners = Collections.synchronizedSet(new HashSet<>());
+
     @Getter
     @Setter
     private PrintMode printMode = PrintMode.CHAT;
@@ -266,16 +267,11 @@ public class PacketPrinterModule extends BaseModule {
 
                 // Server Status
                 new S00PacketServerInfoMapper(),
-                new S01PacketPongMapper()
-        );
+                new S01PacketPongMapper());
 
-        this.registerCommands(
-                new PacketPrinterCommand(this)
-        );
+        this.registerCommands(new PacketPrinterCommand(this));
 
-        this.registerListenerComponents(
-                new PacketPrinterListener(this)
-        );
+        this.registerListenerComponents(new PacketPrinterListener(this));
     }
 
     @SafeVarargs

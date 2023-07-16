@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S12PacketEntityVelocity;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S12PacketEntityVelocity;
 
 public class S12PacketEntityVelocityMapper extends ServerPacketMapper<S12PacketEntityVelocity> {
     public S12PacketEntityVelocityMapper() {

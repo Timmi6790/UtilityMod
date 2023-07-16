@@ -46,11 +46,12 @@ public class FireworkItemStackBuilder extends AbstractItemStackBuilder<FireworkI
         return itemStack;
     }
 
-    public FireworkItemStackBuilder addExplosion(final FireworkType type,
-                                                 final EnumDyeColor[] colours,
-                                                 final EnumDyeColor[] fadeColours,
-                                                 final boolean trail,
-                                                 final boolean flicker) {
+    public FireworkItemStackBuilder addExplosion(
+            final FireworkType type,
+            final EnumDyeColor[] colours,
+            final EnumDyeColor[] fadeColours,
+            final boolean trail,
+            final boolean flicker) {
         final NBTTagCompound effect = new NBTTagCompound();
 
         effect.setByte("Type", (byte) type.ordinal());
@@ -63,5 +64,4 @@ public class FireworkItemStackBuilder extends AbstractItemStackBuilder<FireworkI
 
         return this;
     }
-
 }

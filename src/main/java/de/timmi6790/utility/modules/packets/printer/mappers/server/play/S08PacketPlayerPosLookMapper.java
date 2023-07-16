@@ -2,10 +2,9 @@ package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.server.S08PacketPlayerPosLook;
-
 import java.util.Map;
 import java.util.StringJoiner;
+import net.minecraft.network.play.server.S08PacketPlayerPosLook;
 
 public class S08PacketPlayerPosLookMapper extends ServerPacketMapper<S08PacketPlayerPosLook> {
     public S08PacketPlayerPosLookMapper() {

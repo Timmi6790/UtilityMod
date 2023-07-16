@@ -2,9 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.server.S42PacketCombatEvent;
-
 import java.util.Map;
+import net.minecraft.network.play.server.S42PacketCombatEvent;
 
 public class S42PacketCombatEventMapper extends ServerPacketMapper<S42PacketCombatEvent> {
     public S42PacketCombatEventMapper() {

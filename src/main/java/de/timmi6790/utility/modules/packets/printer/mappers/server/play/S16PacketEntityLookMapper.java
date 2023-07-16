@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S14PacketEntity;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S14PacketEntity;
 
 public class S16PacketEntityLookMapper extends ServerPacketMapper<S14PacketEntity.S16PacketEntityLook> {
     public S16PacketEntityLookMapper() {

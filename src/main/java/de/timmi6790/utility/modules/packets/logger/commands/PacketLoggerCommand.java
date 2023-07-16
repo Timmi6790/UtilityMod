@@ -18,7 +18,6 @@ public class PacketLoggerCommand extends CommandGroup {
                 new TotalLogCommand(module),
                 new ToggleSecondBroadcastCommand(module),
                 new SetPacketShowCountCommand(module),
-                new ResetTotalCommand(module)
-        );
+                new ResetTotalCommand(module));
     }
 }

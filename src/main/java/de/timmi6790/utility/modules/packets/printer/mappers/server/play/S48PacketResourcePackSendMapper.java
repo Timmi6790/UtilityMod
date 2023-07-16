@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S48PacketResourcePackSend;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S48PacketResourcePackSend;
 
 public class S48PacketResourcePackSendMapper extends ServerPacketMapper<S48PacketResourcePackSend> {
     public S48PacketResourcePackSendMapper() {

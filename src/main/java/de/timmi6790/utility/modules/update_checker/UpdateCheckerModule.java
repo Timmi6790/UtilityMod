@@ -6,6 +6,11 @@ import de.timmi6790.utility.Constants;
 import de.timmi6790.utility.UtilityMod;
 import de.timmi6790.utility.utils.MessageBuilder;
 import de.timmi6790.utility.utils.MinecraftTimeUnit;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.concurrent.CompletableFuture;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
@@ -13,20 +18,12 @@ import net.minecraft.event.ClickEvent;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.commons.io.IOUtils;
 
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.StringTokenizer;
-import java.util.concurrent.CompletableFuture;
-
 @Log4j2
 public class UpdateCheckerModule extends BaseModule {
     private static final String REPO_INFO_URL = "https://api.github.com/repos/%s/releases/latest";
 
     public UpdateCheckerModule() {
-        this.registerListenerComponents(
-                new UpdateCheckerListener(this)
-        );
+        this.registerListenerComponents(new UpdateCheckerListener(this));
     }
 
     public void checkForUpdates() {
@@ -52,10 +49,7 @@ public class UpdateCheckerModule extends BaseModule {
                 final Gson gson = new Gson();
                 final Map<String, String> map = gson.fromJson(json, Map.class);
 
-                return new VersionData(
-                        map.get("tag_name"),
-                        map.get("html_url")
-                );
+                return new VersionData(map.get("tag_name"), map.get("html_url"));
             } catch (final Exception e) {
                 throw new RuntimeException(e);
             }
@@ -69,10 +63,8 @@ public class UpdateCheckerModule extends BaseModule {
                 .addMessage(currentVersion, EnumChatFormatting.YELLOW)
                 .addMessage("\nNew version: ", EnumChatFormatting.GRAY)
                 .addMessage(latestVersion.getVersion(), EnumChatFormatting.YELLOW)
-                .addMessage(
-                        MessageBuilder.of("\nClick me to find the new version", EnumChatFormatting.YELLOW)
-                                .addClickEvent(ClickEvent.Action.OPEN_URL, latestVersion.getDownloadUrl())
-                )
+                .addMessage(MessageBuilder.of("\nClick me to find the new version", EnumChatFormatting.YELLOW)
+                        .addClickEvent(ClickEvent.Action.OPEN_URL, latestVersion.getDownloadUrl()))
                 .addBoxToMessage()
                 .sendToPlayerDelayed(45, MinecraftTimeUnit.TICKS);
     }

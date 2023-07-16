@@ -4,15 +4,13 @@ import de.timmi6790.utility.modules.packets.printer.PacketPrinterModule;
 import de.timmi6790.utility.modules.packets.printer.PrintMode;
 import de.timmi6790.utility.utils.EnumUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+import net.minecraft.command.ICommandSender;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 
 public class PrintModeCommand extends AbstractPacketPrinterCommand {
     public PrintModeCommand(final PacketPrinterModule module) {
@@ -28,19 +26,14 @@ public class PrintModeCommand extends AbstractPacketPrinterCommand {
 
         final Optional<PrintMode> printModeOpt = EnumUtils.getIgnoreCase(argument, PrintMode.values());
         if (!printModeOpt.isPresent()) {
-            this.tell(
-                    MessageBuilder.of(argument, EnumChatFormatting.YELLOW)
-                            .addMessage(" is not a valid argument.")
-            );
+            this.tell(MessageBuilder.of(argument, EnumChatFormatting.YELLOW).addMessage(" is not a valid argument."));
             return;
         }
 
         this.getModule().setPrintMode(printModeOpt.get());
-        this.tell(
-                MessageBuilder.of("Set print mode to ", EnumChatFormatting.GRAY)
-                        .addMessage(argument, EnumChatFormatting.YELLOW)
-                        .addMessage(".", EnumChatFormatting.GRAY)
-        );
+        this.tell(MessageBuilder.of("Set print mode to ", EnumChatFormatting.GRAY)
+                .addMessage(argument, EnumChatFormatting.YELLOW)
+                .addMessage(".", EnumChatFormatting.GRAY));
     }
 
     @Override

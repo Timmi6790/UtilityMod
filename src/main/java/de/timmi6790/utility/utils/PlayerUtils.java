@@ -1,12 +1,11 @@
 package de.timmi6790.utility.utils;
 
+import java.util.Optional;
+import java.util.function.Consumer;
 import lombok.experimental.UtilityClass;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.util.Optional;
-import java.util.function.Consumer;
 
 @UtilityClass
 public class PlayerUtils {

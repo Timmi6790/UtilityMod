@@ -1,10 +1,9 @@
 package de.timmi6790.utility.modules.creative_tab.tabs;
 
+import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public abstract class BaseTab extends CreativeTabs {
     private final Item displayItem;

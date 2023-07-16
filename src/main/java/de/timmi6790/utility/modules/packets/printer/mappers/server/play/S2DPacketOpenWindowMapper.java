@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S2DPacketOpenWindow;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S2DPacketOpenWindow;
 
 public class S2DPacketOpenWindowMapper extends ServerPacketMapper<S2DPacketOpenWindow> {
     public S2DPacketOpenWindowMapper() {

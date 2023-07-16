@@ -2,10 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.client.C19PacketResourcePackStatus;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C19PacketResourcePackStatus;
 
 public class C19PacketResourcePackStatusMapper extends ClientPacketMapper<C19PacketResourcePackStatus> {
     public C19PacketResourcePackStatusMapper() {

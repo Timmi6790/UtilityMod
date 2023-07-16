@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C03PacketPlayer;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C03PacketPlayer;
 
 public class C05PacketPlayerLookMapper extends ClientPacketMapper<C03PacketPlayer.C05PacketPlayerLook> {
     public C05PacketPlayerLookMapper() {

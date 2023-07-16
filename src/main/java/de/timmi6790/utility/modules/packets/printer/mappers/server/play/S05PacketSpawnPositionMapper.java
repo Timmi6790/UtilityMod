@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S05PacketSpawnPosition;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S05PacketSpawnPosition;
 
 public class S05PacketSpawnPositionMapper extends ServerPacketMapper<S05PacketSpawnPosition> {
     public S05PacketSpawnPositionMapper() {

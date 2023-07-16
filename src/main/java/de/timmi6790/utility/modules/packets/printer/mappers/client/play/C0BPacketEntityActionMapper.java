@@ -2,10 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.client.C0BPacketEntityAction;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C0BPacketEntityAction;
 
 public class C0BPacketEntityActionMapper extends ClientPacketMapper<C0BPacketEntityAction> {
     public C0BPacketEntityActionMapper() {

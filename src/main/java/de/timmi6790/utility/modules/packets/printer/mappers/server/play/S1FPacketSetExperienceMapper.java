@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S1FPacketSetExperience;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S1FPacketSetExperience;
 
 public class S1FPacketSetExperienceMapper extends ServerPacketMapper<S1FPacketSetExperience> {
     public S1FPacketSetExperienceMapper() {

@@ -3,9 +3,8 @@ package de.timmi6790.utility.modules.server_tick_rate;
 import de.timmi6790.utility.BaseModule;
 import de.timmi6790.utility.Constants;
 import de.timmi6790.utility.utils.MinecraftTimeUnit;
-import lombok.Getter;
-
 import java.util.concurrent.TimeUnit;
+import lombok.Getter;
 
 /**
  * Makes assumption of the server TPS based of the {@link net.minecraft.network.play.server.S03PacketTimeUpdate}
@@ -26,9 +25,7 @@ public class ServerTickRateModule extends BaseModule {
         this.tps5Minutes = new RollingAverage(5, MinecraftTimeUnit.MINUTES);
         this.tps10Minutes = new RollingAverage(10, MinecraftTimeUnit.MINUTES);
 
-        this.registerListenerComponent(
-                new ServerTickRateListener(this)
-        );
+        this.registerListenerComponent(new ServerTickRateListener(this));
     }
 
     void addNewTick() {

@@ -22,9 +22,10 @@ public class MixinNetworkManager {
     private INetHandler packetListener;
 
     @Inject(method = "dispatchPacket", at = @At("HEAD"), cancellable = true)
-    private void sendPacketPre(final Packet dispatchPacket1,
-                               final GenericFutureListener<? extends Future<? super Void>>[] dispatchPacket2,
-                               final CallbackInfo info) {
+    private void sendPacketPre(
+            final Packet dispatchPacket1,
+            final GenericFutureListener<? extends Future<? super Void>>[] dispatchPacket2,
+            final CallbackInfo info) {
         final PacketSendEvent.Pre event =
                 EventUtils.postEventSave(new PacketSendEvent.Pre(dispatchPacket1, dispatchPacket2));
         if (event.isCanceled()) {
@@ -33,21 +34,18 @@ public class MixinNetworkManager {
     }
 
     @Inject(method = "dispatchPacket", at = @At("RETURN"))
-    private void sendPacketPost(final Packet dispatchPacket1,
-                                final GenericFutureListener<? extends Future<? super Void>>[] dispatchPacket2,
-                                final CallbackInfo info) {
+    private void sendPacketPost(
+            final Packet dispatchPacket1,
+            final GenericFutureListener<? extends Future<? super Void>>[] dispatchPacket2,
+            final CallbackInfo info) {
         EventUtils.postEventSave(new PacketSendEvent.Post(dispatchPacket1, dispatchPacket2));
     }
 
     @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
-    private void receivePacketPre(final ChannelHandlerContext channelRead1,
-                                  final Packet channelRead2,
-                                  final CallbackInfo info) {
-        final Event event = EventUtils.postEventSave(new PacketReceiveEvent.Pre(
-                this.packetListener,
-                channelRead2,
-                channelRead1
-        ));
+    private void receivePacketPre(
+            final ChannelHandlerContext channelRead1, final Packet channelRead2, final CallbackInfo info) {
+        final Event event =
+                EventUtils.postEventSave(new PacketReceiveEvent.Pre(this.packetListener, channelRead2, channelRead1));
 
         if (event.isCanceled()) {
             info.cancel();
@@ -55,13 +53,8 @@ public class MixinNetworkManager {
     }
 
     @Inject(method = "channelRead0", at = @At("RETURN"))
-    private void receivePacketPost(final ChannelHandlerContext channelRead1,
-                                   final Packet channelRead2,
-                                   final CallbackInfo info) {
-        EventUtils.postEventSave(new PacketReceiveEvent.Post(
-                this.packetListener,
-                channelRead2,
-                channelRead1
-        ));
+    private void receivePacketPost(
+            final ChannelHandlerContext channelRead1, final Packet channelRead2, final CallbackInfo info) {
+        EventUtils.postEventSave(new PacketReceiveEvent.Post(this.packetListener, channelRead2, channelRead1));
     }
 }
