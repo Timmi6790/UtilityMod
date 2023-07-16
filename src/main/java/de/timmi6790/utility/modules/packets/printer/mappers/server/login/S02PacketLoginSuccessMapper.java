@@ -2,10 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.server.login;
 
 import com.mojang.authlib.GameProfile;
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.login.server.S02PacketLoginSuccess;
-
 import java.util.Map;
-
+import net.minecraft.network.login.server.S02PacketLoginSuccess;
 
 public class S02PacketLoginSuccessMapper extends ServerPacketMapper<S02PacketLoginSuccess> {
     public S02PacketLoginSuccessMapper() {

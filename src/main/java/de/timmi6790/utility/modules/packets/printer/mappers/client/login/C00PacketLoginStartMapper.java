@@ -2,10 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.client.login;
 
 import com.mojang.authlib.GameProfile;
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.login.client.C00PacketLoginStart;
-
 import java.util.Map;
-
+import net.minecraft.network.login.client.C00PacketLoginStart;
 
 public class C00PacketLoginStartMapper extends ClientPacketMapper<C00PacketLoginStart> {
     public C00PacketLoginStartMapper() {

@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C0EPacketClickWindow;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C0EPacketClickWindow;
 
 public class C0EPacketClickWindowMapper extends ClientPacketMapper<C0EPacketClickWindow> {
     public C0EPacketClickWindowMapper() {

@@ -3,7 +3,6 @@ package de.timmi6790.utility.modules.server_tick_rate;
 import com.google.common.base.Preconditions;
 import de.timmi6790.utility.Constants;
 import de.timmi6790.utility.utils.MinecraftTimeUnit;
-
 import java.util.concurrent.TimeUnit;
 
 /**

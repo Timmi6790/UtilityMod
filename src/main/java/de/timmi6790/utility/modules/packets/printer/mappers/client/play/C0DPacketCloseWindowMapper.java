@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C0DPacketCloseWindow;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C0DPacketCloseWindow;
 
 public class C0DPacketCloseWindowMapper extends ClientPacketMapper<C0DPacketCloseWindow> {
     public C0DPacketCloseWindowMapper() {

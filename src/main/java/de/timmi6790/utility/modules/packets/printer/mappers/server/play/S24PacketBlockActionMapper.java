@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S24PacketBlockAction;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S24PacketBlockAction;
 
 public class S24PacketBlockActionMapper extends ServerPacketMapper<S24PacketBlockAction> {
     public S24PacketBlockActionMapper() {

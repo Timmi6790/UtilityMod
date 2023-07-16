@@ -1,9 +1,8 @@
 package de.timmi6790.utility.modules.packets.logger;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Data;
 import net.minecraft.network.Packet;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 public class PacketLogData implements Cloneable {

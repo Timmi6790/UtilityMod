@@ -18,9 +18,7 @@ public class ConfigCommand extends BaseCommand {
 
     @Override
     public void onCommand(final ICommandSender sender, final String[] args) {
-        TaskScheduler.getInstance().schedule(
-                1,
-                () -> PlayerUtils.openGUI(this.module.getConfig().gui())
-        );
+        TaskScheduler.getInstance()
+                .schedule(1, () -> PlayerUtils.openGUI(this.module.getConfig().gui()));
     }
 }

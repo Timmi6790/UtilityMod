@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C09PacketHeldItemChange;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C09PacketHeldItemChange;
 
 public class C09PacketHeldItemChangeMapper extends ClientPacketMapper<C09PacketHeldItemChange> {
     public C09PacketHeldItemChangeMapper() {

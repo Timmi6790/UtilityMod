@@ -1,15 +1,14 @@
 package de.timmi6790.utility.builders.item_stack.subbuilders;
 
 import de.timmi6790.utility.builders.item_stack.AbstractItemStackBuilder;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PotionItemStackBuilder extends AbstractItemStackBuilder<PotionItemStackBuilder> {
     private final List<PotionEffectData> potionEffectDataList = new ArrayList<>();
@@ -49,13 +48,7 @@ public class PotionItemStackBuilder extends AbstractItemStackBuilder<PotionItemS
     }
 
     public PotionItemStackBuilder addPotionEffect(final int potionId, final int amplifier, final int duration) {
-        this.potionEffectDataList.add(
-                new PotionEffectData(
-                        potionId,
-                        amplifier,
-                        duration
-                )
-        );
+        this.potionEffectDataList.add(new PotionEffectData(potionId, amplifier, duration));
         return this;
     }
 

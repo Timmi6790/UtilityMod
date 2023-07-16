@@ -1,11 +1,9 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S3APacketTabComplete;
-
 import java.util.Arrays;
 import java.util.Map;
-
+import net.minecraft.network.play.server.S3APacketTabComplete;
 
 public class S3APacketTabCompleteMapper extends ServerPacketMapper<S3APacketTabComplete> {
     public S3APacketTabCompleteMapper() {

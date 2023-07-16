@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S06PacketUpdateHealth;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S06PacketUpdateHealth;
 
 public class S06PacketUpdateHealthMapper extends ServerPacketMapper<S06PacketUpdateHealth> {
     public S06PacketUpdateHealthMapper() {

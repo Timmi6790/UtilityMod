@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S0DPacketCollectItem;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S0DPacketCollectItem;
 
 public class S0DPacketCollectItemMapper extends ServerPacketMapper<S0DPacketCollectItem> {
     public S0DPacketCollectItemMapper() {

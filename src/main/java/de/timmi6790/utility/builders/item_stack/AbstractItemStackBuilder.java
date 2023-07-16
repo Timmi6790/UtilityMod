@@ -2,6 +2,11 @@ package de.timmi6790.utility.builders.item_stack;
 
 import de.timmi6790.utility.builders.item_stack.modifiers.AttributeOperation;
 import de.timmi6790.utility.builders.item_stack.modifiers.AttributeType;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.NonNull;
 import net.minecraft.enchantment.Enchantment;
@@ -15,12 +20,6 @@ import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.nbt.NBTTagString;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Getter
 public abstract class AbstractItemStackBuilder<SELF extends AbstractItemStackBuilder<SELF>> {
@@ -61,7 +60,6 @@ public abstract class AbstractItemStackBuilder<SELF extends AbstractItemStackBui
         final NBTTagCompound display = new NBTTagCompound();
         if (this.itemName != null) {
             display.setString("Name", this.itemName);
-
         }
 
         if (!this.itemLore.isEmpty()) {
@@ -138,14 +136,9 @@ public abstract class AbstractItemStackBuilder<SELF extends AbstractItemStackBui
         return this.getThis();
     }
 
-    public SELF addAttribute(final AttributeType attributeType,
-                             final AttributeOperation attributeOperation,
-                             final double value) {
-        return this.addAttribute(new AttributeModifier(
-                attributeType.getId(),
-                value,
-                attributeOperation.getId()
-        ));
+    public SELF addAttribute(
+            final AttributeType attributeType, final AttributeOperation attributeOperation, final double value) {
+        return this.addAttribute(new AttributeModifier(attributeType.getId(), value, attributeOperation.getId()));
     }
 
     public SELF addAttribute(final AttributeModifier attributeModifier) {

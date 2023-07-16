@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.status;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.status.server.S01PacketPong;
-
 import java.util.Map;
-
+import net.minecraft.network.status.server.S01PacketPong;
 
 public class S01PacketPongMapper extends ServerPacketMapper<S01PacketPong> {
     public S01PacketPongMapper() {

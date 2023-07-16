@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S31PacketWindowProperty;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S31PacketWindowProperty;
 
 public class S31PacketWindowPropertyMapper extends ServerPacketMapper<S31PacketWindowProperty> {
     public S31PacketWindowPropertyMapper() {

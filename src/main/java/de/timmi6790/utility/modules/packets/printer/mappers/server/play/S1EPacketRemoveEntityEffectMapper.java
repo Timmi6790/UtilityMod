@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S1EPacketRemoveEntityEffect;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S1EPacketRemoveEntityEffect;
 
 public class S1EPacketRemoveEntityEffectMapper extends ServerPacketMapper<S1EPacketRemoveEntityEffect> {
     public S1EPacketRemoveEntityEffectMapper() {

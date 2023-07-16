@@ -1,6 +1,11 @@
 package de.timmi6790.utility.modules.command;
 
 import de.timmi6790.utility.utils.MessageBuilder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,12 +13,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
 public class CommandGroup extends BaseCommand {
     @Getter
@@ -65,17 +64,14 @@ public class CommandGroup extends BaseCommand {
     public void onCommand(final ICommandSender sender, final String[] args) {
         if (args.length == 0) {
             final MessageBuilder helpMessage = MessageBuilder.of(
-                    StringUtils.capitalize(this.getCommandName()) + "-Command\n",
-                    EnumChatFormatting.GOLD
-            );
+                    StringUtils.capitalize(this.getCommandName()) + "-Command\n", EnumChatFormatting.GOLD);
             for (final BaseCommand command : this.subCommands) {
                 helpMessage.addMessage(
                         EnumChatFormatting.YELLOW,
                         "\n/%s %s %s",
                         this.getPreCommand() + this.getCommandName(),
                         command.getCommandName(),
-                        String.join(" ", command.getSyntax())
-                );
+                        String.join(" ", command.getSyntax()));
             }
             helpMessage.addBoxToMessage().sendToPlayer();
             return;

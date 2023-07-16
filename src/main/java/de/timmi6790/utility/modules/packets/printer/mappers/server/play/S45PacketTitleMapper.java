@@ -2,9 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.server.S45PacketTitle;
-
 import java.util.Map;
+import net.minecraft.network.play.server.S45PacketTitle;
 
 public class S45PacketTitleMapper extends ServerPacketMapper<S45PacketTitle> {
     public S45PacketTitleMapper() {

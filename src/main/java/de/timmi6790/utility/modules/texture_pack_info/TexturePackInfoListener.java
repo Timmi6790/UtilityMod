@@ -28,11 +28,10 @@ public class TexturePackInfoListener implements ListenerComponent {
         final S48PacketResourcePackSend packetResourcePackSend = (S48PacketResourcePackSend) event.getPacket();
         MessageBuilder.of("TpInfo> ", EnumChatFormatting.BLUE)
                 .addMessage("Received texturepack from ", EnumChatFormatting.GRAY)
-                .addMessage(
-                        MessageBuilder.of(packetResourcePackSend.getURL(), EnumChatFormatting.YELLOW)
-                                .addClickEvent(ClickEvent.Action.OPEN_URL, packetResourcePackSend.getURL())
-                                .addHoverEvent(HoverEvent.Action.SHOW_TEXT,
-                                        MessageBuilder.of("Open URL", EnumChatFormatting.GRAY)))
+                .addMessage(MessageBuilder.of(packetResourcePackSend.getURL(), EnumChatFormatting.YELLOW)
+                        .addClickEvent(ClickEvent.Action.OPEN_URL, packetResourcePackSend.getURL())
+                        .addHoverEvent(
+                                HoverEvent.Action.SHOW_TEXT, MessageBuilder.of("Open URL", EnumChatFormatting.GRAY)))
                 .addMessage(" with hash ", EnumChatFormatting.GRAY)
                 .addMessage(packetResourcePackSend.getHash(), EnumChatFormatting.YELLOW)
                 .sendToPlayerDelayed(0, MinecraftTimeUnit.TICKS);

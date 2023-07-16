@@ -6,13 +6,12 @@ import de.timmi6790.utility.modules.core.events.PacketSendEvent;
 import de.timmi6790.utility.modules.packets.printer.mappers.PacketMapper;
 import de.timmi6790.utility.utils.MessageBuilder;
 import de.timmi6790.utility.utils.PlayerUtils;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.minecraft.network.Packet;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -45,7 +44,8 @@ public class PacketPrinterListener implements ListenerComponent {
         final MessageBuilder messageBuilder = packetMapper.parsePacketToMessage(packet);
         if (messageBuilder != null) {
             // Always fall back to logs if the user is not present
-            if (this.module.getPrintMode() == PrintMode.CHAT && PlayerUtils.getPlayer().isPresent()) {
+            if (this.module.getPrintMode() == PrintMode.CHAT
+                    && PlayerUtils.getPlayer().isPresent()) {
                 messageBuilder.sendToPlayer();
             } else {
                 final IChatComponent chatComponent = messageBuilder.build();

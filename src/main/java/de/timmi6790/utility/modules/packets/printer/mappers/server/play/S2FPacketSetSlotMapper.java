@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S2FPacketSetSlot;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S2FPacketSetSlot;
 
 public class S2FPacketSetSlotMapper extends ServerPacketMapper<S2FPacketSetSlot> {
     public S2FPacketSetSlotMapper() {
