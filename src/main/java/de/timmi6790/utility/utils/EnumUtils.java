@@ -1,14 +1,12 @@
 package de.timmi6790.utility.utils;
 
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+import lombok.NonNull;
+import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Enum utilities.
@@ -22,9 +20,7 @@ public class EnumUtils {
      * @return the pretty names
      */
     public static List<String> getPrettyNames(@NonNull final Enum[] enumValue) {
-        return Arrays.stream(enumValue)
-                .map(EnumUtils::getPrettyName)
-                .collect(Collectors.toList());
+        return Arrays.stream(enumValue).map(EnumUtils::getPrettyName).collect(Collectors.toList());
     }
 
     /**
@@ -54,8 +50,8 @@ public class EnumUtils {
      * @param enumValue the enum value
      * @return the found enum value
      */
-    public static <T extends Enum> Optional<T> getIgnoreCase(@NonNull final String search,
-                                                             @NonNull final T[] enumValue) {
+    public static <T extends Enum> Optional<T> getIgnoreCase(
+            @NonNull final String search, @NonNull final T[] enumValue) {
         return Arrays.stream(enumValue)
                 .filter(value -> getPrettyName(value).equalsIgnoreCase(search))
                 .findAny();

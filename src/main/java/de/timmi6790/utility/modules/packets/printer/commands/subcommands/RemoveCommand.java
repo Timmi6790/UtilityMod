@@ -5,15 +5,14 @@ import de.timmi6790.utility.modules.packets.printer.mappers.PacketMapper;
 import de.timmi6790.utility.modules.packets.printer.mappers.PacketSide;
 import de.timmi6790.utility.utils.EnumUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.network.Packet;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.network.Packet;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 
 public class RemoveCommand extends AbstractPacketPrinterCommand {
     public RemoveCommand(final PacketPrinterModule module) {
@@ -30,20 +29,16 @@ public class RemoveCommand extends AbstractPacketPrinterCommand {
 
         final Class<Packet<?>> packetClass = (Class<Packet<?>>) packetMapper.getPacketClass();
         if (!this.getModule().hasPacketLogger(packetClass)) {
-            this.tell(
-                    MessageBuilder.of("Is currently not listening for " + packetMapper.getCleanPacketName())
-            );
+            this.tell(MessageBuilder.of("Is currently not listening for " + packetMapper.getCleanPacketName()));
             return;
         }
 
         this.getModule().removePacketLogger(packetClass);
-        this.tell(
-                MessageBuilder.of("Removed listener for ", EnumChatFormatting.GRAY)
-                        .addMessage(EnumUtils.getPrettyName(packetSide), EnumChatFormatting.YELLOW)
-                        .addMessage("-", EnumChatFormatting.GRAY)
-                        .addMessage(packetMapper.getCleanPacketName(), EnumChatFormatting.YELLOW)
-                        .addMessage(".", EnumChatFormatting.GRAY)
-        );
+        this.tell(MessageBuilder.of("Removed listener for ", EnumChatFormatting.GRAY)
+                .addMessage(EnumUtils.getPrettyName(packetSide), EnumChatFormatting.YELLOW)
+                .addMessage("-", EnumChatFormatting.GRAY)
+                .addMessage(packetMapper.getCleanPacketName(), EnumChatFormatting.YELLOW)
+                .addMessage(".", EnumChatFormatting.GRAY));
     }
 
     @Override

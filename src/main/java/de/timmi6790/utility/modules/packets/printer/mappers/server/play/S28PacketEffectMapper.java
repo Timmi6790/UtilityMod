@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S28PacketEffect;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S28PacketEffect;
 
 public class S28PacketEffectMapper extends ServerPacketMapper<S28PacketEffect> {
     public S28PacketEffectMapper() {

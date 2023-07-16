@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.forge;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
-
 import java.util.Map;
-
+import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 
 public class FMLProxyPacketMapper extends ClientPacketMapper<FMLProxyPacket> {
     public FMLProxyPacketMapper() {

@@ -1,6 +1,9 @@
 package de.timmi6790.utility.utils;
 
 import de.timmi6790.utility.ListenerComponent;
+import java.util.Comparator;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.PriorityBlockingQueue;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,10 +11,6 @@ import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-
-import java.util.Comparator;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.PriorityBlockingQueue;
 
 @Log4j2
 public final class TaskScheduler implements ListenerComponent {

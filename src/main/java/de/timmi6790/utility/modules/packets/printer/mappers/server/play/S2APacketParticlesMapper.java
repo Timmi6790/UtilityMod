@@ -1,11 +1,9 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S2APacketParticles;
-
 import java.util.Arrays;
 import java.util.Map;
-
+import net.minecraft.network.play.server.S2APacketParticles;
 
 public class S2APacketParticlesMapper extends ServerPacketMapper<S2APacketParticles> {
     public S2APacketParticlesMapper() {

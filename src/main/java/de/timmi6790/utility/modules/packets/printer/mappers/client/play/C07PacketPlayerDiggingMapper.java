@@ -2,10 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.client.C07PacketPlayerDigging;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C07PacketPlayerDigging;
 
 public class C07PacketPlayerDiggingMapper extends ClientPacketMapper<C07PacketPlayerDigging> {
     public C07PacketPlayerDiggingMapper() {

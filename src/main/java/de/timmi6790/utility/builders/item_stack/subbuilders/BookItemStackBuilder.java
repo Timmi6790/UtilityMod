@@ -1,6 +1,7 @@
 package de.timmi6790.utility.builders.item_stack.subbuilders;
 
 import de.timmi6790.utility.builders.item_stack.AbstractItemStackBuilder;
+import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.init.Items;
@@ -8,8 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
-
-import java.util.Collection;
 
 @Getter
 @Setter

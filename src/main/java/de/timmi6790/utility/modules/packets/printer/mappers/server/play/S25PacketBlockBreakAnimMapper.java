@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S25PacketBlockBreakAnim;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S25PacketBlockBreakAnim;
 
 public class S25PacketBlockBreakAnimMapper extends ServerPacketMapper<S25PacketBlockBreakAnim> {
     public S25PacketBlockBreakAnimMapper() {

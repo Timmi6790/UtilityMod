@@ -1,11 +1,9 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
+import java.util.Map;
 import net.minecraft.network.play.server.S37PacketStatistics;
 import net.minecraft.stats.StatBase;
-
-import java.util.Map;
-
 
 public class S37PacketStatisticsMapper extends ServerPacketMapper<S37PacketStatistics> {
     public S37PacketStatisticsMapper() {

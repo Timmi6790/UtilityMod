@@ -3,6 +3,8 @@ package de.timmi6790.utility.mixin.entity;
 import de.timmi6790.utility.modules.config.Config;
 import de.timmi6790.utility.modules.config.reference.ConfigReference;
 import de.timmi6790.utility.utils.MessageBuilder;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.log4j.Log4j2;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.util.EnumChatFormatting;
@@ -12,9 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
-
 @Log4j2
 @Mixin(DataWatcher.class)
 public abstract class MixinDataWatcher {
@@ -23,22 +22,21 @@ public abstract class MixinDataWatcher {
     private static long lastErrorMessage = 0;
 
     private static void sendErrorMessage(final String exceptedType, final Object watchedObject) {
-        final String stackTrace = Arrays.toString(new Throwable().getStackTrace()).replace(',', '\n');
+        final String stackTrace =
+                Arrays.toString(new Throwable().getStackTrace()).replace(',', '\n');
         log.warn(
                 "[DataWatcher] Expected {} but found {} with value \"{}\"\n{}",
                 exceptedType,
                 watchedObject.getClass(),
                 watchedObject,
-                stackTrace
-        );
+                stackTrace);
 
         if (System.currentTimeMillis() - lastErrorMessage >= ERROR_MESSAGE_COOLDOWN) {
             lastErrorMessage = System.currentTimeMillis();
             MessageBuilder.of("AntiCrash> ", EnumChatFormatting.BLUE)
                     .addMessage(
                             "Prevented a data watcher crash. Check your console for more information.",
-                            EnumChatFormatting.GRAY
-                    )
+                            EnumChatFormatting.GRAY)
                     .sendToPlayer();
         }
     }
@@ -54,7 +52,6 @@ public abstract class MixinDataWatcher {
 
     @Shadow
     protected abstract DataWatcher.WatchableObject getWatchedObject(int id);
-
 
     /**
      * Tries to prevent client crashes on invalid data watcher types and print a warning.

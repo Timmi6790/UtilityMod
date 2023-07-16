@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C10PacketCreativeInventoryAction;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C10PacketCreativeInventoryAction;
 
 public class C10PacketCreativeInventoryActionMapper extends ClientPacketMapper<C10PacketCreativeInventoryAction> {
     public C10PacketCreativeInventoryActionMapper() {

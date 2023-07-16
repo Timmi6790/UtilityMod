@@ -7,9 +7,7 @@ import net.minecraft.util.EnumChatFormatting;
 
 public class CrashFixModule extends BaseModule {
     public CrashFixModule() {
-        this.registerListenerComponents(
-                new CrashPotionFix(this)
-        );
+        this.registerListenerComponents(new CrashPotionFix(this));
     }
 
     public void sendPreventionMessage(final MessageBuilder message) {

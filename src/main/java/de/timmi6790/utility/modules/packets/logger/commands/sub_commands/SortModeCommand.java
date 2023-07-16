@@ -4,13 +4,11 @@ import de.timmi6790.utility.modules.command.BaseCommand;
 import de.timmi6790.utility.modules.packets.logger.PacketLoggerModule;
 import de.timmi6790.utility.modules.packets.logger.PacketSortMode;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.util.BlockPos;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import net.minecraft.command.ICommandSender;
+import net.minecraft.util.BlockPos;
 
 public class SortModeCommand extends BaseCommand {
     private final PacketLoggerModule module;

@@ -9,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 
-
 public class ItemStackBuilder extends AbstractItemStackBuilder<ItemStackBuilder> {
     protected ItemStackBuilder(final Item item) {
         super(item);

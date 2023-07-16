@@ -1,12 +1,11 @@
 package de.timmi6790.utility.utils;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class VerifyUtilsTest {
     @ParameterizedTest
@@ -59,8 +58,10 @@ class VerifyUtilsTest {
 
     @Test
     void hasEmptyArg() {
-        assertThat(VerifyUtils.hasEmptyArg(Arrays.asList("a", "b").toArray(new String[0]), 1)).isFalse();
+        assertThat(VerifyUtils.hasEmptyArg(Arrays.asList("a", "b").toArray(new String[0]), 1))
+                .isFalse();
 
-        assertThat(VerifyUtils.hasEmptyArg(Arrays.asList("a", "b", "").toArray(new String[0]), 2)).isTrue();
+        assertThat(VerifyUtils.hasEmptyArg(Arrays.asList("a", "b", "").toArray(new String[0]), 2))
+                .isTrue();
     }
 }

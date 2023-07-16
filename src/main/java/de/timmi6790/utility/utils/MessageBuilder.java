@@ -1,13 +1,12 @@
 package de.timmi6790.utility.utils;
 
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.HoverEvent;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
-
-import java.util.Set;
 
 @RequiredArgsConstructor(access = lombok.AccessLevel.PRIVATE)
 public class MessageBuilder {
@@ -18,8 +17,7 @@ public class MessageBuilder {
     }
 
     public static MessageBuilder of(final String message, final EnumChatFormatting colour) {
-        return of(message)
-                .setColour(colour);
+        return of(message).setColour(colour);
     }
 
     public MessageBuilder addMessage(final IChatComponent chatComponent) {

@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S2CPacketSpawnGlobalEntity;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S2CPacketSpawnGlobalEntity;
 
 public class S2CPacketSpawnGlobalEntityMapper extends ServerPacketMapper<S2CPacketSpawnGlobalEntity> {
     public S2CPacketSpawnGlobalEntityMapper() {

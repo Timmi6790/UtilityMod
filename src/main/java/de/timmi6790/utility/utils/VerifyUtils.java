@@ -1,8 +1,7 @@
 package de.timmi6790.utility.utils;
 
-import lombok.experimental.UtilityClass;
-
 import java.util.regex.Pattern;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class VerifyUtils {

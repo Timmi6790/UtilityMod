@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S3EPacketTeams;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S3EPacketTeams;
 
 public class S3EPacketTeamsMapper extends ServerPacketMapper<S3EPacketTeams> {
     public S3EPacketTeamsMapper() {

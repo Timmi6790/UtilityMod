@@ -1,12 +1,10 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C12PacketUpdateSign;
-import net.minecraft.util.IChatComponent;
-
 import java.util.Map;
 import java.util.StringJoiner;
-
+import net.minecraft.network.play.client.C12PacketUpdateSign;
+import net.minecraft.util.IChatComponent;
 
 public class C12PacketUpdateSignMapper extends ClientPacketMapper<C12PacketUpdateSign> {
     public C12PacketUpdateSignMapper() {

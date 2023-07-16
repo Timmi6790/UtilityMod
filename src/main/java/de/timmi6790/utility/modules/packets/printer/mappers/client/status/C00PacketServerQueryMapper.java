@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.status;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.status.client.C00PacketServerQuery;
-
 import java.util.Map;
-
+import net.minecraft.network.status.client.C00PacketServerQuery;
 
 public class C00PacketServerQueryMapper extends ClientPacketMapper<C00PacketServerQuery> {
     public C00PacketServerQueryMapper() {

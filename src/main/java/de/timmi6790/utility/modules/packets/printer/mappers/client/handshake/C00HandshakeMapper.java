@@ -2,10 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.client.handshake;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.handshake.client.C00Handshake;
-
 import java.util.Map;
-
+import net.minecraft.network.handshake.client.C00Handshake;
 
 public class C00HandshakeMapper extends ClientPacketMapper<C00Handshake> {
     public C00HandshakeMapper() {

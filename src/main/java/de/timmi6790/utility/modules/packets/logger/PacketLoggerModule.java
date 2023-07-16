@@ -5,11 +5,6 @@ import de.timmi6790.utility.modules.packets.logger.commands.PacketLoggerCommand;
 import de.timmi6790.utility.utils.FormatUtils;
 import de.timmi6790.utility.utils.MathUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import net.minecraft.network.Packet;
-import net.minecraft.util.EnumChatFormatting;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import net.minecraft.network.Packet;
+import net.minecraft.util.EnumChatFormatting;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -31,42 +30,37 @@ public class PacketLoggerModule extends BaseModule {
     private ScheduledFuture<?> broadcastTask;
 
     public PacketLoggerModule() {
-        this.registerListenerComponent(
-                new PacketLoggerListener(this)
-        );
+        this.registerListenerComponent(new PacketLoggerListener(this));
 
-        this.registerCommands(
-                new PacketLoggerCommand(this)
-        );
+        this.registerCommands(new PacketLoggerCommand(this));
     }
 
     @Override
     public void enable() {
         super.enable();
 
-        this.broadcastTask = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
-                () -> {
-                    // Timed Broadcast
-                    if (this.secondBroadcast) {
-                        final List<PacketLogData> secondPacket = new ArrayList<>(this.packetLogInfos.size());
-                        for (final PacketLogInfo packetLogInfo : this.packetLogInfos.values()) {
-                            secondPacket.add(packetLogInfo.getSecond().clone());
-                        }
+        this.broadcastTask = Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            // Timed Broadcast
+                            if (this.secondBroadcast) {
+                                final List<PacketLogData> secondPacket = new ArrayList<>(this.packetLogInfos.size());
+                                for (final PacketLogInfo packetLogInfo : this.packetLogInfos.values()) {
+                                    secondPacket.add(packetLogInfo.getSecond().clone());
+                                }
 
-                        this.broadcastLogInfo("Second", secondPacket);
-                    }
+                                this.broadcastLogInfo("Second", secondPacket);
+                            }
 
-                    // Reset
-                    for (final PacketLogInfo packetLogInfo : this.packetLogInfos.values()) {
-                        packetLogInfo.getSecond().reset();
-                    }
-                },
-                1,
-                1,
-                TimeUnit.SECONDS
-        );
+                            // Reset
+                            for (final PacketLogInfo packetLogInfo : this.packetLogInfos.values()) {
+                                packetLogInfo.getSecond().reset();
+                            }
+                        },
+                        1,
+                        1,
+                        TimeUnit.SECONDS);
     }
-
 
     @Override
     public void disable() {
@@ -104,29 +98,22 @@ public class PacketLoggerModule extends BaseModule {
                 continue;
             }
 
-            messageBuilder.addMessage("\n" + packetLogData.getPacketClass().getSimpleName())
+            messageBuilder
+                    .addMessage("\n" + packetLogData.getPacketClass().getSimpleName())
                     .addMessage(": ", EnumChatFormatting.GRAY)
                     .addMessage("P")
                     .addMessage(
-                            String.format(
-                                    ":%s[%.2f%%]",
-                                    packets,
-                                    MathUtils.calculatePercentage(totalPackets, packets)
-                            ),
-                            EnumChatFormatting.GRAY
-                    ).addMessage(";B")
+                            String.format(":%s[%.2f%%]", packets, MathUtils.calculatePercentage(totalPackets, packets)),
+                            EnumChatFormatting.GRAY)
+                    .addMessage(";B")
                     .addMessage(
                             String.format(
                                     ":%s[%.2f%%]",
                                     FormatUtils.toHumanReadableByteCountBin(bytes),
-                                    MathUtils.calculatePercentage(totalBytes, bytes)
-                            ),
-                            EnumChatFormatting.GRAY
-                    );
+                                    MathUtils.calculatePercentage(totalBytes, bytes)),
+                            EnumChatFormatting.GRAY);
         }
 
-        messageBuilder
-                .addBoxToMessage()
-                .sendToPlayer();
+        messageBuilder.addBoxToMessage().sendToPlayer();
     }
 }

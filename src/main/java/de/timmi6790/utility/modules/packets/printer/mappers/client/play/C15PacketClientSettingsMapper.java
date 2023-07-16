@@ -2,10 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.client.C15PacketClientSettings;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C15PacketClientSettings;
 
 public class C15PacketClientSettingsMapper extends ClientPacketMapper<C15PacketClientSettings> {
     public C15PacketClientSettingsMapper() {

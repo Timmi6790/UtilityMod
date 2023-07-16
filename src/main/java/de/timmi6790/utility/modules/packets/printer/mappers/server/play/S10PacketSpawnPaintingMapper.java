@@ -2,9 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.server.S10PacketSpawnPainting;
-
 import java.util.Map;
+import net.minecraft.network.play.server.S10PacketSpawnPainting;
 
 public class S10PacketSpawnPaintingMapper extends ServerPacketMapper<S10PacketSpawnPainting> {
     public S10PacketSpawnPaintingMapper() {

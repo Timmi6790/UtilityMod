@@ -1,9 +1,5 @@
 package de.timmi6790.utility.modules.update_checker;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.CompletableFuture;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -12,10 +8,14 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.concurrent.CompletableFuture;
+import org.junit.jupiter.api.Test;
+
 class UpdateCheckerModuleTest {
     private void checkVersion(final String currentVersion, final String newVersion, final boolean expected) {
         final UpdateCheckerModule updateCheckerModule = new UpdateCheckerModule();
-        assertThat(updateCheckerModule.hasNewVersion(currentVersion, newVersion)).isEqualTo(expected);
+        assertThat(updateCheckerModule.hasNewVersion(currentVersion, newVersion))
+                .isEqualTo(expected);
     }
 
     @Test
@@ -60,9 +60,7 @@ class UpdateCheckerModuleTest {
 
         // We can assume that the current version is always 0.0.0 during the tests
         final UpdateCheckerModule.VersionData newVersion = new UpdateCheckerModule.VersionData("1.0.0", "");
-        when(updateCheckerModule.getLastVersion()).thenReturn(
-                CompletableFuture.completedFuture(newVersion)
-        );
+        when(updateCheckerModule.getLastVersion()).thenReturn(CompletableFuture.completedFuture(newVersion));
         doNothing().when(updateCheckerModule).sendNewVersionMessage(any(), any());
 
         updateCheckerModule.checkForUpdates();
