@@ -1,9 +1,9 @@
 package de.timmi6790.utility;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class ModuleManagerTest {
     @Test
@@ -75,31 +75,11 @@ class ModuleManagerTest {
     }
 
     private static class TestModule implements Module {
-        @Override
-        public void enable() {
-        }
-
-        @Override
-        public void registerEvents() {
-        }
-
-        @Override
-        public void disable() {
-        }
+        // Nothing to do
     }
 
     private static class TestModule1 implements Module {
-        @Override
-        public void enable() {
-        }
-
-        @Override
-        public void registerEvents() {
-        }
-
-        @Override
-        public void disable() {
-        }
+        // Nothing to do
     }
 
     private static class EventTestModule implements Module {
@@ -107,16 +87,8 @@ class ModuleManagerTest {
         private int eventCallCount = 0;
 
         @Override
-        public void enable() {
-        }
-
-        @Override
         public void registerEvents() {
             this.eventCallCount++;
-        }
-
-        @Override
-        public void disable() {
         }
     }
 }

@@ -2,6 +2,10 @@ package de.timmi6790.utility.modules.packets.printer.mappers;
 
 import de.timmi6790.utility.utils.EnumUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 import lombok.Data;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -12,11 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
 
 @Data
 public abstract class PacketMapper<T extends Packet<?>> {
@@ -85,8 +84,8 @@ public abstract class PacketMapper<T extends Packet<?>> {
     protected String toString(final List<DataWatcher.WatchableObject> watchableObjects) {
         final StringJoiner joiner = new StringJoiner("; ");
         for (final DataWatcher.WatchableObject object : watchableObjects) {
-            joiner.add("(ValueId: " + object.getDataValueId() + "; Type:" + object.getObjectType() + "; Object: " +
-                    object.getObject() + ")");
+            joiner.add("(ValueId: " + object.getDataValueId() + "; Type:" + object.getObjectType() + "; Object: "
+                    + object.getObject() + ")");
         }
         return "(" + joiner + ")";
     }

@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S01PacketJoinGame;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S01PacketJoinGame;
 
 public class S01PacketJoinGameMapper extends ServerPacketMapper<S01PacketJoinGame> {
     public S01PacketJoinGameMapper() {

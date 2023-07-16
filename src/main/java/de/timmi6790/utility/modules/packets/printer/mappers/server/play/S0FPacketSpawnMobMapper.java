@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S0FPacketSpawnMob;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S0FPacketSpawnMob;
 
 public class S0FPacketSpawnMobMapper extends ServerPacketMapper<S0FPacketSpawnMob> {
     public S0FPacketSpawnMobMapper() {

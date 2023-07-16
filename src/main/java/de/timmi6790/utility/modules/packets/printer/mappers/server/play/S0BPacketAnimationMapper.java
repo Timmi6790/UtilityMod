@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S0BPacketAnimation;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S0BPacketAnimation;
 
 public class S0BPacketAnimationMapper extends ServerPacketMapper<S0BPacketAnimation> {
     public S0BPacketAnimationMapper() {

@@ -5,11 +5,10 @@ import de.timmi6790.utility.modules.packets.logger.PacketLogData;
 import de.timmi6790.utility.modules.packets.logger.PacketLogInfo;
 import de.timmi6790.utility.modules.packets.logger.PacketLoggerModule;
 import de.timmi6790.utility.utils.FormatUtils;
-import net.minecraft.command.ICommandSender;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import net.minecraft.command.ICommandSender;
 
 public class TotalLogCommand extends BaseCommand {
     private final PacketLoggerModule module;
@@ -29,8 +28,6 @@ public class TotalLogCommand extends BaseCommand {
 
         final long timePassed = System.currentTimeMillis() - this.module.getLoggerStartTime();
         this.module.broadcastLogInfo(
-                "Total " + FormatUtils.toHumanReadableSeconds(TimeUnit.MILLISECONDS.toSeconds(timePassed)),
-                packets
-        );
+                "Total " + FormatUtils.toHumanReadableSeconds(TimeUnit.MILLISECONDS.toSeconds(timePassed)), packets);
     }
 }

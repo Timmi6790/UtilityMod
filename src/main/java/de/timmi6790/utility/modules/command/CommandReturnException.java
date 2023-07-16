@@ -1,6 +1,5 @@
 package de.timmi6790.utility.modules.command;
 
-
 import de.timmi6790.utility.utils.MessageBuilder;
 
 public class CommandReturnException extends RuntimeException {

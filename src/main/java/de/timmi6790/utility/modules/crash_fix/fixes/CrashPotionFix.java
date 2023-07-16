@@ -26,8 +26,7 @@ public class CrashPotionFix implements ListenerComponent {
             if (potionId > Potion.potionTypes.length || Potion.potionTypes[potionId] == null) {
                 this.module.sendPreventionMessage(
                         MessageBuilder.of("Canceled invalid potion packet. PotionID:", EnumChatFormatting.GRAY)
-                                .addMessage(String.valueOf(potionId), EnumChatFormatting.YELLOW)
-                );
+                                .addMessage(String.valueOf(potionId), EnumChatFormatting.YELLOW));
                 event.setCanceled(true);
             }
         }

@@ -1,17 +1,16 @@
 package de.timmi6790.utility.utils;
 
-import net.minecraft.entity.player.EntityPlayer;
-import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
-
-import java.util.Optional;
-import java.util.function.Consumer;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+
+import java.util.Optional;
+import java.util.function.Consumer;
+import net.minecraft.entity.player.EntityPlayer;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 class PlayerUtilsTest {
     @Test

@@ -6,13 +6,12 @@ import de.timmi6790.utility.utils.EventUtils;
 import gg.essential.vigilance.Vigilant;
 import gg.essential.vigilance.data.Property;
 import gg.essential.vigilance.data.PropertyType;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
-
 import java.lang.reflect.Field;
 import java.nio.file.Paths;
 import java.util.Optional;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
 @Getter
 @Setter
@@ -27,16 +26,14 @@ public class Config extends Vigilant {
             type = PropertyType.SWITCH,
             name = "Invalid Potion IDs",
             description = "Prevent invalid potion id crashes.",
-            category = CRASH_CATEGORY
-    )
+            category = CRASH_CATEGORY)
     private boolean potionIdCrashFix = true;
 
     @Property(
             type = PropertyType.SWITCH,
             name = "Data Watcher",
             description = "Tries to prevent invalid data watcher crashes.",
-            category = CRASH_CATEGORY
-    )
+            category = CRASH_CATEGORY)
     private boolean dataWatcherCrashFix = true;
 
     /*
@@ -46,8 +43,7 @@ public class Config extends Vigilant {
             type = PropertyType.SWITCH,
             name = "Check for Updates",
             description = "Check for updates on first server join.",
-            category = "Update Checker"
-    )
+            category = "Update Checker")
     private boolean checkForUpdatesOnServerJoin = true;
 
     /*
@@ -57,8 +53,7 @@ public class Config extends Vigilant {
             type = PropertyType.SWITCH,
             name = "Show Texture Pack Information",
             description = "Show texture pack information on receive.",
-            category = "Texture Pack Info"
-    )
+            category = "Texture Pack Info")
     private boolean showTexturePackInformation = true;
 
     /*
@@ -68,8 +63,7 @@ public class Config extends Vigilant {
             type = PropertyType.SWITCH,
             name = "Barrier Visibility",
             description = "Make Barrier blocks visible.",
-            category = "Barrier View"
-    )
+            category = "Barrier View")
     private boolean visibleBarrierBlock = true;
 
     public Config() {
@@ -84,8 +78,8 @@ public class Config extends Vigilant {
             }
 
             try {
-                this.registerListener(field,
-                        newValue -> EventUtils.postEventSave(new ConfigChangeEvent(this, field, newValue)));
+                this.registerListener(
+                        field, newValue -> EventUtils.postEventSave(new ConfigChangeEvent(this, field, newValue)));
             } catch (final Exception e) {
                 log.error("Can't register config change listener for field: " + field.getName(), e);
             }
@@ -94,7 +88,8 @@ public class Config extends Vigilant {
 
     private Optional<Property> getProperty(final String fieldName) {
         try {
-            return Optional.ofNullable(this.getClass().getDeclaredField(fieldName).getAnnotation(Property.class));
+            return Optional.ofNullable(
+                    this.getClass().getDeclaredField(fieldName).getAnnotation(Property.class));
         } catch (final NoSuchFieldException e) {
             log.error("Can't find field: " + fieldName, e);
             return Optional.empty();

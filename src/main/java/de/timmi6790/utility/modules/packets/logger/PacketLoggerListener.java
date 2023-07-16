@@ -11,9 +11,9 @@ public class PacketLoggerListener implements ListenerComponent {
 
     @SubscribeEvent
     public void packetReceiveDebug(final PacketReceiveEvent.Pre event) {
-        this.module.getPacketLogInfos().computeIfAbsent(
-                event.getPacket().getClass(),
-                PacketLogInfo::new
-        ).logPacket(event.getPacket());
+        this.module
+                .getPacketLogInfos()
+                .computeIfAbsent(event.getPacket().getClass(), PacketLogInfo::new)
+                .logPacket(event.getPacket());
     }
 }

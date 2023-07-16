@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S36PacketSignEditorOpen;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S36PacketSignEditorOpen;
 
 public class S36PacketSignEditorOpenMapper extends ServerPacketMapper<S36PacketSignEditorOpen> {
     public S36PacketSignEditorOpenMapper() {

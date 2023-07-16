@@ -2,9 +2,8 @@ package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.server.S3CPacketUpdateScore;
-
 import java.util.Map;
+import net.minecraft.network.play.server.S3CPacketUpdateScore;
 
 public class S3CPacketUpdateScoreMapper extends ServerPacketMapper<S3CPacketUpdateScore> {
     public S3CPacketUpdateScoreMapper() {

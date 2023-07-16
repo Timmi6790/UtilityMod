@@ -20,6 +20,7 @@ public class UtilityMod {
     @Getter
     @Mod.Instance(Constants.MOD_ID)
     private static UtilityMod instance;
+
     @Getter
     private final ModuleManager moduleManager = new ModuleManager();
 
@@ -34,8 +35,7 @@ public class UtilityMod {
                 new CrashFixModule(),
                 new UpdateCheckerModule(),
                 new TexturePackInfoModule(),
-                new BarrierViewModule()
-        );
+                new BarrierViewModule());
     }
 
     public static String getVersion() {

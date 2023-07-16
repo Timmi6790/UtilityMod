@@ -3,11 +3,10 @@ package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 import com.mojang.authlib.GameProfile;
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
 import de.timmi6790.utility.utils.EnumUtils;
-import net.minecraft.network.play.server.S38PacketPlayerListItem;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import net.minecraft.network.play.server.S38PacketPlayerListItem;
 
 public class S38PacketPlayerListItemMapper extends ServerPacketMapper<S38PacketPlayerListItem> {
     public S38PacketPlayerListItemMapper() {

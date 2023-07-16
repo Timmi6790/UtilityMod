@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S46PacketSetCompressionLevel;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S46PacketSetCompressionLevel;
 
 public class S46PacketSetCompressionLevelMapper extends ServerPacketMapper<S46PacketSetCompressionLevel> {
     public S46PacketSetCompressionLevelMapper() {

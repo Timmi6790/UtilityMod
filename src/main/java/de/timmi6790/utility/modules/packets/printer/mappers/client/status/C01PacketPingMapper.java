@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.status;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.status.client.C01PacketPing;
-
 import java.util.Map;
-
+import net.minecraft.network.status.client.C01PacketPing;
 
 public class C01PacketPingMapper extends ClientPacketMapper<C01PacketPing> {
     public C01PacketPingMapper() {
