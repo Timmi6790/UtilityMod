@@ -1,6 +1,11 @@
 package de.timmi6790.utility.modules.command;
 
 import de.timmi6790.utility.utils.MessageBuilder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -14,20 +19,17 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.ClientCommandHandler;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
 public abstract class BaseCommand extends CommandBase {
     private final String name;
     private final List<String> aliases = new ArrayList<>();
+
     @Getter(AccessLevel.PROTECTED)
     private final List<String> syntax = new ArrayList<>();
+
     @Getter(AccessLevel.PROTECTED)
     @Setter(AccessLevel.PROTECTED)
     private String prefix;
+
     @Setter(AccessLevel.PROTECTED)
     @Getter(AccessLevel.PROTECTED)
     private int minArgs = 0;
@@ -44,9 +46,7 @@ public abstract class BaseCommand extends CommandBase {
         this(name, prefix, null);
     }
 
-    protected BaseCommand(@NonNull final String name,
-                          final String prefix,
-                          final List<String> aliases) {
+    protected BaseCommand(@NonNull final String name, final String prefix, final List<String> aliases) {
         this.name = name;
         this.prefix = prefix;
 
@@ -97,16 +97,16 @@ public abstract class BaseCommand extends CommandBase {
     }
 
     protected void returnTellNotValidCommand(final String commandName) {
-        this.returnTell(
-                MessageBuilder.of(commandName, EnumChatFormatting.YELLOW)
-                        .addMessage(" is not a valid command.", EnumChatFormatting.GRAY)
-        );
+        this.returnTell(MessageBuilder.of(commandName, EnumChatFormatting.YELLOW)
+                .addMessage(" is not a valid command.", EnumChatFormatting.GRAY));
     }
 
     protected void returnTellMissingArgs() {
         MessageBuilder.of(StringUtils.capitalize(this.getCommandName()) + "-Command\n", EnumChatFormatting.GOLD)
-                .addMessage("\n" + "/" + this.getCommandName() + " " + this.getCommandName() + " " +
-                        String.join(" ", this.getSyntax()), EnumChatFormatting.YELLOW)
+                .addMessage(
+                        "\n" + "/" + this.getCommandName() + " " + this.getCommandName() + " "
+                                + String.join(" ", this.getSyntax()),
+                        EnumChatFormatting.YELLOW)
                 .addBoxToMessage()
                 .sendToPlayer();
         this.returnTell(null);

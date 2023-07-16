@@ -1,12 +1,11 @@
 package de.timmi6790.utility.modules.creative_tab.tabs;
 
 import de.timmi6790.utility.builders.item_stack.ItemStackBuilder;
+import java.util.Comparator;
+import java.util.List;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-
-import java.util.Comparator;
-import java.util.List;
 
 public class SpawnersTab extends BaseTab {
     public SpawnersTab() {
@@ -21,16 +20,13 @@ public class SpawnersTab extends BaseTab {
             // Client crash
             if ("Painting".equalsIgnoreCase(entityName)
                     || "ItemFrame".equalsIgnoreCase(entityName)
-                    || "Item".equalsIgnoreCase(entityName)
-            ) {
+                    || "Item".equalsIgnoreCase(entityName)) {
                 continue;
             }
 
-            items.add(
-                    ItemStackBuilder.ofSpawner(entityName)
-                            .setItemName(entityName)
-                            .build()
-            );
+            items.add(ItemStackBuilder.ofSpawner(entityName)
+                    .setItemName(entityName)
+                    .build());
         }
     }
 }

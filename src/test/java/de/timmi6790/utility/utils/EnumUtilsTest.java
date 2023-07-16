@@ -1,11 +1,10 @@
 package de.timmi6790.utility.utils;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 class EnumUtilsTest {
     @Test
@@ -22,7 +21,8 @@ class EnumUtilsTest {
 
     @Test
     void getIgnoreCase() {
-        final TestEnum testEnum = EnumUtils.getIgnoreCase("testValue", TestEnum.values()).orElse(null);
+        final TestEnum testEnum =
+                EnumUtils.getIgnoreCase("testValue", TestEnum.values()).orElse(null);
         assertThat(testEnum).isEqualTo(TestEnum.TEST_VALUE);
     }
 

@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S47PacketPlayerListHeaderFooter;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S47PacketPlayerListHeaderFooter;
 
 public class S47PacketPlayerListHeaderFooterMapper extends ServerPacketMapper<S47PacketPlayerListHeaderFooter> {
     public S47PacketPlayerListHeaderFooterMapper() {

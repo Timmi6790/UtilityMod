@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C11PacketEnchantItem;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C11PacketEnchantItem;
 
 public class C11PacketEnchantItemMapper extends ClientPacketMapper<C11PacketEnchantItem> {
     public C11PacketEnchantItemMapper() {

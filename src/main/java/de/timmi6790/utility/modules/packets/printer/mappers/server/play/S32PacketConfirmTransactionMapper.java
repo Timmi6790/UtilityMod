@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S32PacketConfirmTransaction;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S32PacketConfirmTransaction;
 
 public class S32PacketConfirmTransactionMapper extends ServerPacketMapper<S32PacketConfirmTransaction> {
     public S32PacketConfirmTransactionMapper() {

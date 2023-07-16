@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S21PacketChunkData;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S21PacketChunkData;
 
 public class S21PacketChunkDataMapper extends ServerPacketMapper<S21PacketChunkData> {
     public S21PacketChunkDataMapper() {

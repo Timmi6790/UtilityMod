@@ -2,20 +2,18 @@ package de.timmi6790.utility.modules.core.events;
 
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
+import java.util.Optional;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import net.minecraft.network.Packet;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
-
-import java.util.Optional;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class PacketSendEvent extends PacketEvent {
     private final GenericFutureListener<? extends Future<? super Void>>[] returnListener;
 
-    PacketSendEvent(final GenericFutureListener<? extends Future<? super Void>>[] returnListener,
-                    final Packet packet) {
+    PacketSendEvent(final GenericFutureListener<? extends Future<? super Void>>[] returnListener, final Packet packet) {
         super(packet);
 
         this.returnListener = returnListener != null ? returnListener.clone() : null;

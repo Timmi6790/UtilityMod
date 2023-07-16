@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
 public class S35PacketUpdateTileEntityMapper extends ServerPacketMapper<S35PacketUpdateTileEntity> {
     public S35PacketUpdateTileEntityMapper() {

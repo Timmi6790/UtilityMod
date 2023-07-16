@@ -1,19 +1,13 @@
 package de.timmi6790.utility.utils;
 
-import lombok.experimental.UtilityClass;
-
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class FormatUtils {
     public String toHumanReadableSeconds(final long seconds) {
-        return String.format(
-                "%02d:%02d:%02d",
-                seconds / 3600,
-                (seconds % 3600) / 60,
-                (seconds % 60)
-        );
+        return String.format("%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, (seconds % 60));
     }
 
     public String toHumanReadableByteCountBin(final long bytes) {

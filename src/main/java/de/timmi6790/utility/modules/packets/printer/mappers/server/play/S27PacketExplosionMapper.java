@@ -1,13 +1,11 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S27PacketExplosion;
-import net.minecraft.util.BlockPos;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import net.minecraft.network.play.server.S27PacketExplosion;
+import net.minecraft.util.BlockPos;
 
 public class S27PacketExplosionMapper extends ServerPacketMapper<S27PacketExplosion> {
     public S27PacketExplosionMapper() {

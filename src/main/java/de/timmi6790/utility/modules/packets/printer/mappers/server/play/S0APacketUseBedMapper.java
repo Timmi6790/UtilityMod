@@ -1,11 +1,9 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
+import java.util.Map;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.server.S0APacketUseBed;
-
-import java.util.Map;
-
 
 public class S0APacketUseBedMapper extends ServerPacketMapper<S0APacketUseBed> {
     public S0APacketUseBedMapper() {

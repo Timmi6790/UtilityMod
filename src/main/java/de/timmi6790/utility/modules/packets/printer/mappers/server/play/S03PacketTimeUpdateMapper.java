@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S03PacketTimeUpdate;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S03PacketTimeUpdate;
 
 public class S03PacketTimeUpdateMapper extends ServerPacketMapper<S03PacketTimeUpdate> {
     public S03PacketTimeUpdateMapper() {

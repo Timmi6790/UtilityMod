@@ -1,10 +1,9 @@
 package de.timmi6790.utility;
 
-import lombok.extern.log4j.Log4j2;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class ModuleManager {
@@ -41,7 +40,10 @@ public class ModuleManager {
                 log.debug("Register events for module: " + module.getClass().getName());
                 module.registerEvents();
             } catch (final Exception e) {
-                log.error("Failed to register events for module: " + module.getClass().getName(), e);
+                log.error(
+                        "Failed to register events for module: "
+                                + module.getClass().getName(),
+                        e);
             }
         }
     }

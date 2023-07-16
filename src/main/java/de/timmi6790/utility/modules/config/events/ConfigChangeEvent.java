@@ -2,11 +2,10 @@ package de.timmi6790.utility.modules.config.events;
 
 import de.timmi6790.utility.modules.config.Config;
 import gg.essential.vigilance.data.Property;
+import java.lang.reflect.Field;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import net.minecraftforge.fml.common.eventhandler.Event;
-
-import java.lang.reflect.Field;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

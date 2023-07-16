@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.server.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ServerPacketMapper;
-import net.minecraft.network.play.server.S29PacketSoundEffect;
-
 import java.util.Map;
-
+import net.minecraft.network.play.server.S29PacketSoundEffect;
 
 public class S29PacketSoundEffectMapper extends ServerPacketMapper<S29PacketSoundEffect> {
     public S29PacketSoundEffectMapper() {

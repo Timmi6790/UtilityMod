@@ -1,6 +1,5 @@
 package de.timmi6790.utility.modules.packets.printer.commands;
 
-
 import de.timmi6790.utility.modules.command.CommandGroup;
 import de.timmi6790.utility.modules.packets.printer.PacketPrinterModule;
 import de.timmi6790.utility.modules.packets.printer.commands.subcommands.AddCommand;
@@ -17,7 +16,6 @@ public class PacketPrinterCommand extends CommandGroup {
                 new AddCommand(module),
                 new RemoveCommand(module),
                 new ListCommand(module),
-                new PrintModeCommand(module)
-        );
+                new PrintModeCommand(module));
     }
 }

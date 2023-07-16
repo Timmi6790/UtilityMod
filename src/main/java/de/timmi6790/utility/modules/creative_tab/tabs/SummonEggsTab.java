@@ -1,10 +1,9 @@
 package de.timmi6790.utility.modules.creative_tab.tabs;
 
+import java.util.List;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class SummonEggsTab extends BaseTab {
     public SummonEggsTab() {

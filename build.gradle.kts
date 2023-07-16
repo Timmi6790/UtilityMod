@@ -5,6 +5,7 @@ plugins {
     id("gg.essential.loom") version "0.10.0.+"
     id("dev.architectury.architectury-pack200") version "0.1.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.diffplug.spotless") version "6.19.0"
     checkstyle
     jacoco
 }
@@ -56,6 +57,25 @@ loom {
 
     mixin {
         defaultRefmapName.set("mixins.$modid.refmap.json")
+    }
+}
+
+spotless {
+    java {
+        // Use the default importOrder configuration
+        importOrder()
+        removeUnusedImports()
+
+        // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
+        cleanthat()
+
+        palantirJavaFormat()
+
+        formatAnnotations() // fixes formatting of type annotations
+    }
+
+    kotlinGradle {
+        ktlint()
     }
 }
 
@@ -129,7 +149,7 @@ tasks.processResources {
     inputs.property("modid", modid)
     inputs.property("mixinGroup", mixinGroup)
 
-    //replace stuff in mcmod.info, nothing else
+    // replace stuff in mcmod.info, nothing else
     from(sourceSets["main"].resources.srcDir("resources")) {
         include("mcmod.info")
         include("mixins.utilitymod.json")
@@ -163,17 +183,17 @@ tasks.shadowJar {
     }
 
     exclude(
-            "**/LICENSE.*",
-            "**/LICENSE",
-            "**/NOTICE",
-            "**/NOTICE.*",
-            "pack.mcmeta",
-            "dummyThing",
-            "**/module-info.class",
-            "META-INF/proguard/**",
-            "META-INF/maven/**",
-            "META-INF/versions/**",
-            "META-INF/com.android.tools/**",
+        "**/LICENSE.*",
+        "**/LICENSE",
+        "**/NOTICE",
+        "**/NOTICE.*",
+        "pack.mcmeta",
+        "dummyThing",
+        "**/module-info.class",
+        "META-INF/proguard/**",
+        "META-INF/maven/**",
+        "META-INF/versions/**",
+        "META-INF/com.android.tools/**"
     )
 
     // Required for the update checker code
@@ -201,5 +221,3 @@ fun registerHook(hookName: String) {
 }
 
 registerHook("commit-msg")
-
-

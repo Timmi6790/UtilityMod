@@ -5,10 +5,6 @@ import de.timmi6790.utility.modules.packets.printer.mappers.PacketMapper;
 import de.timmi6790.utility.modules.packets.printer.mappers.PacketSide;
 import de.timmi6790.utility.utils.EnumUtils;
 import de.timmi6790.utility.utils.MessageBuilder;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.network.Packet;
-import net.minecraft.util.EnumChatFormatting;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,7 +12,9 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+import net.minecraft.command.ICommandSender;
+import net.minecraft.network.Packet;
+import net.minecraft.util.EnumChatFormatting;
 
 public class ListCommand extends AbstractPacketPrinterCommand {
     public ListCommand(final PacketPrinterModule module) {
@@ -31,17 +29,14 @@ public class ListCommand extends AbstractPacketPrinterCommand {
         // Map the active classes to the pretty class name
         for (final Class<Packet<?>> listenerClass : packetPrinterManager.getActiveListeners()) {
             final Optional<PacketMapper<Packet<?>>> mapper = packetPrinterManager.getPacketMapper(listenerClass);
-            mapper.ifPresent(packetPacketMapper ->
-                    activeListeners.computeIfAbsent(packetPacketMapper.getPacketSide(), k -> new ArrayList<>())
-                            .add(packetPacketMapper.getCleanPacketName())
-            );
+            mapper.ifPresent(packetPacketMapper -> activeListeners
+                    .computeIfAbsent(packetPacketMapper.getPacketSide(), k -> new ArrayList<>())
+                    .add(packetPacketMapper.getCleanPacketName()));
         }
 
         if (activeListeners.isEmpty()) {
-            this.tell(
-                    MessageBuilder.of("No listeners found", EnumChatFormatting.YELLOW)
-                            .addBoxToMessage()
-            );
+            this.tell(MessageBuilder.of("No listeners found", EnumChatFormatting.YELLOW)
+                    .addBoxToMessage());
             return;
         }
 
@@ -60,8 +55,6 @@ public class ListCommand extends AbstractPacketPrinterCommand {
                         .addMessage(packetName, EnumChatFormatting.GOLD);
             }
         }
-        messageBuilder
-                .addBoxToMessage()
-                .sendToPlayer();
+        messageBuilder.addBoxToMessage().sendToPlayer();
     }
 }

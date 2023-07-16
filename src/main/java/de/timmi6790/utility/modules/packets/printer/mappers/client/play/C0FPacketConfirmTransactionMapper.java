@@ -1,10 +1,8 @@
 package de.timmi6790.utility.modules.packets.printer.mappers.client.play;
 
 import de.timmi6790.utility.modules.packets.printer.mappers.ClientPacketMapper;
-import net.minecraft.network.play.client.C0FPacketConfirmTransaction;
-
 import java.util.Map;
-
+import net.minecraft.network.play.client.C0FPacketConfirmTransaction;
 
 public class C0FPacketConfirmTransactionMapper extends ClientPacketMapper<C0FPacketConfirmTransaction> {
     public C0FPacketConfirmTransactionMapper() {
