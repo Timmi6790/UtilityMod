@@ -32,5 +32,5 @@ Minecraft Forge 1.8.9 Utility Mod
 
 ## License
 
-See [LICENSE](https://github.com/Timmi6790/UtilityMod/blob/main/LICENSE.md) for
+See [LICENSE](https://github.com/Timmi6790/UtilityMod/blob/master/LICENSE) for
 more information.
