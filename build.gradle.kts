@@ -41,14 +41,20 @@ loom {
 dependencies {
     minecraft(libs.minecraft)
     mappings(
-        loom.layered {
-            mappings("org.quiltmc:quilt-mappings:${libs.versions.quilt.mappings.get()}:intermediary-v2")
-            officialMojangMappings()
-        }
+            loom.layered {
+                mappings("org.quiltmc:quilt-mappings:${libs.versions.quilt.mappings.get()}:intermediary-v2")
+                officialMojangMappings()
+            }
     )
 
     modImplementation(libs.quilt.loader)
     modImplementation(libs.quilted.fabric.api)
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0-M1")
+    testImplementation("org.mockito:mockito-core:4.11.0")
+    testImplementation("org.mockito:mockito-inline:4.11.0")
+    testImplementation("org.assertj:assertj-core:3.24.2")
 }
 
 tasks.processResources {
