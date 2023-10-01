@@ -1,63 +1,72 @@
 plugins {
-    idea
-    java
-    kotlin("jvm") version "1.8.21"
-    id("gg.essential.loom") version "0.10.0.+"
-    id("dev.architectury.architectury-pack200") version "0.1.3"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("maven-publish")
+    alias(libs.plugins.quilt.loom)
+    id("io.freefair.lombok") version "8.3"
     id("com.diffplug.spotless") version "6.19.0"
     checkstyle
     jacoco
 }
 
-val baseGroup = "de.timmi6790"
-val modid = rootProject.name
-val mcVersion = "1.8.9"
-group = "$baseGroup.utility"
-// x-release-please-start-version
-version = "1.2.0"
-// x-release-please-end
-val mixinGroup = "$group.mixin"
-
-// Toolchains:
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+tasks.withType(Jar::class) {
+    // archiveBaseName.set(project.archives_base_name)
 }
 
-// Testing:
-tasks.withType<Test> {
-    useJUnitPlatform()
+version = "$project.version+${libs.versions.minecraft.get()}"
+group = "de.timmi6790.utility"
+// group = project.te
+
+repositories {
+    // Add repositories to retrieve artifacts from in here.
+    // You should only use this when depending on other mods because
+    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    // for more information about repositories.
 }
 
-tasks.withType<JacocoReport> {
-    reports {
-        xml.required.set(true)
-        csv.required.set(false)
-        html.required.set(false)
-    }
-}
-
-tasks.test.get().finalizedBy(tasks.jacocoTestReport)
-
-// Minecraft configuration:
 loom {
-    launchConfigs {
-        "client" {
-            property("mixin.debug", "true")
-            property("asmhelper.verbose", "true")
-            arg("--tweakClass", "org.spongepowered.asm.launch.MixinTweaker")
-            arg("--mixin", "mixins.$modid.json")
+    // Loom and Loader use this block to gather more information about your mod.
+    mods {
+        // This should match your mod's mod id.
+        create("utilitymod") {
+            // Tell Loom about each source set used by your mod here. This ensures that your mod's classes are properly transformed by Loader.
+            sourceSet("main")
+            // If you shade (directly include classes, not JiJ) a dependency into your mod, include it here using one of these methods:
+            // dependency("com.example.shadowedmod:1.2.3")
+            // configuration("exampleShadedConfigurationName")
         }
     }
-    forge {
-        pack200Provider.set(dev.architectury.pack200.java.Pack200Adapter())
-        mixinConfig("mixins.$modid.json")
-        accessTransformer("src/main/resources/${modid}_at.cfg")
-    }
+}
+// All the dependencies are declared at gradle/libs.version.toml and referenced with "libs.<id>"
+// See https://docs.gradle.org/current/userguide/platforms.html for information on how version catalogs work.
+dependencies {
+    minecraft(libs.minecraft)
+    mappings(
+        loom.layered {
+            mappings("org.quiltmc:quilt-mappings:${libs.versions.quilt.mappings.get()}:intermediary-v2")
+            officialMojangMappings()
+        }
+    )
 
-    mixin {
-        defaultRefmapName.set("mixins.$modid.refmap.json")
+    modImplementation(libs.quilt.loader)
+    modImplementation(libs.quilted.fabric.api)
+}
+
+tasks.processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    inputs.property("version", version)
+    inputs.property("mcversion", "1.20")
+
+    from(sourceSets["main"].resources.srcDir("resources")) {
+        include("quilt.mod.json")
+        include("utilitymod.mixins.json")
+
+        expand(inputs.properties)
     }
+}
+
+tasks.withType(JavaCompile::class).configureEach {
+    options.encoding = "UTF-8"
 }
 
 spotless {
@@ -79,135 +88,30 @@ spotless {
     }
 }
 
-sourceSets.main {
-    output.resourcesDir = file("$buildDir/classes/java/main")
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
 }
 
-// Dependencies:
-repositories {
-    mavenCentral()
-    maven("https://repo.spongepowered.org/maven/")
-    maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
-    maven("https://repo.essential.gg/repository/maven-public")
+// Testing:
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
-val shadowImpl: Configuration by configurations.creating {
-    configurations.implementation.get().extendsFrom(this)
-}
-
-val lombokVersion = "1.18.28"
-
-dependencies {
-    minecraft("com.mojang:minecraft:$mcVersion")
-    mappings("de.oceanlabs.mcp:mcp_stable:22-$mcVersion")
-    forge("net.minecraftforge:forge:$mcVersion-11.15.1.2318-$mcVersion")
-
-    shadowImpl("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
-        isTransitive = false
-    }
-    annotationProcessor("org.spongepowered:mixin:0.8.5")
-
-    compileOnly("org.projectlombok:lombok:$lombokVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-
-    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
-    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
-
-    runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
-
-    shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
-    shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
-
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0-M1")
-    testImplementation("org.mockito:mockito-core:4.11.0")
-    testImplementation("org.mockito:mockito-inline:4.11.0")
-    testImplementation("org.assertj:assertj-core:3.24.2")
-}
-
-// Tasks:
-tasks.withType(JavaCompile::class) {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType(Jar::class) {
-    archiveBaseName.set(modid)
-    manifest.attributes.run {
-        this["FMLCorePluginContainsFMLMod"] = "true"
-        this["ForceLoadAsMod"] = "true"
-
-        this["TweakClass"] = "org.spongepowered.asm.launch.MixinTweaker"
-        this["MixinConfigs"] = "mixins.$modid.json"
+tasks.withType<JacocoReport> {
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(false)
     }
 }
 
-tasks.processResources {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-
-    inputs.property("version", project.version)
-    inputs.property("mcversion", mcVersion)
-    inputs.property("modid", modid)
-    inputs.property("mixinGroup", mixinGroup)
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets["main"].resources.srcDir("resources")) {
-        include("mcmod.info")
-        include("mixins.utilitymod.json")
-
-        expand(inputs.properties)
-    }
-
-    rename("(.+_at.cfg)", "META-INF/$1")
-}
-
-val remapJar by tasks.named<net.fabricmc.loom.task.RemapJarTask>("remapJar") {
-    archiveClassifier.set("")
-    from(tasks.shadowJar)
-    input.set(tasks.shadowJar.get().archiveFile)
-}
-
-tasks.jar {
-    archiveClassifier.set("without-deps")
-    destinationDirectory.set(layout.buildDirectory.dir("buildjars"))
-}
-
-tasks.shadowJar {
-    destinationDirectory.set(layout.buildDirectory.dir("buildjars"))
-    archiveClassifier.set("all-dev")
-    configurations = listOf(shadowImpl)
-
-    doLast {
-        configurations.forEach {
-            println("Copying jars into mod: ${it.files}")
-        }
-    }
-
-    exclude(
-        "**/LICENSE.*",
-        "**/LICENSE",
-        "**/NOTICE",
-        "**/NOTICE.*",
-        "pack.mcmeta",
-        "dummyThing",
-        "**/module-info.class",
-        "META-INF/proguard/**",
-        "META-INF/maven/**",
-        "META-INF/versions/**",
-        "META-INF/com.android.tools/**"
-    )
-
-    // Required for the update checker code
-    manifest.attributes["Implementation-Version"] = project.version
-
-    // If you want to include other dependencies and shadow them, you can relocate them in here
-    fun relocate(name: String) = relocate(name, "$baseGroup.deps.$name")
-
-    relocate("gg.essential.vigilance")
-    relocate("gg.essential.elementa")
-    relocate("gg.essential.universalcraft")
-}
-
-tasks.assemble.get().dependsOn(tasks.remapJar)
+tasks.test.get().finalizedBy(tasks.jacocoTestReport)
 
 // Hook tasks
 fun registerHook(hookName: String) {
