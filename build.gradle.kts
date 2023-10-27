@@ -115,7 +115,7 @@ dependencies {
 
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
 
-    shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
+    shadowImpl("gg.essential:elementa-$mcVersion-forge:614")
     shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
