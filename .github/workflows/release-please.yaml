@@ -25,7 +25,7 @@ jobs:
       # Build jar
       - name: Set up JDK 17
         if: ${{ steps.release.outputs.release_created }}
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
