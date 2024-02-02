@@ -115,7 +115,7 @@ dependencies {
 
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
 
-    shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
+    shadowImpl("gg.essential:elementa-$mcVersion-forge:628+feature-disable_window_input_on_failure")
     shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
