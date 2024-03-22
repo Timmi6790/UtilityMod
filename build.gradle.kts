@@ -1,11 +1,11 @@
 plugins {
     idea
     java
-    kotlin("jvm") version "1.8.21"
+    kotlin("jvm") version "1.9.23"
     id("gg.essential.loom") version "0.10.0.+"
     id("dev.architectury.architectury-pack200") version "0.1.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("com.diffplug.spotless") version "6.19.0"
+    id("com.diffplug.spotless") version "6.25.0"
     checkstyle
     jacoco
 }
@@ -95,14 +95,14 @@ val shadowImpl: Configuration by configurations.creating {
     configurations.implementation.get().extendsFrom(this)
 }
 
-val lombokVersion = "1.18.28"
+val lombokVersion = "1.18.32"
 
 dependencies {
     minecraft("com.mojang:minecraft:$mcVersion")
     mappings("de.oceanlabs.mcp:mcp_stable:22-$mcVersion")
     forge("net.minecraftforge:forge:$mcVersion-11.15.1.2318-$mcVersion")
 
-    shadowImpl("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
+    shadowImpl("org.spongepowered:mixin:0.8.5") {
         isTransitive = false
     }
     annotationProcessor("org.spongepowered:mixin:0.8.5")
@@ -113,16 +113,16 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
-    runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
+    runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.2.0")
 
     shadowImpl("gg.essential:elementa-$mcVersion-forge:590")
     shadowImpl("gg.essential:vigilance-$mcVersion-forge:284")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0-M1")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0-M1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.2")
     testImplementation("org.mockito:mockito-core:4.11.0")
     testImplementation("org.mockito:mockito-inline:4.11.0")
-    testImplementation("org.assertj:assertj-core:3.24.2")
+    testImplementation("org.assertj:assertj-core:3.25.3")
 }
 
 // Tasks:
