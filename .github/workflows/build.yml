@@ -41,7 +41,7 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Publish Checkstyle report
-        uses: Juuxel/publish-checkstyle-report@v1
+        uses: Juuxel/publish-checkstyle-report@v2
         if: ${{ failure() || success() }}
         with:
           reports: |
