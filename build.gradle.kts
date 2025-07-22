@@ -5,7 +5,7 @@ plugins {
     id("gg.essential.loom") version "0.10.0.+"
     id("dev.architectury.architectury-pack200") version "0.1.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("com.diffplug.spotless") version "6.19.0"
+    id("com.diffplug.spotless") version "7.2.1"
     checkstyle
     jacoco
 }
